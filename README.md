@@ -7,7 +7,7 @@ Author: Bryan Kline
 
 Dates:  August 2015 - July 2018
 
-The Projects repository contains four main directories:
+The Projects repository contains four main directories (ordered by date completed):
 
   1. Data Structures and Algorithms in C++
   2. Traffic Simulation for Smart Cities
