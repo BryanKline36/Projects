@@ -1,8 +1,8 @@
 
 File name: 	    readme
-Author: 		Bryan Kline
-Date:			May 3, 2018
-Description:	Compilation and execution instructions and dependency information, created for cybersecurity
+Author: 		    Bryan Kline
+Date:			      May 3, 2018
+Description:	  Compilation and execution instructions and dependency information, created for cybersecurity
                 course at UNR (CS445, Spring 2018) in collaboration with Nathanael Fuller.
 
 Project Name:   Cybersecurity Webscraper
@@ -10,12 +10,9 @@ Purpose:        Utility for scraping cybersecurity web content from 16 websites 
                 security alerts, notifications, and news for the cybersecurity professional.
 
 
-*********************************************************************************************************
-*                                                                                                       *   
-*       For detailed program documentation, see CyberSecurityWebScraper Program Documentation.pdf       *       
-*                                                                                                       *
-*********************************************************************************************************
-
+                                                                                                      
+For detailed program documentation, see CyberSecurityWebScraper Program Documentation.pdf          
+                                                                                                      
 
 To be built and executed on Linux distributions Xubuntu or Ubuntu.
 
