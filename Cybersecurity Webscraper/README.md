@@ -1,7 +1,10 @@
 
 File name: 	    readme
+
 Author: 		    Bryan Kline
+
 Date:			      May 3, 2018
+
 Description:	  Compilation and execution instructions and dependency information, created for cybersecurity
                 course at UNR (CS445, Spring 2018) in collaboration with Nathanael Fuller.
 
