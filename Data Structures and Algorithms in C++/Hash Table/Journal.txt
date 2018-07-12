@@ -1,0 +1,20 @@
+Bryan Kline
+CS302 
+PA10 - HashClass Journal
+04/20/2016
+
+1. What worked well for this assignment?
+
+The things that worked best for this assignment was that the basic idea of a hash table and probing is not very complicated, the MedType class took care of the hash process, which wasn't very complicated to begin with, and that it was a break from recursion.  Much of the class implementation was very straightforward and I was able to write it correctly with little planning.  In addition to that some of the methods, in particular the constructors, destructor, and overloaded assignment operator, were already written and so that took some of the load off.
+
+2. What did not work well for this assignment?
+
+The biggest problem for me in this assigment was the fact that so many methods had what seemed to be extrenious and unneeded parameters, some of which were by reference, and determining what they were doing and why they were there.  Of these, the parameters corresponding to the number of probe attempts were the ones that held me up and caused the most trouble for me.  Ultimately, because I didn't understand what they were doing at each step through the process, getting the output values for the probe attempts was a problem and a little bit of backtracking and fiddling were necessary to get the correct output.
+
+3. What did you need help with on this assignment?
+
+A lesser problem than the probe parameters was the quadratic probing equation and another problem I was having outputting a table which had failed at adding an item.  Both of these questions were addressed on the forum and so I once again got direct help from the forum which I was able to use and it solved my problem immediately.  The problems were that I had a part missing from the quadratic calculation and that I wasn't returning false in resize if addItem failed.  The forum has turned out to be, looking back over the semester, a great resource and when there's a lot of activity there I usually get something out of it that helps with the projects in some way or another.
+
+4. What did you learn from this assignment?
+
+The major thing I learned from this assignment was about how hash tables work and that there are many ways to resolve data collisions.  For this assignment we used of course quadratic probing, but it's apparent that there could be any number of different probing schemes relating to any equation of any degree, or each place in the table could be a pointer to another data structure and inserted there or the data could be simply rehashed again.  It also seems like there could be any combination of those different collision mitigation stratedies, such as a hash method that then leads to a place in the table which is itself another table that's probed or rehased to get a place in that table which is then a different data structure altogether and so on.  This realization opened up for the me the posibility that all these data structures have been discussed in class can be combined in different ways and that perhaps there might be new properties that arise when that is done.
