@@ -3,6 +3,8 @@ File name: 	    readme
 
 Author: 		    Bryan Kline
 
+Author:         Nathanael Fuller
+
 Date:			      May 3, 2018
 
 Description:	  Compilation and execution instructions and dependency information, created for cybersecurity
