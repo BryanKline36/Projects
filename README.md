@@ -42,10 +42,10 @@ on-going security threats and concerns.  The program was developed for a cyberse
 4. The "SkyWarden: Aerial Drone Notification System" project is an alert and notification system for aerial drones created as 
 a senior project for the Autonomous Robots Lab (http://www.autonomousrobotslab.com/) at the University of Nevada, Reno over the
 2017-2018 year.  The system consists of three main subsystems: an on-board drone subsystem, a ground base unit subsystem,
-and a GUI subsystem.  The on-board subsystem is composed of a voltage sensor and 14 LiDAR sensor array which are polled by
+and a GUI subsystem.  The on-board subsystem is composed of a voltage sensor and a LiDAR sensor array which are polled by
 a microcontroller and transmitted wirelessly to the ground base unit.  The ground base unit subsystem is composed of a
 Raspberry Pi which controls a number of LEDs, seven segment displays, buttons, switches, and a speaker, which continually
-receives the data from the drone, displays it on the device, and issues visual and auditory alerts with any data falls below
+receives the data from the drone, displays it on the device, and issues visual and auditory alerts when any data falls below
 user-defined thresholds.  The Raspberry Pi also runs a GUI which the user may use in order to view the data graphically and
 to set the voltage and proximity thresholds.  The data is also streamed over the network through the Robot Operating System,
 ROS, which researchers use to control and visualize the drone.  http://skywarden.tech/
