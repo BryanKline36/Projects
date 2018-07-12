@@ -1,8 +1,11 @@
 
-File name: 	    readme
-Author: 		Bryan Kline
-Date:			December 6, 2017
-Description:	Compilation and execution instructions and dependency information, created for networking
+File name: 	  readme
+
+Author: 	    Bryan Kline
+
+Date:			    December 6, 2017
+
+Description:	  Compilation and execution instructions and dependency information, created for networking
                 course at UNR (CPE400, Fall 2017) in collaboration with Ryan Lieu and Robert Watkins.
 
 Project Name:   Traffic Simulation for Smart Cities - Software Defined Network for Traffic Management
@@ -12,11 +15,11 @@ Purpose:        Terminal-based city map and traffic simulation tool which allows
                 allows for dynamic smart car rerouting using Dijkstra’s algorithm.
 
 
-*********************************************************************************************************
-*                                                                                                       *   
-*       For detailed program documentation, see CPE400 Project 6 Documentation.pdf                      *       
-*                                                                                                       *
-*********************************************************************************************************
+
+                                                                                                        
+For detailed program documentation, see CPE400 Project 6 Documentation.pdf                            
+                                                                                                       
+
 
 To be built and executed on Linux distributions Xubuntu or Ubuntu.
 
