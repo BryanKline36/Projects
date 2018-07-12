@@ -1,9 +1,13 @@
 Project: 		CS426 Spring 2018, Team #23: SkyWarden Senior Project, Aerial Drone Notification System (ADNS) 
+
 Team:			Rony Calderon, Bryan Kline, Jia Li, Robert Watkins
-Subsystem:	    Ground Base Unit and GUI
-File name:	    readme 
-Description:    Provides the commands to initialize the subsystem running on the Raspberry Pi in the ground base
-                unit for the headless versions of ADNS
+
+Subsystem:	    	Ground Base Unit and GUI
+
+File name:	    	readme 
+
+Description:    	Provides the commands to initialize the subsystem running on the Raspberry Pi in the ground base
+                	unit for the headless versions of ADNS
 
 To run the system, in the "Headless ADNS" directory:
 
