@@ -24,5 +24,3 @@ for the hardware used in the construction of the ground unit, and the documentat
 
 The Raspberry Pi also runs a GUI which the user may use in order to view the data graphically and to set the voltage and proximity thresholds.  The data is also streamed over the network through the Robot Operating System, ROS, which researchers use to control and visualize the drone.  The code and documentation for the GUI subsystem is located in the "Ground Base Unit and GUI Subsystems", and is written in Python.
 
-Team Website: http://skywarden.tech/
-
