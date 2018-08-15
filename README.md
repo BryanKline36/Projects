@@ -1,7 +1,7 @@
 # Projects
-Programming Projects in C, C++, and Python README
+Programming Projects in C, C++, Python, and JavaScript
 
-Name: Programming Projects in C, C++, and Python
+Name: Programming Projects in C, C++, Python, and JavaScript
 
 Author: Bryan Kline
 
@@ -9,19 +9,24 @@ Dates:  August 2015 - July 2018
 
 The Projects repository contains four main directories (ordered by date completed):
 
-  1. Data Structures and Algorithms in C++
-  2. Traffic Simulation for Smart Cities
-  3. Cybersecurity Webscraper
-  4. Aerial Drone Notification System
+  1. ReverseFrogger (AntiFrogger)
+  2. Data Structures and Algorithms in C++
+  3. Traffic Simulation for Smart Cities
+  4. Cybersecurity Webscraper
+  5. Aerial Drone Notification System
 
 Project descriptions: 
 
-1. The "Data Structures and Algorithms in C++" directory includes several subdirectories each containing code in C++
+1. The "Reverse Frogger" directory contains a browser basd 8-bit, retro arcade style game inspired by Frogger.  
+Written in JavaScript and rendered in an HTML canvas, the game can be played offline by simply downloading the 
+asset directories "audio" and "images" along with "revfrog.html" and "revfrog2.js" and opening the HTML file.   
+
+2. The "Data Structures and Algorithms in C++" directory includes several subdirectories each containing code in C++
 which implements, tests, and documents a different data structure and/or algorithm, including class header files, 
 implementation files, main driver, and make files, as well as test scripts and Doxygen files.  Each program was 
 completed as a project for DSA courses in C++.
 
-2. The "Traffic Simulation for Smart Cities" project models a smart city as a Software Defined Network, a global, top-down view
+3. The "Traffic Simulation for Smart Cities" project models a smart city as a Software Defined Network, a global, top-down view
 of a network, which is host to a fully autonomous fleet of automobiles.  The user specifies an arbitrarily large map with any 
 number of cars added to each intersection, each also given a destination intersection thereby defining a trajectory.  The 
 user may also add delays at any intersection to simulate construction, lane closures, etc. The OSPF (Open Shortest Path First) 
@@ -31,7 +36,7 @@ the delays and then with a congestion correction method whereby cars with simila
 achieve a convoy effect to reduce traffic congestion.  The results of the different simulations are both printed to the 
 terminal and written to a file in the form of a number of tables.  The program was developed for a networking course in C++. 
 
-3. The "Cybersecurity Webscraper" project serves as an automated means of gathering alerts, news, and notifications about 
+4. The "Cybersecurity Webscraper" project serves as an automated means of gathering alerts, news, and notifications about 
 cybersecurity attacks, threats, and vulnerabilities by scraping 16 cybersecurity websites and dumping the raw data
 into a CSV file.  The system then filters the raw data through both a dictionary and an exclusion dictionary which
 ignores common terms and searches for The system also can update the dictionary if a particular term is seen in proximity
@@ -39,7 +44,7 @@ enough times with a dictionary term which allows for a flexible, evolving filter
 into an SQLite database based on their ranking which the cybersecurity professional can then consult in order to learn of
 on-going security threats and concerns.  The program was developed for a cybersecurity course in Python, C++, and SQLite.
 
-4. The "SkyWarden: Aerial Drone Notification System" project is an alert and notification system for aerial drones created as 
+5. The "SkyWarden: Aerial Drone Notification System" project is an alert and notification system for aerial drones created as 
 a senior project for the Autonomous Robots Lab (http://www.autonomousrobotslab.com/) at the University of Nevada, Reno over the
 2017-2018 year.  The system consists of three main subsystems: an on-board drone subsystem, a ground base unit subsystem,
 and a GUI subsystem.  The on-board subsystem is composed of a voltage sensor and a LiDAR sensor array which are polled by
