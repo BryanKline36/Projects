@@ -7,5 +7,5 @@ class MapMaker
   
   private:
     
-    void openFile();
+    void createMap();
 };
