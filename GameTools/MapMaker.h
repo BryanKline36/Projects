@@ -1,3 +1,7 @@
+#include <iostream>
+#include <string>
+
+
 class MapMaker
 {
   public:
@@ -8,7 +12,9 @@ class MapMaker
 		top,
 		right,
 		left,
-		bottom
+		bottom,
+		vertical,
+		horizontal
 
 	}
 
@@ -22,5 +28,46 @@ class MapMaker
 
   	void fillAll();
   	void fillBorder(Selection borderChoice);
+  	void fillLine(Selection lineType, int position);
     void createMap();
 };
+
+MapMaker::MapMaker()
+{
+
+}
+
+MapMaker::~MapMaker()
+{
+
+}
+
+void MapMaker::run()
+{
+
+}
+
+
+void MapMaker::fillAll()
+{
+
+
+}
+
+void MapMaker::fillBorder(Selection borderChoice)
+{
+
+
+}
+
+void MapMaker::fillLine(Selection lineType, int position)
+{
+
+
+}
+
+void MapMaker::createMap()
+{
+
+
+}
