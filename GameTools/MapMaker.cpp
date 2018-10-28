@@ -69,7 +69,7 @@ Selection MapMaker::promptAction()
 
 	std::cout << "Choose an action:" << std::endl;
 	std::cout << "1) Fill entire map" << std::endl;
-	std::cout << "2) Fill Fill border" << std::endl;
+	std::cout << "2) Fill borders" << std::endl;
 	std::cout << "3) Fill line" << std::endl;
 
 	std::cin >> choice;
@@ -94,9 +94,8 @@ void MapMaker::selectAction(Selection choice)
 
 		case fillBorder:
 
-			
-
-			fillBorder();
+			selectionType = chooseBorder();
+			fillBorder(selectionType);
 
 		break;
 
@@ -112,6 +111,22 @@ void MapMaker::selectAction(Selection choice)
 	}
 }
 
+Selection MapMaker::chooseBorder()
+{
+	Selection choice;
+
+	std::cout << "Choose a border to fill:" << std::endl;
+	std::cout << "1) Fill all borders" << std::endl;
+	std::cout << "2) Fill top border" << std::endl;
+	std::cout << "3) Fill bottom border" << std::endl;
+	std::cout << "4) Fill right border" << std::endl;
+	std::cout << "5) Fill left border" << std::endl;
+
+	std::cin >> choice;
+
+	return choice;
+}
+
 
 void MapMaker::fillAll()
 {
@@ -121,7 +136,24 @@ void MapMaker::fillAll()
 
 void MapMaker::fillBorder(Selection borderChoice)
 {
+	int outer, inner;
+	char mapCharacter;
 
+	std::out << "Enter the character to fill:" << std::endl;
+	std::cin >> mapCharacter; 
+
+	for(outer = 0; outer < rows; outer++)
+	{
+		if(((borderChoice == all || borderChoice == top) && outer == 0) || 
+			((borderChoice == all || borderChoice == bottom)) && outer == rows - 1)
+		{
+			for(inner = 0; inner < columns; outer++)
+			{
+				map[outer][inner] = mapCharacter;
+			}
+		}	
+		
+	}
 
 }
 

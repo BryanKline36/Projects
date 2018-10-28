@@ -17,9 +17,9 @@ class MapMaker
 	{
 		all,
 		top,
+		bottom,
 		right,
 		left,
-		bottom,
 		vertical,
 		horizontal,
 		fillAll,
@@ -37,7 +37,8 @@ class MapMaker
   private:
 
   	Selection promptAction();
-  	void selectAction();
+  	void selectAction(Selection choice);
+  	Selection chooseBorder();
 
   	void fillAll();
   	void fillBorder(Selection borderChoice);
