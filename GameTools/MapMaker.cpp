@@ -48,6 +48,18 @@ MapMaker::~MapMaker()
 
 void MapMaker::run(std::string fileName)
 {
+	Selection choice = 1;
+
+	while(choice)
+	{
+		choice = promptAction();
+
+		selectAction(choice);
+
+
+
+	}
+
 	createMap(fileName);
 }
 
@@ -68,17 +80,36 @@ Selection MapMaker::promptAction()
 
 void MapMaker::selectAction(Selection choice)
 {	
+	int position;
+	Selection selectionType;
+
 	switch(choice)
 	{
 
+		case fillAll:
 
+			fillAll();
 
+		break;
 
+		case fillBorder:
 
-		
+			
+
+			fillBorder();
+
+		break;
+
+		case fillLine:
+
+			fillLine();
+
+		break;
+
+		default:
+
+		break;	
 	}
-
-
 }
 
 
