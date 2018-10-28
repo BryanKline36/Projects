@@ -152,9 +152,18 @@ void MapMaker::fillBorder(Selection borderChoice)
 				map[outer][inner] = mapCharacter;
 			}
 		}	
-		
+		else 
+		{
+			if(borderChoice == all || borderChoice == right)
+			{
+				map[outer][columns - 1] = mapCharacter;
+			} 
+			if(borderChoice == all || borderChoice == left)
+			{
+				map[outer][0] = mapCharacter;	
+			} 
+		}
 	}
-
 }
 
 void MapMaker::fillLine(Selection lineType, int position)
