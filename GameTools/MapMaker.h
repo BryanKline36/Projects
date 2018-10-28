@@ -2,6 +2,9 @@
 #include <fstream>
 #include <string>
 
+#ifndef MAP_MAKER_H
+#define MAP_MAKER_H
+
 class MapMaker
 {
   public:
@@ -16,79 +19,25 @@ class MapMaker
 		vertical,
 		horizontal
 
-	}
+	};
 
     
     MapMaker();
     ~MapMaker();
   
-  	void run();
+  	void run(std::string fileName);
 
   private:
 
   	void fillAll();
   	void fillBorder(Selection borderChoice);
   	void fillLine(Selection lineType, int position);
-    void createMap(string fileName);
+    void createMap(std::string fileName);
 
-    int rows = 8;
-    int columns = 8;
+    int rows;
+    int columns;
 
-    char map[rows][columns];
+    char** map;
 };
 
-MapMaker::MapMaker()
-{
-	int inner, outer;
-
-	for(outer = 0; outer < rows; outer++)
-	{
-		for(inner = 0; inner < columns; inner++)
-		{
-			map[outer][outer] = " ";
-		}
-	}
-}
-
-MapMaker::~MapMaker() {} = default;
-
-void MapMaker::run()
-{
-
-}
-
-
-void MapMaker::fillAll()
-{
-
-
-}
-
-void MapMaker::fillBorder(Selection borderChoice)
-{
-
-
-}
-
-void MapMaker::fillLine(Selection lineType, int position)
-{
-
-
-}
-
-void MapMaker::createMap(string fileName)
-{
-	int inner, outer;
-	ofstream outFile;
-
-	outFile.open(fileName);
-
-	for(outer = 0; outer < rows; outer++)
-	{
-		for(inner = 0; inner < columns; inner++)
-		{
-			outFile >> map[outer][outer];
-		}
-		outFile >> '\n';
-	}
-}
+#endif
