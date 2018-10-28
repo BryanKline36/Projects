@@ -9,6 +9,10 @@ class MapMaker
 {
   public:
 
+  	const int minFillSelection = 7;
+  	const int maxFillSelection = 9;
+
+
 	enum Selection
 	{
 		all,
@@ -17,7 +21,10 @@ class MapMaker
 		left,
 		bottom,
 		vertical,
-		horizontal
+		horizontal,
+		fillAll,
+		fillBorder,
+		fillLine
 
 	};
 
@@ -29,13 +36,18 @@ class MapMaker
 
   private:
 
+  	Selection promptAction();
+  	void selectAction();
+
   	void fillAll();
   	void fillBorder(Selection borderChoice);
   	void fillLine(Selection lineType, int position);
+
     void createMap(std::string fileName);
 
     int rows;
     int columns;
+    char currentSymbol;
 
     char** map;
 };

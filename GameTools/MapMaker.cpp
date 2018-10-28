@@ -13,6 +13,7 @@ MapMaker::MapMaker()
 
 	rows = 8;
 	columns = 8;
+	currentSymbol = ' ';
 
 	map = new char*[rows];
 
@@ -20,7 +21,6 @@ MapMaker::MapMaker()
 	{
 		map[outer] = new char[columns];
 	}
-
 
 	for(outer = 0; outer < rows; outer++)
 	{
@@ -49,6 +49,36 @@ MapMaker::~MapMaker()
 void MapMaker::run(std::string fileName)
 {
 	createMap(fileName);
+}
+
+Selection MapMaker::promptAction()
+{
+	int choice;
+
+	std::cout << "Choose an action:" << std::endl;
+	std::cout << "1) Fill entire map" << std::endl;
+	std::cout << "2) Fill Fill border" << std::endl;
+	std::cout << "3) Fill line" << std::endl;
+
+	std::cin >> choice;
+
+	return choice;
+
+}
+
+void MapMaker::selectAction(Selection choice)
+{	
+	switch(choice)
+	{
+
+
+
+
+
+		
+	}
+
+
 }
 
 

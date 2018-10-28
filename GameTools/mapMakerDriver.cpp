@@ -11,7 +11,5 @@ int main()
 
 	mapMaker.run(fileName);
 
-
-
 	return 0;
 }
