@@ -130,8 +130,19 @@ MapMaker::Selection MapMaker::chooseBorder()
 
 void MapMaker::fillEntire()
 {
+	int inner, outer;
+	char mapCharacter;
 
+	std::cout << "Enter the character to fill:" << std::endl;
+	std::cin >> mapCharacter; 
 
+	for(outer = 0; outer < rows; outer++)
+	{
+		for(inner = 0; inner < columns; inner++)
+		{
+			map[outer][outer] = mapCharacter;
+		}
+	}
 }
 
 void MapMaker::fillBorders(Selection borderChoice)
