@@ -15,6 +15,7 @@ class MapMaker
 
 	enum Selection
 	{
+		null,
 		all,
 		top,
 		bottom,
@@ -40,9 +41,9 @@ class MapMaker
   	void selectAction(Selection choice);
   	Selection chooseBorder();
 
-  	void fillAll();
-  	void fillBorder(Selection borderChoice);
-  	void fillLine(Selection lineType, int position);
+  	void fillEntire();
+  	void fillBorders(Selection borderChoice);
+  	void fillLines(Selection lineType, int position);
 
     void createMap(std::string fileName);
 

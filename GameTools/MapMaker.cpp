@@ -48,7 +48,7 @@ MapMaker::~MapMaker()
 
 void MapMaker::run(std::string fileName)
 {
-	Selection choice = 1;
+	Selection choice = null;
 
 	while(choice)
 	{
@@ -63,7 +63,7 @@ void MapMaker::run(std::string fileName)
 	createMap(fileName);
 }
 
-Selection MapMaker::promptAction()
+MapMaker::Selection MapMaker::promptAction()
 {
 	int choice;
 
@@ -74,7 +74,7 @@ Selection MapMaker::promptAction()
 
 	std::cin >> choice;
 
-	return choice;
+	return (Selection) choice;
 
 }
 
@@ -88,20 +88,20 @@ void MapMaker::selectAction(Selection choice)
 
 		case fillAll:
 
-			fillAll();
+			fillEntire();
 
 		break;
 
 		case fillBorder:
 
 			selectionType = chooseBorder();
-			fillBorder(selectionType);
+			fillBorders(selectionType);
 
 		break;
 
 		case fillLine:
 
-			fillLine();
+			fillLines(selectionType, position);
 
 		break;
 
@@ -111,9 +111,9 @@ void MapMaker::selectAction(Selection choice)
 	}
 }
 
-Selection MapMaker::chooseBorder()
+MapMaker::Selection MapMaker::chooseBorder()
 {
-	Selection choice;
+	int choice;
 
 	std::cout << "Choose a border to fill:" << std::endl;
 	std::cout << "1) Fill all borders" << std::endl;
@@ -124,22 +124,22 @@ Selection MapMaker::chooseBorder()
 
 	std::cin >> choice;
 
-	return choice;
+	return (Selection) choice;
 }
 
 
-void MapMaker::fillAll()
+void MapMaker::fillEntire()
 {
 
 
 }
 
-void MapMaker::fillBorder(Selection borderChoice)
+void MapMaker::fillBorders(Selection borderChoice)
 {
 	int outer, inner;
 	char mapCharacter;
 
-	std::out << "Enter the character to fill:" << std::endl;
+	std::cout << "Enter the character to fill:" << std::endl;
 	std::cin >> mapCharacter; 
 
 	for(outer = 0; outer < rows; outer++)
@@ -166,7 +166,7 @@ void MapMaker::fillBorder(Selection borderChoice)
 	}
 }
 
-void MapMaker::fillLine(Selection lineType, int position)
+void MapMaker::fillLines(Selection lineType, int position)
 {
 
 
