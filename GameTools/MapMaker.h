@@ -40,6 +40,7 @@ class MapMaker
   	Selection promptAction();
   	void selectAction(Selection choice);
   	Selection chooseBorder();
+  	Selection chooseLineType();
 
   	void fillEntire();
   	void fillBorders(Selection borderChoice);

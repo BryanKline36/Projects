@@ -82,7 +82,8 @@ MapMaker::Selection MapMaker::promptAction()
 
 void MapMaker::selectAction(Selection choice)
 {	
-	int position, selectionType;
+	int position 
+	Selection selectionType;
 
 	switch(choice)
 	{
@@ -95,15 +96,6 @@ void MapMaker::selectAction(Selection choice)
 
 		case fillBorder:
 
-			std::cout << "Choose which border to fill:" << std::endl;
-			std::cout << "1) " << std::endl;
-			std::cout << << std::endl;
-			std::cout << << std::endl;
-			std::cout << << std::endl;
-
-			std::cout << << std::endl;
-
-
 			selectionType = chooseBorder();
 			fillBorders(selectionType);
 
@@ -111,6 +103,7 @@ void MapMaker::selectAction(Selection choice)
 
 		case fillLine:
 
+			selectionType = chooseLineType();
 			fillLines(selectionType, position);
 
 		break;
@@ -126,11 +119,27 @@ MapMaker::Selection MapMaker::chooseBorder()
 	int choice;
 
 	std::cout << "Choose a border to fill:" << std::endl;
-	std::cout << "1) Fill all borders" << std::endl;
-	std::cout << "2) Fill top border" << std::endl;
-	std::cout << "3) Fill bottom border" << std::endl;
-	std::cout << "4) Fill right border" << std::endl;
-	std::cout << "5) Fill left border" << std::endl;
+	std::cout << "9) Fill all borders" << std::endl;
+	std::cout << "10) Fill top border" << std::endl;
+	std::cout << "6) Fill bottom border" << std::endl;
+	std::cout << "7) Fill right border" << std::endl;
+	std::cout << "8) Fill left border" << std::endl;
+
+	std::cin >> choice;
+
+	return (Selection) choice;
+}
+
+MapMaker::Selection MapMaker::chooseLineType()
+{
+	int choice;
+
+	std::cout << "Choose a type of line:" << std::endl;
+	std::cout << "4) Fill all borders" << std::endl;
+	std::cout << "5) Fill top border" << std::endl;
+	std::cout << "6) Fill bottom border" << std::endl;
+	std::cout << "7) Fill right border" << std::endl;
+	std::cout << "8) Fill left border" << std::endl;
 
 	std::cin >> choice;
 
@@ -159,6 +168,11 @@ void MapMaker::fillBorders(Selection borderChoice)
 {
 	int outer, inner;
 	char mapCharacter;
+
+	if(borderChoice == null)
+	{
+		return;
+	}
 
 	std::cout << "Enter the character to fill:" << std::endl;
 	std::cin >> mapCharacter; 
@@ -190,6 +204,10 @@ void MapMaker::fillBorders(Selection borderChoice)
 void MapMaker::fillLines(Selection lineType, int position)
 {
 
+	if(borderChoice == null)
+	{
+		return;
+	}
 
 }
 
