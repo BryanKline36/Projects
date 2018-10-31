@@ -48,7 +48,7 @@ MapMaker::~MapMaker()
 
 void MapMaker::run(std::string fileName)
 {
-	Selection choice = null;
+	Selection choice = all;
 
 	while(choice)
 	{
@@ -71,6 +71,8 @@ MapMaker::Selection MapMaker::promptAction()
 	std::cout << "1) Fill entire map" << std::endl;
 	std::cout << "2) Fill borders" << std::endl;
 	std::cout << "3) Fill line" << std::endl;
+	std::cout << "0) To exit" << std::endl;
+
 
 	std::cin >> choice;
 
@@ -80,8 +82,7 @@ MapMaker::Selection MapMaker::promptAction()
 
 void MapMaker::selectAction(Selection choice)
 {	
-	int position;
-	Selection selectionType;
+	int position, selectionType;
 
 	switch(choice)
 	{
@@ -93,6 +94,15 @@ void MapMaker::selectAction(Selection choice)
 		break;
 
 		case fillBorder:
+
+			std::cout << "Choose which border to fill:" << std::endl;
+			std::cout << "1) " << std::endl;
+			std::cout << << std::endl;
+			std::cout << << std::endl;
+			std::cout << << std::endl;
+
+			std::cout << << std::endl;
+
 
 			selectionType = chooseBorder();
 			fillBorders(selectionType);

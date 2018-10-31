@@ -16,16 +16,16 @@ class MapMaker
 	enum Selection
 	{
 		null,
+		fillAll,
+		fillBorder,
+		fillLine,
 		all,
 		top,
 		bottom,
 		right,
 		left,
 		vertical,
-		horizontal,
-		fillAll,
-		fillBorder,
-		fillLine
+		horizontal
 
 	};
 
