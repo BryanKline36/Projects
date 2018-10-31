@@ -84,6 +84,7 @@ void MapMaker::selectAction(Selection choice)
 {	
 	int position 
 	Selection selectionType;
+	Coordinate coordinate;
 
 	switch(choice)
 	{
@@ -135,17 +136,25 @@ MapMaker::Selection MapMaker::chooseLineType()
 	int choice;
 
 	std::cout << "Choose a type of line:" << std::endl;
-	std::cout << "4) Fill all borders" << std::endl;
-	std::cout << "5) Fill top border" << std::endl;
-	std::cout << "6) Fill bottom border" << std::endl;
-	std::cout << "7) Fill right border" << std::endl;
-	std::cout << "8) Fill left border" << std::endl;
+	std::cout << "9) Fill all borders" << std::endl;
+	std::cout << "10) Fill top border" << std::endl;
 
 	std::cin >> choice;
 
 	return (Selection) choice;
 }
 
+MapMaker::Coordinate MapMaker::chooseLineType()
+{
+	Coordinate tempCoordinate;
+
+	std::cout << "Enter the x position:" << std::endl;
+	std::cin >> tempCoordinate.x;
+	std::cout << "Enter the y position:" << std::endl;
+	std::cin >> tempCoordinate.y;
+
+	return tempCoordinate;
+}
 
 void MapMaker::fillEntire()
 {

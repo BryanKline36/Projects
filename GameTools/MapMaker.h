@@ -12,6 +12,11 @@ class MapMaker
   	const int minFillSelection = 7;
   	const int maxFillSelection = 9;
 
+  	struct Coordinate
+  	{
+  		int x;
+  		int y;
+  	};
 
 	enum Selection
 	{
@@ -41,6 +46,7 @@ class MapMaker
   	void selectAction(Selection choice);
   	Selection chooseBorder();
   	Selection chooseLineType();
+  	Coordinate chooseLineType();
 
   	void fillEntire();
   	void fillBorders(Selection borderChoice);
