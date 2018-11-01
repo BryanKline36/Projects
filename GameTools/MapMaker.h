@@ -46,7 +46,7 @@ class MapMaker
   	void selectAction(Selection choice);
   	Selection chooseBorder();
   	Selection chooseLineType();
-  	Coordinate chooseLineType();
+  	Coordinate choosePosition()();
 
   	void fillEntire();
   	void fillBorders(Selection borderChoice);

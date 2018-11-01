@@ -82,9 +82,8 @@ MapMaker::Selection MapMaker::promptAction()
 
 void MapMaker::selectAction(Selection choice)
 {	
-	int position 
 	Selection selectionType;
-	Coordinate coordinate;
+	Coordinate position;
 
 	switch(choice)
 	{
@@ -105,6 +104,7 @@ void MapMaker::selectAction(Selection choice)
 		case fillLine:
 
 			selectionType = chooseLineType();
+			coordinate = choosePosition();
 			fillLines(selectionType, position);
 
 		break;
@@ -136,24 +136,24 @@ MapMaker::Selection MapMaker::chooseLineType()
 	int choice;
 
 	std::cout << "Choose a type of line:" << std::endl;
-	std::cout << "9) Fill all borders" << std::endl;
-	std::cout << "10) Fill top border" << std::endl;
+	std::cout << "9) Vertical line" << std::endl;
+	std::cout << "10) Horizontal line" << std::endl;
 
 	std::cin >> choice;
 
 	return (Selection) choice;
 }
 
-MapMaker::Coordinate MapMaker::chooseLineType()
+MapMaker::Coordinate MapMaker::choosePosition()
 {
-	Coordinate tempCoordinate;
+	Coordinate coordinate;
 
 	std::cout << "Enter the x position:" << std::endl;
-	std::cin >> tempCoordinate.x;
+	std::cin >> coordinate.x;
 	std::cout << "Enter the y position:" << std::endl;
-	std::cin >> tempCoordinate.y;
+	std::cin >> coordinate.y;
 
-	return tempCoordinate;
+	return coordinate;
 }
 
 void MapMaker::fillEntire()
