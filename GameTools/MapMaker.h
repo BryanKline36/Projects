@@ -46,11 +46,11 @@ class MapMaker
   	void selectAction(Selection choice);
   	Selection chooseBorder();
   	Selection chooseLineType();
-  	Coordinate choosePosition()();
+  	Coordinate choosePosition();
 
   	void fillEntire();
   	void fillBorders(Selection borderChoice);
-  	void fillLines(Selection lineType, int position);
+  	void fillLines(Selection lineType, Coordinate position);
 
     void createMap(std::string fileName);
 

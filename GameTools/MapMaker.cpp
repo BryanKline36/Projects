@@ -104,7 +104,7 @@ void MapMaker::selectAction(Selection choice)
 		case fillLine:
 
 			selectionType = chooseLineType();
-			coordinate = choosePosition();
+			position = choosePosition();
 			fillLines(selectionType, position);
 
 		break;
@@ -210,10 +210,10 @@ void MapMaker::fillBorders(Selection borderChoice)
 	}
 }
 
-void MapMaker::fillLines(Selection lineType, int position)
+void MapMaker::fillLines(Selection lineType, Coordinate position)
 {
 
-	if(borderChoice == null)
+	if(lineType == null)
 	{
 		return;
 	}
