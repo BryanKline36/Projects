@@ -9,6 +9,7 @@ class MapMaker
 {
   public:
 
+  	const int mapDimension = 8;
   	const int minFillSelection = 7;
   	const int maxFillSelection = 9;
 

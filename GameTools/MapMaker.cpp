@@ -212,11 +212,17 @@ void MapMaker::fillBorders(Selection borderChoice)
 
 void MapMaker::fillLines(Selection lineType, Coordinate position)
 {
+	int choice;
 
 	if(lineType == null)
 	{
 		return;
 	}
+
+	std::cout << "Enter the length of the line (enter " << mapDimension << " for entire map dimension):" << std::endl;
+	std::cin >> choice;
+
+
 
 }
 
