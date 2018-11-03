@@ -83,7 +83,6 @@ MapMaker::Selection MapMaker::promptAction()
 
 void MapMaker::selectAction(Selection choice)
 {	
-	int position;
 	Selection selectionType;
 	Coordinate coordinate;
 
@@ -106,14 +105,14 @@ void MapMaker::selectAction(Selection choice)
 		case fillLine:
 
 			selectionType = chooseLineType();
-			position = choosePosition();
-			fillLines(selectionType, position);
+			coordinate = choosePosition(false);
+			fillLines(selectionType, coordinate);
 
 		break;
 
 		case fillSegment:
 
-			coordinate = choosePosition();
+			coordinate = choosePosition(true);
 			fillLineSegment(selectionType, coordinate);
 
 		break;
@@ -153,14 +152,23 @@ MapMaker::Selection MapMaker::chooseLineType()
 	return (Selection) choice;
 }
 
-MapMaker::Coordinate MapMaker::choosePosition()
+MapMaker::Coordinate MapMaker::choosePosition(bool isCoordinate)
 {
 	Coordinate coordinate;
 
-	std::cout << "Enter the x position:" << std::endl;
-	std::cin >> coordinate.x;
-	std::cout << "Enter the y position:" << std::endl;
-	std::cin >> coordinate.y;
+	if(isCoordinate)
+	{
+		std::cout << "Enter the x position:" << std::endl;
+		std::cin >> coordinate.x;
+		std::cout << "Enter the y position:" << std::endl;
+		std::cin >> coordinate.y;
+	}
+	else
+	{
+		std::cout << "Enter the position:" << std::endl;
+		std::cin >> coordinate.x;
+		coordinate.y = -1;
+	}
 
 	return coordinate;
 }
@@ -219,31 +227,43 @@ void MapMaker::fillBorders(Selection borderChoice)
 	}
 }
 
-void MapMaker::fillLines(Selection lineType, int position)
+void MapMaker::fillLines(Selection lineType, Coordinate coordinate)
 {
-	int choice;
+	int index, lineEnd, position = coordinate.x;
+	char mapCharacter;
 
 	if(lineType == null)
 	{
 		return;
 	}
 
+	std::cout << "Enter the character to fill:" << std::endl;
+	std::cin >> mapCharacter; 
+
 	if(lineType == vertical)
 	{
-		std::cout << "Enter the column:" << std::endl;
-		std::cin >> choice;
+		lineEnd = rows;
 	}
-	if(lineType == horizontal)
+	else if(lineType == horizontal)
 	{
-		std::cout << "Enter the row:" << std::endl;
-		std::cin >> choice;
-	}
+		lineEnd = columns;
+	}	
 
-
-
+	for(index = 0; index < lineEnd; index++)
+	{
+		if(lineType == vertical)
+		{
+			map[index][position] = mapCharacter;
+		}
+		if(lineType == horizontal)
+		{
+			map[position][index] = mapCharacter;
+		}
+	}	
 }
 
-void MapMaker::fillLineSegment(Selection lineType, Coordinate position)
+
+void MapMaker::fillLineSegment(Selection lineType, Coordinate coordinate)
 {
 
 
