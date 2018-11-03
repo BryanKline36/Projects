@@ -210,7 +210,7 @@ void MapMaker::fillBorders(Selection borderChoice)
 	}
 }
 
-void MapMaker::fillLines(Selection lineType, Coordinate position)
+void MapMaker::fillLines(Selection lineType, int position)
 {
 	int choice;
 
@@ -225,6 +225,13 @@ void MapMaker::fillLines(Selection lineType, Coordinate position)
 
 
 }
+
+void fillLineSegment(Selection lineType, Coordinate position);
+{
+
+	
+}
+
 
 void MapMaker::createMap(std::string fileName)
 {

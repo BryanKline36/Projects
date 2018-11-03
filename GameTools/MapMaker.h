@@ -51,7 +51,8 @@ class MapMaker
 
   	void fillEntire();
   	void fillBorders(Selection borderChoice);
-  	void fillLines(Selection lineType, Coordinate position);
+  	void fillLines(Selection lineType, int position);
+  	void fillLineSegment(Selection lineType, Coordinate position);
 
     void createMap(std::string fileName);
 
