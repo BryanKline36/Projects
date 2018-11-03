@@ -25,6 +25,7 @@ class MapMaker
 		fillAll,
 		fillBorder,
 		fillLine,
+		fillSegment,
 		all,
 		top,
 		bottom,
