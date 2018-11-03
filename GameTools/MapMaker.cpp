@@ -219,17 +219,25 @@ void MapMaker::fillLines(Selection lineType, int position)
 		return;
 	}
 
-	std::cout << "Enter the length of the line (enter " << mapDimension << " for entire map dimension):" << std::endl;
-	std::cin >> choice;
+	if(lineType == vertical)
+	{
+		std::cout << "Enter the column:" << std::endl;
+		std::cin >> choice;
+	}
+	if(lineType == horizontal)
+	{
+		std::cout << "Enter the row:" << std::endl;
+		std::cin >> choice;
+	}
 
 
 
 }
 
-void fillLineSegment(Selection lineType, Coordinate position);
+void MapMaker::fillLineSegment(Selection lineType, Coordinate position)
 {
 
-	
+
 }
 
 
