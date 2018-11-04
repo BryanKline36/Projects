@@ -49,18 +49,16 @@ void MapMaker::run(std::string fileName)
 {
 	Selection choice = all;
 
-	std::cout << "Char Map Making Utility" << std::endl;
+	std::cout << std::endl << "Char Map Making Utility" << std::endl;
 
 	while(choice)
 	{
+		printMap();
+
 		choice = promptAction();
 
 		selectAction(choice);
-
-		printMap();
 	}
-
-	createMap(fileName);
 }
 
 MapMaker::Selection MapMaker::promptAction()
@@ -68,11 +66,13 @@ MapMaker::Selection MapMaker::promptAction()
 	int choice;
 
 	std::cout << "Choose an action:" << std::endl;
-	std::cout << "1) Fill entire map" << std::endl;
-	std::cout << "2) Fill borders" << std::endl;
-	std::cout << "3) Fill line" << std::endl;
-	std::cout << "4) Fill line segment" << std::endl;
-	std::cout << "0) To exit" << std::endl;
+	std::cout << fillAll << ") Fill entire map" << std::endl;
+	std::cout << fillBorder << ") Fill borders" << std::endl;
+	std::cout << fillLine << ") Fill line" << std::endl;
+	std::cout << fillSegment << ") Fill line segment" << std::endl;
+	std::cout << fillBlock << ") Fill block" << std::endl;
+	std::cout << writeFile << ") Save map" << std::endl;
+	std::cout << null << ") To exit" << std::endl;
 
 
 	std::cin >> choice;
@@ -83,8 +83,9 @@ MapMaker::Selection MapMaker::promptAction()
 
 void MapMaker::selectAction(Selection choice)
 {	
+	string fileName;
 	Selection selectionType;
-	Coordinate coordinate;
+	Coordinate firstCoordinate, secondCoordinate;
 
 	switch(choice)
 	{
@@ -105,35 +106,66 @@ void MapMaker::selectAction(Selection choice)
 		case fillLine:
 
 			selectionType = chooseLineType();
-			coordinate = choosePosition(false);
-			fillLines(selectionType, coordinate);
+			firstCoordinate = choosePosition(false);
+			fillLines(selectionType, firstCoordinate);
 
 		break;
 
 		case fillSegment:
 
 			selectionType = chooseLineType();
-			coordinate = choosePosition(true);
-			fillLineSegment(selectionType, coordinate);
+			firstCoordinate = choosePosition(true);
+			fillLineSegment(selectionType, firstCoordinate);
+
+		break;
+
+		case filleBlock:
+
+			selectionType = chooseLineType();
+			firstCoordinate = choosePosition(true);
+			secondCoordinate = choosePosition(true);
+			fillBlocks(selectionType, firstCoordinate, secondCoordinate);
+
+		break;
+
+		case writeFile:
+
+  			fileName = enterFileName();
+  			createMap(fileName);
 
 		break;
 
 		default:
 
+			std::cout << "Invalid input" << std::endl;
+			std::cin.clear();
+			std::cin.ignore();
+			
 		break;	
 	}
 }
+
+string MapMaker::enterFileName()
+{
+	string fileName = " ";
+
+	std::cout << "Enter the name of the file:" << std::endl;
+	std::cin >> fileName;
+
+	return fileName;
+}
+
 
 MapMaker::Selection MapMaker::chooseBorder()
 {
 	int choice;
 
 	std::cout << "Choose a border to fill:" << std::endl;
-	std::cout << "5) Fill all borders" << std::endl;
-	std::cout << "6) Fill top border" << std::endl;
-	std::cout << "7) Fill bottom border" << std::endl;
-	std::cout << "8) Fill right border" << std::endl;
-	std::cout << "9) Fill left border" << std::endl;
+	std::cout << all << ") Fill all borders" << std::endl;
+	std::cout << top << ") Fill top border" << std::endl;
+	std::cout << bottom << ") Fill bottom border" << std::endl;
+	std::cout << right << ") Fill right border" << std::endl;
+	std::cout << left << ") Fill left border" << std::endl;
 
 	std::cin >> choice;
 
@@ -145,12 +177,26 @@ MapMaker::Selection MapMaker::chooseLineType()
 	int choice;
 
 	std::cout << "Choose a type of line:" << std::endl;
-	std::cout << "10) Vertical line" << std::endl;
-	std::cout << "11) Horizontal line" << std::endl;
+	std::cout << vertical << ") Vertical line" << std::endl;
+	std::cout << horizontal << ") Horizontal line" << std::endl;
 
 	std::cin >> choice;
 
 	return (Selection) choice;
+}
+
+MapMaker::Selection MapMaker::chooseBlockType()
+{
+	int choice;
+
+	std::cout << "Choose a block type:" << std::endl;
+	std::cout << outline << ") Block outline" << std::endl;
+	std::cout << solid << ") Solid block" << std::endl;
+
+	std::cin >> choice;
+
+	return (Selection) choice;
+
 }
 
 MapMaker::Coordinate MapMaker::choosePosition(bool isCoordinate)

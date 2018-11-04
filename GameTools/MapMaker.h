@@ -26,14 +26,17 @@ class MapMaker
 		fillBorder,
 		fillLine,
 		fillSegment,
+		fillBlock,
+		writeFile,
 		all,
 		top,
 		bottom,
 		right,
 		left,
 		vertical,
-		horizontal
-
+		horizontal,
+		outline,
+		solid
 	};
 
     
@@ -46,8 +49,10 @@ class MapMaker
 
   	Selection promptAction();
   	void selectAction(Selection choice);
+  	string enterFileName();
   	Selection chooseBorder();
   	Selection chooseLineType();
+	Selection chooseBlockType();
   	Coordinate choosePosition(bool isCoordinate);
 
   	void fillEntire();
