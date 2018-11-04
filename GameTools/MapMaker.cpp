@@ -83,7 +83,7 @@ MapMaker::Selection MapMaker::promptAction()
 
 void MapMaker::selectAction(Selection choice)
 {	
-	string fileName;
+	std::string fileName;
 	Selection selectionType;
 	Coordinate firstCoordinate, secondCoordinate;
 
@@ -119,7 +119,7 @@ void MapMaker::selectAction(Selection choice)
 
 		break;
 
-		case filleBlock:
+		case fillBlock:
 
 			selectionType = chooseLineType();
 			firstCoordinate = choosePosition(true);
@@ -140,14 +140,14 @@ void MapMaker::selectAction(Selection choice)
 			std::cout << "Invalid input" << std::endl;
 			std::cin.clear();
 			std::cin.ignore();
-			
+
 		break;	
 	}
 }
 
-string MapMaker::enterFileName()
+std::string MapMaker::enterFileName()
 {
-	string fileName = " ";
+	std::string fileName = " ";
 
 	std::cout << "Enter the name of the file:" << std::endl;
 	std::cin >> fileName;
@@ -338,6 +338,10 @@ void MapMaker::fillLineSegment(Selection lineType, Coordinate coordinate)
 			map[coordinate.y][coordinate.x + index] = mapCharacter;
 		}
 	}	
+}
+
+void MapMaker::fillBlocks(Selection lineType, Coordinate firstCoordinate, Coordinate secondCoordinate)
+{
 
 }
 

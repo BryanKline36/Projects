@@ -49,7 +49,7 @@ class MapMaker
 
   	Selection promptAction();
   	void selectAction(Selection choice);
-  	string enterFileName();
+  	std::string enterFileName();
   	Selection chooseBorder();
   	Selection chooseLineType();
 	Selection chooseBlockType();
@@ -59,6 +59,7 @@ class MapMaker
   	void fillBorders(Selection borderChoice);
   	void fillLines(Selection lineType, Coordinate coordinate);
   	void fillLineSegment(Selection lineType, Coordinate coordinate);
+  	void fillBlocks(Selection lineType, Coordinate firstCoordinate, Coordinate secondCoordinate);
 
   	void printMap();
     void createMap(std::string fileName);
