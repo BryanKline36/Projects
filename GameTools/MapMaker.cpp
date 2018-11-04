@@ -11,8 +11,8 @@ MapMaker::MapMaker()
 {
 	int inner, outer;
 
-	rows = 8;
-	columns = 8;
+	rows = MAX_ROWS;
+	columns = MAX_COLUMNS;
 
 	map = new char*[rows];
 
@@ -74,7 +74,6 @@ MapMaker::Selection MapMaker::promptAction()
 	std::cout << writeFile << ") Save map" << std::endl;
 	std::cout << null << ") To exit" << std::endl;
 
-
 	std::cin >> choice;
 
 	return (Selection) choice;
@@ -122,7 +121,9 @@ void MapMaker::selectAction(Selection choice)
 		case fillBlock:
 
 			selectionType = chooseLineType();
+			std::cout << "Enter the first corner of the block:" << std::endl;
 			firstCoordinate = choosePosition(true);
+			std::cout << "Enter the opposite corner of the block:" << std::endl;
 			secondCoordinate = choosePosition(true);
 			fillBlocks(selectionType, firstCoordinate, secondCoordinate);
 
@@ -132,6 +133,12 @@ void MapMaker::selectAction(Selection choice)
 
   			fileName = enterFileName();
   			createMap(fileName);
+
+		break;
+
+		case null:
+
+			std::cout << "Exiting program" << std::endl;
 
 		break;
 
@@ -155,7 +162,6 @@ std::string MapMaker::enterFileName()
 	return fileName;
 }
 
-
 MapMaker::Selection MapMaker::chooseBorder()
 {
 	int choice;
@@ -166,6 +172,7 @@ MapMaker::Selection MapMaker::chooseBorder()
 	std::cout << bottom << ") Fill bottom border" << std::endl;
 	std::cout << right << ") Fill right border" << std::endl;
 	std::cout << left << ") Fill left border" << std::endl;
+	std::cout << null << ") Return to main menu" << std::endl;	
 
 	std::cin >> choice;
 
@@ -179,6 +186,7 @@ MapMaker::Selection MapMaker::chooseLineType()
 	std::cout << "Choose a type of line:" << std::endl;
 	std::cout << vertical << ") Vertical line" << std::endl;
 	std::cout << horizontal << ") Horizontal line" << std::endl;
+	std::cout << null << ") Return to main menu" << std::endl;	
 
 	std::cin >> choice;
 
@@ -192,11 +200,11 @@ MapMaker::Selection MapMaker::chooseBlockType()
 	std::cout << "Choose a block type:" << std::endl;
 	std::cout << outline << ") Block outline" << std::endl;
 	std::cout << solid << ") Solid block" << std::endl;
+	std::cout << null << ") Return to main menu" << std::endl;	
 
 	std::cin >> choice;
 
 	return (Selection) choice;
-
 }
 
 MapMaker::Coordinate MapMaker::choosePosition(bool isCoordinate)
@@ -270,7 +278,6 @@ void MapMaker::fillBorders(Selection borderChoice)
 		{
 			map[outer][0] = mapCharacter;	
 		} 
-		
 	}
 }
 
@@ -349,12 +356,28 @@ void MapMaker::printMap()
 {
 	int inner, outer;
 
+	std::cout << std::endl << "   ";	
+	for(inner = 0; inner < columns; inner++)
+	{
+		if(inner < 10)
+		{
+			std::cout << "0";
+		}
+		std::cout << inner << " "; 		
+	}	
 	std::cout << std::endl;	
+
 	for(outer = 0; outer < rows; outer++)
 	{
+		if(outer < 10)
+		{
+			std::cout << "0";
+		}
+		std::cout << outer << " ";
+
 		for(inner = 0; inner < columns; inner++)
 		{
-			std::cout << map[outer][inner] << " ";
+			std::cout << map[outer][inner] << "  ";
 		}
 		std::cout << std::endl;
 	}
