@@ -120,7 +120,7 @@ void MapMaker::selectAction(Selection choice)
 
 		case fillBlock:
 
-			selectionType = chooseLineType();
+			selectionType = chooseBlockType();
 			std::cout << "Enter the first corner of the block:" << std::endl;
 			firstCoordinate = choosePosition(true);
 			std::cout << "Enter the opposite corner of the block:" << std::endl;
@@ -172,7 +172,6 @@ MapMaker::Selection MapMaker::chooseBorder()
 	std::cout << bottom << ") Fill bottom border" << std::endl;
 	std::cout << right << ") Fill right border" << std::endl;
 	std::cout << left << ") Fill left border" << std::endl;
-	std::cout << null << ") Return to main menu" << std::endl;	
 
 	std::cin >> choice;
 
@@ -186,7 +185,6 @@ MapMaker::Selection MapMaker::chooseLineType()
 	std::cout << "Choose a type of line:" << std::endl;
 	std::cout << vertical << ") Vertical line" << std::endl;
 	std::cout << horizontal << ") Horizontal line" << std::endl;
-	std::cout << null << ") Return to main menu" << std::endl;	
 
 	std::cin >> choice;
 
@@ -200,7 +198,6 @@ MapMaker::Selection MapMaker::chooseBlockType()
 	std::cout << "Choose a block type:" << std::endl;
 	std::cout << outline << ") Block outline" << std::endl;
 	std::cout << solid << ") Solid block" << std::endl;
-	std::cout << null << ") Return to main menu" << std::endl;	
 
 	std::cin >> choice;
 
@@ -349,7 +346,31 @@ void MapMaker::fillLineSegment(Selection lineType, Coordinate coordinate)
 
 void MapMaker::fillBlocks(Selection lineType, Coordinate firstCoordinate, Coordinate secondCoordinate)
 {
+	int inner, outer;
+	char mapCharacter;
 
+	if(lineType == null)
+	{
+		return;
+	}
+
+	std::cout << "Enter the character to fill:" << std::endl;
+	std::cin >> mapCharacter; 
+
+	for(outer = firstCoordinate.y; outer <= secondCoordinate.y; outer++)
+	{
+		for(inner = firstCoordinate.x; inner <= secondCoordinate.x; inner++)
+		{
+			if(outer >= 0 && outer < rows && inner >= 0 && inner < columns)
+			{
+				if(outer == firstCoordinate.y || outer == secondCoordinate.y || 
+					inner == firstCoordinate.x || inner == secondCoordinate.x || lineType == solid)
+				{
+					map[outer][inner] = mapCharacter;
+				}
+			}	
+		}
+	}
 }
 
 void MapMaker::printMap()
