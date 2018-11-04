@@ -13,7 +13,6 @@ MapMaker::MapMaker()
 
 	rows = 8;
 	columns = 8;
-	currentSymbol = ' ';
 
 	map = new char*[rows];
 
@@ -26,7 +25,7 @@ MapMaker::MapMaker()
 	{
 		for(inner = 0; inner < columns; inner++)
 		{
-			map[outer][outer] = '.';
+			map[outer][inner] = ' ';
 		}
 	}
 }
@@ -50,14 +49,15 @@ void MapMaker::run(std::string fileName)
 {
 	Selection choice = all;
 
+	std::cout << "Char Map Making Utility" << std::endl;
+
 	while(choice)
 	{
 		choice = promptAction();
 
 		selectAction(choice);
 
-
-
+		printMap();
 	}
 
 	createMap(fileName);
@@ -112,6 +112,7 @@ void MapMaker::selectAction(Selection choice)
 
 		case fillSegment:
 
+			selectionType = chooseLineType();
 			coordinate = choosePosition(true);
 			fillLineSegment(selectionType, coordinate);
 
@@ -128,11 +129,11 @@ MapMaker::Selection MapMaker::chooseBorder()
 	int choice;
 
 	std::cout << "Choose a border to fill:" << std::endl;
-	std::cout << "9) Fill all borders" << std::endl;
-	std::cout << "10) Fill top border" << std::endl;
-	std::cout << "6) Fill bottom border" << std::endl;
-	std::cout << "7) Fill right border" << std::endl;
-	std::cout << "8) Fill left border" << std::endl;
+	std::cout << "5) Fill all borders" << std::endl;
+	std::cout << "6) Fill top border" << std::endl;
+	std::cout << "7) Fill bottom border" << std::endl;
+	std::cout << "8) Fill right border" << std::endl;
+	std::cout << "9) Fill left border" << std::endl;
 
 	std::cin >> choice;
 
@@ -144,8 +145,8 @@ MapMaker::Selection MapMaker::chooseLineType()
 	int choice;
 
 	std::cout << "Choose a type of line:" << std::endl;
-	std::cout << "9) Vertical line" << std::endl;
-	std::cout << "10) Horizontal line" << std::endl;
+	std::cout << "10) Vertical line" << std::endl;
+	std::cout << "11) Horizontal line" << std::endl;
 
 	std::cin >> choice;
 
@@ -185,7 +186,7 @@ void MapMaker::fillEntire()
 	{
 		for(inner = 0; inner < columns; inner++)
 		{
-			map[outer][outer] = mapCharacter;
+			map[outer][inner] = mapCharacter;
 		}
 	}
 }
@@ -208,22 +209,22 @@ void MapMaker::fillBorders(Selection borderChoice)
 		if(((borderChoice == all || borderChoice == top) && outer == 0) || 
 			((borderChoice == all || borderChoice == bottom)) && outer == rows - 1)
 		{
-			for(inner = 0; inner < columns; outer++)
+			for(inner = 0; inner < columns; inner++)
 			{
 				map[outer][inner] = mapCharacter;
 			}
 		}	
-		else 
+
+		if(borderChoice == all || borderChoice == right)
 		{
-			if(borderChoice == all || borderChoice == right)
-			{
-				map[outer][columns - 1] = mapCharacter;
-			} 
-			if(borderChoice == all || borderChoice == left)
-			{
-				map[outer][0] = mapCharacter;	
-			} 
-		}
+			std::cout << outer << " : " << columns - 1 << std::endl;
+			map[outer][columns - 1] = mapCharacter;
+		} 
+		if(borderChoice == all || borderChoice == left)
+		{
+			map[outer][0] = mapCharacter;	
+		} 
+		
 	}
 }
 
@@ -232,7 +233,7 @@ void MapMaker::fillLines(Selection lineType, Coordinate coordinate)
 	int index, lineEnd, position = coordinate.x;
 	char mapCharacter;
 
-	if(lineType == null)
+	if(lineType == null || coordinate.y != -1 || position < 0)
 	{
 		return;
 	}
@@ -244,19 +245,20 @@ void MapMaker::fillLines(Selection lineType, Coordinate coordinate)
 	{
 		lineEnd = rows;
 	}
-	else if(lineType == horizontal)
+	if(lineType == horizontal)
 	{
 		lineEnd = columns;
 	}	
 
 	for(index = 0; index < lineEnd; index++)
 	{
-		if(lineType == vertical)
+		if(lineType == vertical && position < columns)
 		{
 			map[index][position] = mapCharacter;
 		}
-		if(lineType == horizontal)
+		if(lineType == horizontal && position < rows)
 		{
+
 			map[position][index] = mapCharacter;
 		}
 	}	
@@ -265,10 +267,49 @@ void MapMaker::fillLines(Selection lineType, Coordinate coordinate)
 
 void MapMaker::fillLineSegment(Selection lineType, Coordinate coordinate)
 {
+	int index, lineSize;
+	char mapCharacter;
 
+	if(lineType == null || coordinate.x < 0 || coordinate.x > rows || coordinate.y < 0 || coordinate.y > columns)
+	{
+		return;
+	}
+
+	std::cout << "Enter the character to fill:" << std::endl;
+	std::cin >> mapCharacter; 
+
+	std::cout << "Enter the size of the line segment:" << std::endl;
+	std::cin >> lineSize; 
+	
+	for(index = 0; index < lineSize; index++)
+	{
+		if(lineType == vertical && (coordinate.y + index) < rows)
+		{
+			map[coordinate.y + index][coordinate.x] = mapCharacter;
+		}
+		if(lineType == horizontal && (coordinate.x + index) < columns)
+		{
+			map[coordinate.y][coordinate.x + index] = mapCharacter;
+		}
+	}	
 
 }
 
+void MapMaker::printMap()
+{
+	int inner, outer;
+
+	std::cout << std::endl;	
+	for(outer = 0; outer < rows; outer++)
+	{
+		for(inner = 0; inner < columns; inner++)
+		{
+			std::cout << map[outer][inner] << " ";
+		}
+		std::cout << std::endl;
+	}
+	std::cout << std::endl;	
+}
 
 void MapMaker::createMap(std::string fileName)
 {
@@ -281,7 +322,7 @@ void MapMaker::createMap(std::string fileName)
 	{
 		for(inner = 0; inner < columns; inner++)
 		{
-			outFile << map[outer][outer];
+			outFile << map[outer][inner] << " ";
 		}
 		outFile << '\n';
 	}

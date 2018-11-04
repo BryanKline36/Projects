@@ -55,11 +55,11 @@ class MapMaker
   	void fillLines(Selection lineType, Coordinate coordinate);
   	void fillLineSegment(Selection lineType, Coordinate coordinate);
 
+  	void printMap();
     void createMap(std::string fileName);
 
     int rows;
     int columns;
-    char currentSymbol;
 
     char** map;
 };
