@@ -26,6 +26,7 @@ class MapMaker
 		fillLine,
 		fillSegment,
 		fillBlock,
+		fillPoint,
 		writeFile,
 		all,
 		top,
@@ -38,7 +39,6 @@ class MapMaker
 		solid
 	};
 
-    
     MapMaker();
     ~MapMaker();
   
@@ -59,6 +59,7 @@ class MapMaker
   	void fillLines(Selection lineType, Coordinate coordinate);
   	void fillLineSegment(Selection lineType, Coordinate coordinate);
   	void fillBlocks(Selection lineType, Coordinate firstCoordinate, Coordinate secondCoordinate);
+  	void fillPoints();
 
   	void printMap();
     void createMap(std::string fileName);

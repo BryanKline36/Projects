@@ -7,6 +7,10 @@
 #ifndef MAP_MAKER_CPP
 #define MAP_MAKER_CPP
 
+//Name:
+//Description:
+//Parameters:
+//Return:
 MapMaker::MapMaker()
 {
 	int inner, outer;
@@ -30,6 +34,10 @@ MapMaker::MapMaker()
 	}
 }
 
+//Name:
+//Description:
+//Parameters:
+//Return:
 MapMaker::~MapMaker() 
 {
 	int index;
@@ -45,6 +53,10 @@ MapMaker::~MapMaker()
 	}	
 } 
 
+//Name:
+//Description:
+//Parameters:
+//Return:
 void MapMaker::run(std::string fileName)
 {
 	Selection choice = all;
@@ -61,6 +73,10 @@ void MapMaker::run(std::string fileName)
 	}
 }
 
+//Name:
+//Description:
+//Parameters:
+//Return:
 MapMaker::Selection MapMaker::promptAction()
 {
 	int choice;
@@ -71,6 +87,7 @@ MapMaker::Selection MapMaker::promptAction()
 	std::cout << fillLine << ") Fill line" << std::endl;
 	std::cout << fillSegment << ") Fill line segment" << std::endl;
 	std::cout << fillBlock << ") Fill block" << std::endl;
+	std::cout << fillPoint << ") Fill point" << std::endl;
 	std::cout << writeFile << ") Save map" << std::endl;
 	std::cout << null << ") To exit" << std::endl;
 
@@ -80,6 +97,10 @@ MapMaker::Selection MapMaker::promptAction()
 
 }
 
+//Name:
+//Description:
+//Parameters:
+//Return:
 void MapMaker::selectAction(Selection choice)
 {	
 	std::string fileName;
@@ -152,6 +173,10 @@ void MapMaker::selectAction(Selection choice)
 	}
 }
 
+//Name:
+//Description:
+//Parameters:
+//Return:
 std::string MapMaker::enterFileName()
 {
 	std::string fileName = " ";
@@ -162,6 +187,10 @@ std::string MapMaker::enterFileName()
 	return fileName;
 }
 
+//Name:
+//Description:
+//Parameters:
+//Return:
 MapMaker::Selection MapMaker::chooseBorder()
 {
 	int choice;
@@ -178,6 +207,10 @@ MapMaker::Selection MapMaker::chooseBorder()
 	return (Selection) choice;
 }
 
+//Name:
+//Description:
+//Parameters:
+//Return:
 MapMaker::Selection MapMaker::chooseLineType()
 {
 	int choice;
@@ -191,6 +224,10 @@ MapMaker::Selection MapMaker::chooseLineType()
 	return (Selection) choice;
 }
 
+//Name:
+//Description:
+//Parameters:
+//Return:
 MapMaker::Selection MapMaker::chooseBlockType()
 {
 	int choice;
@@ -204,6 +241,10 @@ MapMaker::Selection MapMaker::chooseBlockType()
 	return (Selection) choice;
 }
 
+//Name:
+//Description:
+//Parameters:
+//Return:
 MapMaker::Coordinate MapMaker::choosePosition(bool isCoordinate)
 {
 	Coordinate coordinate;
@@ -225,6 +266,10 @@ MapMaker::Coordinate MapMaker::choosePosition(bool isCoordinate)
 	return coordinate;
 }
 
+//Name:
+//Description:
+//Parameters:
+//Return:
 void MapMaker::fillEntire()
 {
 	int inner, outer;
@@ -242,6 +287,10 @@ void MapMaker::fillEntire()
 	}
 }
 
+//Name:
+//Description:
+//Parameters:
+//Return:
 void MapMaker::fillBorders(Selection borderChoice)
 {
 	int outer, inner;
@@ -278,6 +327,10 @@ void MapMaker::fillBorders(Selection borderChoice)
 	}
 }
 
+//Name:
+//Description:
+//Parameters:
+//Return:
 void MapMaker::fillLines(Selection lineType, Coordinate coordinate)
 {
 	int index, lineEnd, position = coordinate.x;
@@ -314,7 +367,10 @@ void MapMaker::fillLines(Selection lineType, Coordinate coordinate)
 	}	
 }
 
-
+//Name:
+//Description:
+//Parameters:
+//Return:
 void MapMaker::fillLineSegment(Selection lineType, Coordinate coordinate)
 {
 	int index, lineSize;
@@ -344,6 +400,10 @@ void MapMaker::fillLineSegment(Selection lineType, Coordinate coordinate)
 	}	
 }
 
+//Name:
+//Description:
+//Parameters:
+//Return:
 void MapMaker::fillBlocks(Selection lineType, Coordinate firstCoordinate, Coordinate secondCoordinate)
 {
 	int inner, outer;
@@ -373,6 +433,28 @@ void MapMaker::fillBlocks(Selection lineType, Coordinate firstCoordinate, Coordi
 	}
 }
 
+//Name:
+//Description:
+//Parameters:
+//Return:
+void MapMaker::fillPoints(Coordinate coordinate)
+{
+
+	Coordinate coordinate;
+
+	coordinate = choosePosition(true);
+
+	if(coordinate.y >= 0 && coordinate.y < rows && coordinate.x >= 0 && coordinate.x < columns)
+	{
+		map[coordinate.y][coordinate.x]
+	}
+}
+
+
+//Name:
+//Description:
+//Parameters:
+//Return:
 void MapMaker::printMap()
 {
 	int inner, outer;
@@ -405,6 +487,10 @@ void MapMaker::printMap()
 	std::cout << std::endl;	
 }
 
+//Name:
+//Description:
+//Parameters:
+//Return:
 void MapMaker::createMap(std::string fileName)
 {
 	int inner, outer;
