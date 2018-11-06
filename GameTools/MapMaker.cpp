@@ -150,6 +150,12 @@ void MapMaker::selectAction(Selection choice)
 
 		break;
 
+		case fillPoint:
+
+			fillPoints();
+
+		break;
+
 		case writeFile:
 
   			fileName = enterFileName();
@@ -437,16 +443,19 @@ void MapMaker::fillBlocks(Selection lineType, Coordinate firstCoordinate, Coordi
 //Description:
 //Parameters:
 //Return:
-void MapMaker::fillPoints(Coordinate coordinate)
+void MapMaker::fillPoints()
 {
-
+	char mapCharacter;
 	Coordinate coordinate;
+
+	std::cout << "Enter the character to fill:" << std::endl;
+	std::cin >> mapCharacter; 
 
 	coordinate = choosePosition(true);
 
 	if(coordinate.y >= 0 && coordinate.y < rows && coordinate.x >= 0 && coordinate.x < columns)
 	{
-		map[coordinate.y][coordinate.x]
+		map[coordinate.y][coordinate.x] = mapCharacter;
 	}
 }
 
