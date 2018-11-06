@@ -7,10 +7,10 @@
 #ifndef MAP_MAKER_CPP
 #define MAP_MAKER_CPP
 
-//Name:
-//Description:
-//Parameters:
-//Return:
+//Name:			MapMaker
+//Description:	MapMaker class constructor
+//Parameters:	None
+//Return:		None
 MapMaker::MapMaker()
 {
 	int inner, outer;
@@ -34,10 +34,10 @@ MapMaker::MapMaker()
 	}
 }
 
-//Name:
-//Description:
-//Parameters:
-//Return:
+//Name:			~MapMaker
+//Description:	MapMaker class destructor
+//Parameters:	None
+//Return:		None
 MapMaker::~MapMaker() 
 {
 	int index;
@@ -53,11 +53,11 @@ MapMaker::~MapMaker()
 	}	
 } 
 
-//Name:
-//Description:
-//Parameters:
-//Return:
-void MapMaker::run(std::string fileName)
+//Name:			run
+//Description:	MapMaker class which
+//Parameters:	None
+//Return:		Void
+void MapMaker::run()
 {
 	Selection choice = all;
 
@@ -73,8 +73,8 @@ void MapMaker::run(std::string fileName)
 	}
 }
 
-//Name:
-//Description:
+//Name:	
+//Description:	MapMaker class which
 //Parameters:
 //Return:
 MapMaker::Selection MapMaker::promptAction()
@@ -98,9 +98,9 @@ MapMaker::Selection MapMaker::promptAction()
 }
 
 //Name:
-//Description:
+//Description:	MapMaker class which
 //Parameters:
-//Return:
+//Return:		Void
 void MapMaker::selectAction(Selection choice)
 {	
 	std::string fileName;
@@ -180,7 +180,7 @@ void MapMaker::selectAction(Selection choice)
 }
 
 //Name:
-//Description:
+//Description:	MapMaker class which
 //Parameters:
 //Return:
 std::string MapMaker::enterFileName()
@@ -194,7 +194,7 @@ std::string MapMaker::enterFileName()
 }
 
 //Name:
-//Description:
+//Description:	MapMaker class which
 //Parameters:
 //Return:
 MapMaker::Selection MapMaker::chooseBorder()
@@ -214,7 +214,7 @@ MapMaker::Selection MapMaker::chooseBorder()
 }
 
 //Name:
-//Description:
+//Description:	MapMaker class which
 //Parameters:
 //Return:
 MapMaker::Selection MapMaker::chooseLineType()
@@ -231,7 +231,7 @@ MapMaker::Selection MapMaker::chooseLineType()
 }
 
 //Name:
-//Description:
+//Description:	MapMaker class which
 //Parameters:
 //Return:
 MapMaker::Selection MapMaker::chooseBlockType()
@@ -248,7 +248,7 @@ MapMaker::Selection MapMaker::chooseBlockType()
 }
 
 //Name:
-//Description:
+//Description:	MapMaker class which
 //Parameters:
 //Return:
 MapMaker::Coordinate MapMaker::choosePosition(bool isCoordinate)
@@ -273,9 +273,9 @@ MapMaker::Coordinate MapMaker::choosePosition(bool isCoordinate)
 }
 
 //Name:
-//Description:
+//Description:	MapMaker class which
 //Parameters:
-//Return:
+//Return:		Void
 void MapMaker::fillEntire()
 {
 	int inner, outer;
@@ -293,10 +293,10 @@ void MapMaker::fillEntire()
 	}
 }
 
-//Name:
-//Description:
-//Parameters:
-//Return:
+//Name:			fillBorders
+//Description:	MapMaker class which fills the borders of the char map with a char input by the user
+//Parameters:	Takes in the border to fill, whether the top, bottom, left, or right border, or all of them
+//Return:		Void
 void MapMaker::fillBorders(Selection borderChoice)
 {
 	int outer, inner;
@@ -333,10 +333,11 @@ void MapMaker::fillBorders(Selection borderChoice)
 	}
 }
 
-//Name:
-//Description:
-//Parameters:
-//Return:
+//Name:			fillLines
+//Description:	MapMaker class which fills a line in the char map with a char input by the user
+//Parameters:	Takes in a the type of line which is be filled, horizontal or vertical, and the position
+//				of the line
+//Return:		Void
 void MapMaker::fillLines(Selection lineType, Coordinate coordinate)
 {
 	int index, lineEnd, position = coordinate.x;
@@ -374,9 +375,9 @@ void MapMaker::fillLines(Selection lineType, Coordinate coordinate)
 }
 
 //Name:
-//Description:
+//Description:	MapMaker class which
 //Parameters:
-//Return:
+//Return:		Void
 void MapMaker::fillLineSegment(Selection lineType, Coordinate coordinate)
 {
 	int index, lineSize;
@@ -407,9 +408,9 @@ void MapMaker::fillLineSegment(Selection lineType, Coordinate coordinate)
 }
 
 //Name:
-//Description:
+//Description:	MapMaker class which
 //Parameters:
-//Return:
+//Return:		Void
 void MapMaker::fillBlocks(Selection lineType, Coordinate firstCoordinate, Coordinate secondCoordinate)
 {
 	int inner, outer;
@@ -440,9 +441,9 @@ void MapMaker::fillBlocks(Selection lineType, Coordinate firstCoordinate, Coordi
 }
 
 //Name:
-//Description:
+//Description:	MapMaker class which
 //Parameters:
-//Return:
+//Return:		Void
 void MapMaker::fillPoints()
 {
 	char mapCharacter;
@@ -461,9 +462,9 @@ void MapMaker::fillPoints()
 
 
 //Name:
-//Description:
+//Description:	MapMaker class which
 //Parameters:
-//Return:
+//Return:		Void
 void MapMaker::printMap()
 {
 	int inner, outer;
@@ -496,10 +497,10 @@ void MapMaker::printMap()
 	std::cout << std::endl;	
 }
 
-//Name:
-//Description:
-//Parameters:
-//Return:
+//Name:			createMap
+//Description:	MapMaker class which writes the char map out to a file
+//Parameters:	Takes in a string which is the name of the file to write the char map to
+//Return:		Void
 void MapMaker::createMap(std::string fileName)
 {
 	int inner, outer;

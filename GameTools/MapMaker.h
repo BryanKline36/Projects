@@ -42,7 +42,7 @@ class MapMaker
     MapMaker();
     ~MapMaker();
   
-  	void run(std::string fileName);
+  	void run();
 
   private:
 
