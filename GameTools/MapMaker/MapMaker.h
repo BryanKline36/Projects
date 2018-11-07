@@ -9,8 +9,8 @@ class MapMaker
 {
   public:
 
-  	const int MAX_ROWS = 8;
-  	const int MAX_COLUMNS = 8;
+  	const int MAX_ROWS = 16;
+  	const int MAX_COLUMNS = 16;
 
   	struct Coordinate
   	{

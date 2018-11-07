@@ -9,7 +9,7 @@ int main()
 	MapMaker mapMaker;
 	std::string fileName = "outFile.map";
 
-	mapMaker.run(fileName);
+	mapMaker.run();
 
 	return 0;
 }
