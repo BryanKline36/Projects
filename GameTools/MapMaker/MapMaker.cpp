@@ -100,8 +100,8 @@ MapMaker::Selection MapMaker::promptAction()
 }
 
 //Name:			selectAction
-//Description:	MapMaker class which
-//Parameters:
+//Description:	MapMaker class which takes in the fill option the user entered and selects that option
+//Parameters:	Takes in a Selection enum which is the fill option the user entered
 //Return:		Void
 void MapMaker::selectAction(Selection choice)
 {	
@@ -182,9 +182,9 @@ void MapMaker::selectAction(Selection choice)
 }
 
 //Name:			enterFileName
-//Description:	MapMaker class which
+//Description:	MapMaker class which prompts the user to enter a file and returns it
 //Parameters:	None
-//Return:
+//Return:		Returns a string which is the name of the file 
 std::string MapMaker::enterFileName()
 {
 	std::string fileName = " ";
