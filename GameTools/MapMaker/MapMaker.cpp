@@ -54,7 +54,8 @@ MapMaker::~MapMaker()
 } 
 
 //Name:			run
-//Description:	MapMaker class which
+//Description:	MapMaker class which continually prompts the user to fill the char map and take
+//				action accordingly
 //Parameters:	None
 //Return:		Void
 void MapMaker::run()
@@ -73,10 +74,11 @@ void MapMaker::run()
 	}
 }
 
-//Name:	
-//Description:	MapMaker class which
-//Parameters:
-//Return:
+//Name:			promptAction
+//Description:	MapMaker class which prompts the user to choose how to fill the char map and returns the
+//				Selection enum which corresponds to the fill type
+//Parameters:	None
+//Return:		Returns a Selection enum which is 
 MapMaker::Selection MapMaker::promptAction()
 {
 	int choice;
@@ -97,7 +99,7 @@ MapMaker::Selection MapMaker::promptAction()
 
 }
 
-//Name:
+//Name:			selectAction
 //Description:	MapMaker class which
 //Parameters:
 //Return:		Void
@@ -179,9 +181,9 @@ void MapMaker::selectAction(Selection choice)
 	}
 }
 
-//Name:
+//Name:			enterFileName
 //Description:	MapMaker class which
-//Parameters:
+//Parameters:	None
 //Return:
 std::string MapMaker::enterFileName()
 {
@@ -193,9 +195,9 @@ std::string MapMaker::enterFileName()
 	return fileName;
 }
 
-//Name:
+//Name:			chooseBorder
 //Description:	MapMaker class which
-//Parameters:
+//Parameters:	None
 //Return:
 MapMaker::Selection MapMaker::chooseBorder()
 {
@@ -213,9 +215,9 @@ MapMaker::Selection MapMaker::chooseBorder()
 	return (Selection) choice;
 }
 
-//Name:
+//Name:			chooseLineType
 //Description:	MapMaker class which
-//Parameters:
+//Parameters:	None
 //Return:
 MapMaker::Selection MapMaker::chooseLineType()
 {
@@ -230,9 +232,9 @@ MapMaker::Selection MapMaker::chooseLineType()
 	return (Selection) choice;
 }
 
-//Name:
+//Name:			chooseBlockType
 //Description:	MapMaker class which
-//Parameters:
+//Parameters:	None
 //Return:
 MapMaker::Selection MapMaker::chooseBlockType()
 {
@@ -247,7 +249,7 @@ MapMaker::Selection MapMaker::chooseBlockType()
 	return (Selection) choice;
 }
 
-//Name:
+//Name:			choosePosition
 //Description:	MapMaker class which
 //Parameters:
 //Return:
@@ -272,9 +274,9 @@ MapMaker::Coordinate MapMaker::choosePosition(bool isCoordinate)
 	return coordinate;
 }
 
-//Name:
+//Name:			fillEntire
 //Description:	MapMaker class which
-//Parameters:
+//Parameters:	None
 //Return:		Void
 void MapMaker::fillEntire()
 {
@@ -374,7 +376,7 @@ void MapMaker::fillLines(Selection lineType, Coordinate coordinate)
 	}	
 }
 
-//Name:
+//Name:			fillLineSegment
 //Description:	MapMaker class which
 //Parameters:
 //Return:		Void
@@ -407,7 +409,7 @@ void MapMaker::fillLineSegment(Selection lineType, Coordinate coordinate)
 	}	
 }
 
-//Name:
+//Name:			fillBlocks
 //Description:	MapMaker class which
 //Parameters:
 //Return:		Void
@@ -440,9 +442,9 @@ void MapMaker::fillBlocks(Selection lineType, Coordinate firstCoordinate, Coordi
 	}
 }
 
-//Name:
+//Name:			fillPoints
 //Description:	MapMaker class which
-//Parameters:
+//Parameters:	None
 //Return:		Void
 void MapMaker::fillPoints()
 {
@@ -461,9 +463,9 @@ void MapMaker::fillPoints()
 }
 
 
-//Name:
-//Description:	MapMaker class which
-//Parameters:
+//Name:			printMap
+//Description:	MapMaker class which prints the current char map to the screen
+//Parameters:	None
 //Return:		Void
 void MapMaker::printMap()
 {
