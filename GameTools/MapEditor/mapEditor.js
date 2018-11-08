@@ -1,6 +1,11 @@
 var demoCanvas = document.getElementById("mapCanvas"); 
 var gameWindow = demoCanvas.getContext("2d");
 
+
+
+
+
+
 function gameStatusInterval()	
 { 
   	setInterval(updateOne, 40); 
@@ -62,5 +67,37 @@ function updateOne()
 // 	xmlhttp.send();
 // }
 
-gameStatusInterval();
+function testFunction(map)
+{
+	var i, j;
 
+	// alert("hello1");
+	for(i = 0; i < 16; i++)
+	{
+		for(j = 0; j < 16; j++)
+		{
+			// map[i][j] = i + j;
+			alert(i + j);
+		}	
+	}
+	// alert("hello2");
+
+
+	return map;
+}
+// var map = [];
+// map = testFunction(map);
+
+var data = 
+[
+	['.', '.', '.', '\n', ],
+	['.', '.', '.', '\n', ],
+	['.', '.', '.', '\n', ],
+	['.', '.', '.', '\n', ],
+];
+
+var i, j;
+
+// for()
+document.getElementById("textArea").innerText = data;
+gameStatusInterval();
