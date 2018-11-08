@@ -110,12 +110,20 @@ var data =
 
 var i, j;
 var stringValue = "";
+var tempString;
 
 for(i = 0; i < 16; i++)
 {
-	stringValue += data[i].join('');
+	tempString = "";
+	for(j = 0; j < 17; j++)
+	{
+		// stringValue += data[i].join('');
 
+		tempString += ("___" + data[i][j]);
+	}	
+	stringValue += tempString;
 }
 
-document.getElementById("textArea").innerText = stringValue;
+document.getElementById("textArea1").innerText = stringValue;
+
 gameStatusInterval();
