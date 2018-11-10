@@ -69,7 +69,7 @@ function updateOne()
 
 var input = document.getElementById("myFile");
 var output = document.getElementById("output");
-
+let mapText
 
 input.addEventListener("change", function () {
   if (this.files && this.files[0]) {
@@ -81,8 +81,16 @@ input.addEventListener("change", function () {
     });
     
     reader.readAsBinaryString(myFile);
+
   }   
 });
+
+function readMap()
+{
+	mapText = document.getElementById("output").value
+    alert(mapText)
+
+}
 
 
 var i;

@@ -209,15 +209,15 @@ MapMaker::Selection MapMaker::chooseBorder()
 	int choice;
 
 	std::cout << "Choose a border to fill:" << std::endl;
-	std::cout << all << ") Fill all borders" << std::endl;
-	std::cout << top << ") Fill top border" << std::endl;
-	std::cout << bottom << ") Fill bottom border" << std::endl;
-	std::cout << right << ") Fill right border" << std::endl;
-	std::cout << left << ") Fill left border" << std::endl;
+	std::cout << "1) Fill all borders" << std::endl;
+	std::cout << "2) Fill top border" << std::endl;
+	std::cout << "3) Fill bottom border" << std::endl;
+	std::cout << "4) Fill right border" << std::endl;
+	std::cout << "5) Fill left border" << std::endl;
 
 	std::cin >> choice;
 
-	return (Selection) choice;
+	return (Selection) (choice + 7);
 }
 
 //Name:			chooseLineType
@@ -229,12 +229,12 @@ MapMaker::Selection MapMaker::chooseLineType()
 	int choice;
 
 	std::cout << "Choose a type of line:" << std::endl;
-	std::cout << vertical << ") Vertical line" << std::endl;
-	std::cout << horizontal << ") Horizontal line" << std::endl;
+	std::cout << "1) Vertical line" << std::endl;
+	std::cout << "2) Horizontal line" << std::endl;
 
 	std::cin >> choice;
 
-	return (Selection) choice;
+	return (Selection) (choice + 12);
 }
 
 //Name:			chooseBlockType
@@ -251,7 +251,7 @@ MapMaker::Selection MapMaker::chooseBlockType()
 
 	std::cin >> choice;
 
-	return (Selection) choice;
+	return (Selection) (choice + 14);
 }
 
 //Name:			choosePosition
