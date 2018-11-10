@@ -196,9 +196,9 @@ std::string MapMaker::enterFileName()
 }
 
 //Name:			chooseBorder
-//Description:	MapMaker class which
+//Description:	MapMaker class which prompts the user to select the type of border to fill and returns it
 //Parameters:	None
-//Return:
+//Return:		Returns a Selection enum which is the type of border to fill
 MapMaker::Selection MapMaker::chooseBorder()
 {
 	int choice;
@@ -216,9 +216,9 @@ MapMaker::Selection MapMaker::chooseBorder()
 }
 
 //Name:			chooseLineType
-//Description:	MapMaker class which
+//Description:	MapMaker class which prompts the user to select the type of line to fill and returns it
 //Parameters:	None
-//Return:
+//Return:		Returns a Selection enum which is the type of line to fill
 MapMaker::Selection MapMaker::chooseLineType()
 {
 	int choice;
@@ -233,9 +233,9 @@ MapMaker::Selection MapMaker::chooseLineType()
 }
 
 //Name:			chooseBlockType
-//Description:	MapMaker class which
+//Description:	MapMaker class which prompts the user to select the type of block to fill and returns it
 //Parameters:	None
-//Return:
+//Return:		Returns a Selection enum which is the type of block to fill
 MapMaker::Selection MapMaker::chooseBlockType()
 {
 	int choice;
@@ -250,9 +250,9 @@ MapMaker::Selection MapMaker::chooseBlockType()
 }
 
 //Name:			choosePosition
-//Description:	MapMaker class which
-//Parameters:
-//Return:
+//Description:	MapMaker class which prompts the user to return and coordinate and returns it
+//Parameters:	Takes in a bool corresponding to whether the user will enter one or two points
+//Return:		Returns a Coordinate struct which holds the 
 MapMaker::Coordinate MapMaker::choosePosition(bool isCoordinate)
 {
 	Coordinate coordinate;
