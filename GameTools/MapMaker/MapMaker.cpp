@@ -252,7 +252,7 @@ MapMaker::Selection MapMaker::chooseBlockType()
 //Name:			choosePosition
 //Description:	MapMaker class which prompts the user to return and coordinate and returns it
 //Parameters:	Takes in a bool corresponding to whether the user will enter one or two points
-//Return:		Returns a Coordinate struct which holds the 
+//Return:		Returns a Coordinate struct which holds the point or points entered
 MapMaker::Coordinate MapMaker::choosePosition(bool isCoordinate)
 {
 	Coordinate coordinate;
@@ -275,7 +275,7 @@ MapMaker::Coordinate MapMaker::choosePosition(bool isCoordinate)
 }
 
 //Name:			fillEntire
-//Description:	MapMaker class which
+//Description:	MapMaker class which prompts the user for a character and 
 //Parameters:	None
 //Return:		Void
 void MapMaker::fillEntire()
@@ -377,8 +377,10 @@ void MapMaker::fillLines(Selection lineType, Coordinate coordinate)
 }
 
 //Name:			fillLineSegment
-//Description:	MapMaker class which
-//Parameters:
+//Description:	MapMaker class which prompts the user for a character and fills a line segment of a
+//				size specified by the user, along with whether the line is vertical or horizontal
+//Parameters:	Takes in a Selection enum which is whether the line is vertical or horizontal and a
+//				Coordinate struct which specifies the starting point of the line segment
 //Return:		Void
 void MapMaker::fillLineSegment(Selection lineType, Coordinate coordinate)
 {
@@ -410,8 +412,12 @@ void MapMaker::fillLineSegment(Selection lineType, Coordinate coordinate)
 }
 
 //Name:			fillBlocks
-//Description:	MapMaker class which
-//Parameters:
+//Description:	MapMaker class which prompts the user for a character and fills a block with that character
+//				whether just the borders of the block or the whole solid block, the size of the block 
+//				specified by the user as two points of the block, the upper left hand and lower right hand
+//				corners 
+//Parameters:	Takes in a Selection enum for the type of line, whether solid or just the border, and two
+//				Coordinate structs which are the corners of the block to fill
 //Return:		Void
 void MapMaker::fillBlocks(Selection lineType, Coordinate firstCoordinate, Coordinate secondCoordinate)
 {
@@ -443,7 +449,8 @@ void MapMaker::fillBlocks(Selection lineType, Coordinate firstCoordinate, Coordi
 }
 
 //Name:			fillPoints
-//Description:	MapMaker class which
+//Description:	MapMaker class which prompts the user for a character and a point and fills that
+//				point with the character
 //Parameters:	None
 //Return:		Void
 void MapMaker::fillPoints()
