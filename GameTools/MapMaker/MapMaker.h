@@ -1,3 +1,9 @@
+
+//Name:         mapMakerDriver.h
+//Date:         November 9, 2018
+//Author:       Bryan Kline
+//Description:  MapMaker class header file
+
 #include <iostream>
 #include <fstream>
 #include <string>

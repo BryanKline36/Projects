@@ -1,4 +1,9 @@
 
+//Name:			MapMaker.cpp
+//Date:			November 9, 2018
+//Author:		Bryan Kline
+//Description:	MapMaker class implementation file
+
 #include <iostream>
 #include <fstream>
 #include <string>
