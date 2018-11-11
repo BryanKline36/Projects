@@ -59,4 +59,4 @@ Raspberry Pi which controls a number of LEDs, seven segment displays, buttons, s
 receives the data from the drone, displays it on the device, and issues visual and auditory alerts when any data falls below
 user-defined thresholds.  The Raspberry Pi also runs a GUI which the user may use in order to view the data graphically and
 to set the voltage and proximity thresholds.  The data is also streamed over the network through the Robot Operating System,
-ROS, which researchers use to control and visualize the drone.  http://skywarden.tech/
+ROS, which researchers use to control and visualize the drone. https://skywarden.github.io/
