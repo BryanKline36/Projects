@@ -6,5 +6,5 @@ The program expects command line arguments for the input file name, the image, a
 
 To execute (using the same image provided "image.jpg" and using both flags):
 
-    python imageProcessor.py image.jpg normalizedValues.txt -s -r
+    python imagePreprocessor.py image.jpg normalizedValues.txt -s -r
 
