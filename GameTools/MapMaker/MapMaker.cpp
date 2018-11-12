@@ -526,7 +526,7 @@ void MapMaker::createMap(std::string fileName)
 	{
 		for(inner = 0; inner < columns; inner++)
 		{
-			outFile << map[outer][inner] << " ";
+			outFile << map[outer][inner];
 		}
 		outFile << '\n';
 	}

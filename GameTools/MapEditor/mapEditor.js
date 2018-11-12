@@ -1,18 +1,126 @@
 var demoCanvas = document.getElementById("mapCanvas"); 
 var gameWindow = demoCanvas.getContext("2d");
+var i, j;
+var rows = [];
+var map = [];
+var stringValue = "";
+var input = document.getElementById("myFile");
+var output = document.getElementById("output");
 
+input.addEventListener("change", 
+	function() 
+	{
+  		if (this.files && this.files[0]) 
+  		{
+    		var myFile = this.files[0];
+    		var reader = new FileReader();
+    
+    		reader.addEventListener('load', 
+    			function(e) 
+    			{
+      				output.textContent = e.target.result;
+    			});
+    
+    	reader.readAsBinaryString(myFile);
 
-function gameStatusInterval()	
-{ 
-  	setInterval(updateOne, 40); 
-}
+  		}   
+	});
 
-function updateOne()
+function readMap()
 {
-	gameWindow.fillStyle = "#801000";
-	gameWindow.fillRect(0, 0, 1000, 400);
+	var mapText = document.getElementById("output").value
+	//mapText = mapText.toString()
+	console.log(mapText);
+
+	//alert(mapText);
+	writeMap(mapText);
+   	writeMapToScreen(map);
 }
 
+function writeMap(inputText)
+{
+	// map = inputText;
+	var i , j;
+	//alert("hello")
+
+	// console.log(inputText.length);
+	//console.log(inputText);
+	//console.log(map.join(''));
+
+	var file = fopen("output", 3);
+	fwrite(file, "hello");
+	fclose(file);
+
+	for(i = 0; i < 16; i++)
+	{
+
+		for(j = 0; j < 17; j++)
+		{
+
+			// alert(inputText[(i * 17) + j]);
+			// map[i][j] = inputText[(i * 17) + j];
+			// console.log(map[i][j] + " : " + input[(i * 17) + j]); 
+		}	
+	}
+}
+
+
+function writeMapToScreen()
+{
+
+	//alert(map);
+	var i , j;
+	var stringValue = "";
+	var tempString;
+
+	for(i = 0; i < 16; i++)
+	{
+		tempString = "";
+		for(j = 0; j < 17; j++)
+		{
+			tempString += (map[i][j]);
+		}	
+		stringValue += tempString;
+	}
+
+	document.getElementById("textArea1").innerText = stringValue;
+}
+
+for(i = 0; i < 16; i++)
+{
+	rows[i] = '.';
+}
+rows[i] = '\n';
+
+for(i = 0; i < 16; i++)
+{
+	map[i] = rows;
+}
+
+writeMapToScreen();
+
+
+
+gameWindow.fillStyle = "#801000";
+gameWindow.fillRect(0, 0, 1000, 400);
+
+
+
+
+
+
+// function gameStatusInterval()	
+// { 
+//   	setInterval(update, 40); 
+// }
+
+// function update()
+// {
+// 	gameWindow.fillStyle = "#801000";
+// 	gameWindow.fillRect(0, 0, 1000, 400);
+// }
+
+// gameStatusInterval();
 
 // $(document).keyup(function(key) 
 // {
@@ -65,66 +173,3 @@ function updateOne()
 // function openfileDialog() {
 //     $("#fileLoader").click();
 // }
-
-
-var input = document.getElementById("myFile");
-var output = document.getElementById("output");
-let mapText
-
-input.addEventListener("change", function () {
-  if (this.files && this.files[0]) {
-    var myFile = this.files[0];
-    var reader = new FileReader();
-    
-    reader.addEventListener('load', function (e) {
-      output.textContent = e.target.result;
-    });
-    
-    reader.readAsBinaryString(myFile);
-
-  }   
-});
-
-function readMap()
-{
-	mapText = document.getElementById("output").value
-    alert(mapText)
-
-}
-
-
-var i;
-var rows = [];
-var map = [];
-
-for(i = 0; i < 16; i++)
-{
-	rows[i] = '.';
-}
-rows[i] = '\n';
-
-for(i = 0; i < 16; i++)
-{
-	map[i] = rows;
-}
-
-var j;
-var stringValue = "";
-var tempString;
-
-for(i = 0; i < 16; i++)
-{
-	tempString = "";
-	for(j = 0; j < 17; j++)
-	{
-		// stringValue += data[i].join('');
-
-		tempString += ("___" + map[i][j]);
-	}	
-	stringValue += tempString;
-}
-
-
-document.getElementById("textArea1").innerText = stringValue;
-
-gameStatusInterval();
