@@ -30,10 +30,13 @@ function readMap()
 {
 	var mapText = document.getElementById("output").value
 	//mapText = mapText.toString()
-	console.log(mapText);
+	// console.log(mapText);
 
 	//alert(mapText);
-	writeMap(mapText);
+	// writeMap(mapText);
+	// alert("going");
+	map = mapText;
+
    	writeMapToScreen(map);
 }
 
@@ -43,61 +46,78 @@ function writeMap(inputText)
 	var i , j;
 	//alert("hello")
 
-	// console.log(inputText.length);
-	//console.log(inputText);
+	console.log(inputText.length);
+	console.log(inputText);
 	//console.log(map.join(''));
 
-	var file = fopen("output", 3);
-	fwrite(file, "hello");
-	fclose(file);
 
 	for(i = 0; i < 16; i++)
 	{
+		for(j = 0; j < 17; j++)
+		{
+			//console.log("position (1)" + i + "-" + j + ":  " + map[i][j] + "  end");
 
+
+			map[i][j] = inputText[(i * 17) + j];
+			console.log("position (2)" + i + "-" + j + ":  " + map[i][j] + "  end");
+			//console.log("position " + i + "-" + j + ":  " + inputText[(i * 17) + j] + "  end");
+			// console.log(map[i][j] + " : " + input[(i * 17) + j]); 
+		}	
+	}
+
+	for(i = 0; i < 16; i++)
+	{
 		for(j = 0; j < 17; j++)
 		{
 
-			// alert(inputText[(i * 17) + j]);
 			// map[i][j] = inputText[(i * 17) + j];
+			console.log("position (new) " + i + "-" + j + ":  " + map[i][j] + "  end");
+			//console.log("position " + i + "-" + j + ":  " + inputText[(i * 17) + j] + "  end");
 			// console.log(map[i][j] + " : " + input[(i * 17) + j]); 
 		}	
 	}
 }
 
 
-function writeMapToScreen()
+function writeMapToScreen(map)
 {
 
-	//alert(map);
+
 	var i , j;
-	var stringValue = "";
-	var tempString;
+	var stringValue = map;
+	// var tempString = map;
 
-	for(i = 0; i < 16; i++)
+	// for(i = 0; i < 17; i++)
+	// {
+	// 	tempString = "";
+	// 	for(j = 0; j < 16; j++)
+	// 	{
+	// 		//console.log("position " + i + "-" + j + ":  " + map[i][j] + "  end");
+	// 		tempString += (map[i][j]);
+	// 	}	
+	// 	stringValue += tempString;
+	// }
+
+	document.getElementById("textArea1").innerText = map;
+}
+
+// for(i = 0; i < 16; i++)
+// {
+// 	rows[i] = '.';
+// }
+// rows[i] = '\n';
+
+for(i = 0; i < 272; i++)
+{
+	map[i] = '.';
+
+	if(i != 0 && i % 16 == 0)
 	{
-		tempString = "";
-		for(j = 0; j < 17; j++)
-		{
-			tempString += (map[i][j]);
-		}	
-		stringValue += tempString;
+		map[i] = '\n';
 	}
-
-	document.getElementById("textArea1").innerText = stringValue;
 }
 
-for(i = 0; i < 16; i++)
-{
-	rows[i] = '.';
-}
-rows[i] = '\n';
-
-for(i = 0; i < 16; i++)
-{
-	map[i] = rows;
-}
-
-writeMapToScreen();
+writeMapToScreen(map.join(""));
 
 
 
