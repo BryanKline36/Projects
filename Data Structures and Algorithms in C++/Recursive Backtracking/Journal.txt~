@@ -1,0 +1,24 @@
+Bryan Kline
+CS302 
+PA08 - Recursive Backtracking  Journal
+04/06/2016
+
+1. What worked well for this assignment?
+
+The thing that worked well (maybe too well) for this assignment was the fact that the code was basically given to us in lecture.  When we went over the N Queens problem and reasoned through the process in class, the base case, recursive case, backtracking step, all the conditions and position of the return statements, etc. all turned out to be almost identical to the solution.  Also, the fact that the project used simple data structures, just two vectors to hold the rooms (seats) and classes (students), made it was pretty easy to visualize how the recursion and backtracking were to take place and how one vector would be iterated through recursively while the other iterated through with the loop.  Lastly, having to just implement one free function, without any documentation, made the whole thing a pretty quick project.   
+
+2. What did not work well for this assignment?
+
+Really, for once, there weren't problems with this project.  The closest thing to a problem was hammering out the little details that differed from what was done in class.  The most significant of those differences was the return statements (or perhaps my notes from class on this point weren't very good) as it took some hacking and tinkering to get the bool return statements right.  As usual, when a solution is hit upon in this way, trial and error as opposed to proper planning, it doesn't feel very good as there's a little mystery there, and so I guess the part that didn't work was the part that I didn't plan out very well.  I was close to the solution initially, had some problems, and then just kind of took a swing or two in the dark at tweaking it until it worked and so I had to then kind of analyze what I did so as to understand how I got it to work.  
+
+Aside from that that last return statement and hacking rather than planning the resolution to that problem all was fine except for perhaps any attempt to change the rooms or classes in their respective vectors.  As the SimpleVector member function getAtIndex is const, the items in the vectors couldn't be modified directly, there had to be a local object of each type created to hold a copy of the object to be changed, then that had to be added back into the vector.  While this wasn't a problem, it did add a lot more code to the function and just felt clunky.
+
+3. What did you need help with on this assignment?
+
+While I probably didn't need any help at all as the code was basically given to us in class, me and a group of other students decided to take the advice often given to the class and got a room in the KC and worked as a group to discuss and design the problem.  The people I worked with were Robert Watkins, Jia Li, and Josh Cash; we basically were able to take our notes from class, redo the N Queens problem on a white board, and then relate that to the project at each step and basically model what the solution should look like translating it from a chessboard and queens to rooms and classes.  
+
+One thing we needed clarified, which was later one of the few questions asked on the forum, was whether or not we could use another function to check whether or not the classes had all been fit to a room yet.  I was of the opinion that as there was no specific prohibition on free adding functions in the project description that it would be good to take that out of the function and make it its own thing for modularity and to avoid code reuse as I check a few times to see if all the classes have been fit or not.
+
+4. What did you learn from this assignment?
+
+The main take away from the project was simply the concept of backtracking generally and the N Queens problem specifically.

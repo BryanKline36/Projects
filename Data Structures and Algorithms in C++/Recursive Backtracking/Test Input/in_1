@@ -1,0 +1,14 @@
+Start Room Data;
+Ansari Building, 106, 205;
+Ansari Building, 102, 93;
+Ansari Building, 100, 89;
+Center for Molecular Medicine, 111, 93;
+Davidson Math & Science Center, 110, 458;
+End Room Data;
+Start Class Data;
+CS 105, 197;
+CS 135, 82;
+CS 202, 83;
+CPE 201, 86;
+CS 219, 422;
+End Class Data;
