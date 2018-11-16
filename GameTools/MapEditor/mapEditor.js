@@ -45,10 +45,18 @@ function drawMap(map)
 {
 
 
+	for(i = 0; i < 272; i++)
+	{
+		map[i] = '.';
+
+		if(i != 0 && i % 16 == 0)
+		{
+			map[i] = '\n';
+		}
+	}
 
 
 
-	
 }
 
 function writeMap(inputText)
