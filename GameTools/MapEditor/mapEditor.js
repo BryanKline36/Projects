@@ -37,7 +37,18 @@ function readMap()
 	// alert("going");
 	map = mapText;
 
-   	writeMapToScreen(map);
+	writeMapToScreen(map);
+	drawMap(map);   
+}
+
+function drawMap(map)
+{
+
+
+
+
+
+	
 }
 
 function writeMap(inputText)
