@@ -1,5 +1,8 @@
 var demoCanvas = document.getElementById("mapCanvas"); 
 var gameWindow = demoCanvas.getContext("2d");
+var baseImage = new Image();
+baseImage.src = "g.png";
+document.getElementById("load").addEventListener("click", drawImage);
 var i, j;
 var rows = [];
 var map = [];
@@ -26,6 +29,25 @@ input.addEventListener("change",
   		}   
 	});
 
+function drawMap(map)
+{
+	var x = 0;
+	var y = 0;
+
+	// for(i = 0; i < 272; i++)
+	// {
+	// 	map[i] = '.';
+
+	// 	if(i != 0 && i % 16 == 0)
+	// 	{
+	// 		map[i] = '\n';
+	// 	}
+	// }
+
+	//gameWindow.drawImage("w.png", x, y);
+
+}
+	
 function readMap()
 {
 	var mapText = document.getElementById("output").value
@@ -41,23 +63,6 @@ function readMap()
 	drawMap(map);   
 }
 
-function drawMap(map)
-{
-
-
-	for(i = 0; i < 272; i++)
-	{
-		map[i] = '.';
-
-		if(i != 0 && i % 16 == 0)
-		{
-			map[i] = '\n';
-		}
-	}
-
-
-
-}
 
 function writeMap(inputText)
 {
@@ -140,10 +145,20 @@ writeMapToScreen(map.join(""));
 
 
 
-gameWindow.fillStyle = "#801000";
-gameWindow.fillRect(0, 0, 1000, 400);
+// gameWindow.fillStyle = "#801000";
+// gameWindow.fillRect(0, 0, 1000, 400);
+
+// gameWindow.fillStyle = "#000000";
+// gameWindow.fillRect(0, 0, 40, 40);
+
+// var things = new Image(100, 100);
+// things.src = "images/w.png";
+// gameWindow.drawImage(things, 0, 0);
 
 
+// var imageObject = new Image();
+// imageObject.src = "images/w.png";
+// gameWindow.drawImage(imageObject, 0, 0);
 
 
 
@@ -212,3 +227,22 @@ gameWindow.fillRect(0, 0, 1000, 400);
 // function openfileDialog() {
 //     $("#fileLoader").click();
 // }
+
+
+// var map = document.getElementById("mapCanvas");
+// var ctx = map.getContext("2d");
+
+
+// var baseImage = new Image();
+// baseImage.src = "g.png";
+// baseImage.addEventListener("load", drawImage);
+
+function drawImage()
+{
+    readMap()
+
+    // var baseImage = new Image();
+    // baseImage.src = "g.png";
+    gameWindow.drawImage(baseImage, 320, 240);
+}
+
