@@ -1,7 +1,9 @@
 var demoCanvas = document.getElementById("mapCanvas"); 
 var gameWindow = demoCanvas.getContext("2d");
-var baseImage = new Image();
-baseImage.src = "g.png";
+var grassImage = new Image();
+grassImage.src = "g.png";
+var waterImage = new Image();
+waterImage.src = "w.png";
 document.getElementById("load").addEventListener("click", drawImage);
 var i, j;
 var rows = [];
@@ -239,10 +241,31 @@ writeMapToScreen(map.join(""));
 
 function drawImage()
 {
+    var i;
+    var j;
+
     readMap()
+
+    for(i = 0; i < 272; i++)
+    {
+        if(i % 16 != 0)
+        {
+            if(map[i] == 'g')
+            {
+                alert("g")
+            }
+            else if(map[i] == 'w')
+            {
+                alert("w")
+
+            }
+        }
+    }
 
     // var baseImage = new Image();
     // baseImage.src = "g.png";
-    gameWindow.drawImage(baseImage, 320, 240);
+    gameWindow.drawImage(grassImage, 320, 240);
+    gameWindow.drawImage(waterImage, 64, 64);
+
 }
 
