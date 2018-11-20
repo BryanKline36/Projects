@@ -57,52 +57,52 @@ function readMap()
 	// console.log(mapText);
 
 	//alert(mapText);
-	// writeMap(mapText);
 	// alert("going");
 	map = mapText;
+	writeMap();
 
-	//writeMapToScreen(map);
+	// writeMapToScreen(map);
 	drawMap(map);   
 }
 
 
-function writeMap(inputText)
+function writeMap()
 {
 	// map = inputText;
 	var i , j;
 	//alert("hello")
 
-	console.log(inputText.length);
-	console.log(inputText);
-	//console.log(map.join(''));
-
-
-	for(i = 0; i < 16; i++)
+	// console.log(inputText.length);
+	// console.log(inputText);
+	
+	
+	
+	console.log(map);
+	
+	for(i = 0; i < 272; i++)
 	{
-		for(j = 0; j < 17; j++)
+		if(map[i] == '\n')
 		{
-			//console.log("position (1)" + i + "-" + j + ":  " + map[i][j] + "  end");
-
-
-			map[i][j] = inputText[(i * 17) + j];
-			console.log("position (2)" + i + "-" + j + ":  " + map[i][j] + "  end");
-			//console.log("position " + i + "-" + j + ":  " + inputText[(i * 17) + j] + "  end");
-			// console.log(map[i][j] + " : " + input[(i * 17) + j]); 
-		}	
+			map = removeCharacter(map, i);
+		}
 	}
+	
 
-	for(i = 0; i < 16; i++)
-	{
-		for(j = 0; j < 17; j++)
-		{
 
-			// map[i][j] = inputText[(i * 17) + j];
-			console.log("position (new) " + i + "-" + j + ":  " + map[i][j] + "  end");
-			//console.log("position " + i + "-" + j + ":  " + inputText[(i * 17) + j] + "  end");
-			// console.log(map[i][j] + " : " + input[(i * 17) + j]); 
-		}	
-	}
+
+	console.log(map);
+
+	
 }
+
+
+function removeCharacter(input, position) 
+ {
+	var firstHalf = input.substring(0, position);
+	var secondHalf = input.substring(position + 1, input.length);
+  
+	return (firstHalf + secondHalf);
+ }
 
 
 function writeMapToScreen(map)
@@ -273,9 +273,5 @@ function drawImage()
         xPosition += 32;
 
     }
-
-    // var baseImage = new Image();
-    // baseImage.src = "g.png";
-
 }
 
