@@ -26,122 +26,81 @@ input.addEventListener("change",
       				output.textContent = e.target.result;
     			});
     
-    	reader.readAsBinaryString(myFile);
-
+    		reader.readAsBinaryString(myFile);
   		}   
 	});
 
-function drawMap(map)
-{
-	var x = 0;
-	var y = 0;
 
-	// for(i = 0; i < 272; i++)
-	// {
-	// 	map[i] = '.';
-
-	// 	if(i != 0 && i % 16 == 0)
-	// 	{
-	// 		map[i] = '\n';
-	// 	}
-	// }
-
-	//gameWindow.drawImage("w.png", x, y);
-
-}
 	
 function readMap()
 {
 	var mapText = document.getElementById("output").value
-	//mapText = mapText.toString()
-	// console.log(mapText);
-
-	//alert(mapText);
-	// alert("going");
+	
 	map = mapText;
-	writeMap();
-
-	// writeMapToScreen(map);
-	drawMap(map);   
+	formatMapString();
 }
 
-
-function writeMap()
+function formatMapString()
 {
-	// map = inputText;
 	var i , j;
-	//alert("hello")
-
-	// console.log(inputText.length);
-	// console.log(inputText);
-	
-	
+	var tempString = "";
 	
 	console.log(map);
-	
+
 	for(i = 0; i < 272; i++)
 	{
-		if(map[i] == '\n')
+		if(map[i] != '\n')
 		{
-			map = removeCharacter(map, i);
+			tempString += map[i];
 		}
 	}
-	
 
-
+	map = tempString;
 
 	console.log(map);
 
-	
 }
-
-
-function removeCharacter(input, position) 
- {
-	var firstHalf = input.substring(0, position);
-	var secondHalf = input.substring(position + 1, input.length);
-  
-	return (firstHalf + secondHalf);
- }
-
 
 function writeMapToScreen(map)
 {
-
-
-	var i , j;
-	var stringValue = map;
-	// var tempString = map;
-
-	// for(i = 0; i < 17; i++)
-	// {
-	// 	tempString = "";
-	// 	for(j = 0; j < 16; j++)
-	// 	{
-	// 		//console.log("position " + i + "-" + j + ":  " + map[i][j] + "  end");
-	// 		tempString += (map[i][j]);
-	// 	}	
-	// 	stringValue += tempString;
-	// }
-
 	document.getElementById("textArea1").innerText = map;
 }
 
-// for(i = 0; i < 16; i++)
-// {
-// 	rows[i] = '.';
-// }
-// rows[i] = '\n';
-
-for(i = 0; i < 272; i++)
+function drawImage()
 {
-	map[i] = '.';
+	var i;
 
-	if(i != 0 && i % 16 == 0)
+	readMap()
+
+	for(i = 0; i < 256; i++)
 	{
-		map[i] = '\n';
+		if(map[i] == 'g')
+		{
+			gameWindow.drawImage(grassImage, xPosition, yPosition);
+		}
+		else if(map[i] == 'w')
+		{
+			gameWindow.drawImage(waterImage, xPosition, yPosition);
+		}
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // writeMapToScreen(map.join(""));
 
@@ -239,39 +198,4 @@ for(i = 0; i < 272; i++)
 // baseImage.src = "g.png";
 // baseImage.addEventListener("load", drawImage);
 
-function drawImage()
-{
-    var i;
-    var xPosition = 0, yPosition = 0;
-
-    readMap()
-
-    for(i = 0; i < 272; i++)
-    {
-        if(xPosition == 544)
-        {
-            xPosition = 0;
-            yPosition += 32;
-        }
-
-        if(map[i] != '\n')
-        {
-            console.log("i:map[i]:xPosition:yPosition\t" + i + ":" + map[i] + ":" + xPosition + ":"+ yPosition);
-            if(map[i] == 'g')
-            {
-                // alert("g")
-                gameWindow.drawImage(grassImage, xPosition, yPosition);
-            }
-            else if(map[i] == 'w')
-            {
-                // alert("w")
-
-                gameWindow.drawImage(waterImage, xPosition, yPosition);
-            }
-
-        }
-        xPosition += 32;
-
-    }
-}
 
