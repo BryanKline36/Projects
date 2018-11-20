@@ -1,16 +1,29 @@
 var demoCanvas = document.getElementById("mapCanvas"); 
 var gameWindow = demoCanvas.getContext("2d");
-var grassImage = new Image();
-grassImage.src = "g.png";
-var waterImage = new Image();
-waterImage.src = "w.png";
-document.getElementById("load").addEventListener("click", drawImage);
+
 var i, j;
 var rows = [];
 var map = [];
 var stringValue = "";
 var input = document.getElementById("myFile");
 var output = document.getElementById("output");
+document.getElementById("load").addEventListener("click", drawImage);
+
+var imageList = [];//[new Image(), new Image()];
+var labelList = ["g", "w"];
+
+for(i = 0; i < 2; i++)
+{
+	imageList[i] = new Image();
+	imageList[i].src = labelList[i] + ".png";
+}
+
+// var grassImage = new Image();
+// grassImage.src = "g.png";
+// var waterImage = new Image();
+// waterImage.src = "w.png";
+
+
 
 input.addEventListener("change", 
 	function() 
@@ -45,8 +58,6 @@ function formatMapString()
 	var i , j;
 	var tempString = "";
 	
-	console.log(map);
-
 	for(i = 0; i < 272; i++)
 	{
 		if(map[i] != '\n')
@@ -56,9 +67,6 @@ function formatMapString()
 	}
 
 	map = tempString;
-
-	console.log(map);
-
 }
 
 function writeMapToScreen(map)
@@ -69,19 +77,28 @@ function writeMapToScreen(map)
 function drawImage()
 {
 	var i;
+	var xPosition = 0, yPosition = 0;
 
-	readMap()
-
+	readMap();
+	
 	for(i = 0; i < 256; i++)
 	{
-		if(map[i] == 'g')
+		if(i != 0 && i % 16 == 0)
 		{
-			gameWindow.drawImage(grassImage, xPosition, yPosition);
+			xPosition = 0;
+			yPosition += 32;
 		}
-		else if(map[i] == 'w')
+
+		if(map[i] == labelList[0])
 		{
-			gameWindow.drawImage(waterImage, xPosition, yPosition);
+			gameWindow.drawImage(imageList[0], xPosition, yPosition);
 		}
+		else if(map[i] == labelList[1])
+		{
+			gameWindow.drawImage(imageList[1], xPosition, yPosition);
+		}
+
+		xPosition += 32;
 	}
 }
 
