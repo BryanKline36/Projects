@@ -12,7 +12,7 @@ document.getElementById("load").addEventListener("click", drawImage);
 
 
 var imageList = [];//[new Image(), new Image()];
-var labelList = ["g", "w", "thing"];
+var labelList = [];
 
 for(i = 0; i < 3; i++)
 {
@@ -76,12 +76,43 @@ function writeMapToScreen(map)
 	document.getElementById("textArea1").innerText = map;
 }
 
+function getUniqueTiles()
+{
+	var size = labelList.length;
+
+	console.log(size);
+
+	for(i = 0; i < 256; i++)
+	{
+		if(!labelExists(map[i]))
+		{
+			labelList.push(map[i]);
+		}
+	}
+
+	//console.log(labelList)
+}
+
+function labelExists(tileChar)
+{
+	for(i = 0; i < 256; i++)
+	{
+		if(map[i] == tileChar)
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
 function drawImage()
 {
 	var i;
 	var xPosition = 0, yPosition = 0;
 	
 	readMap();
+	getUniqueTiles();
 	
 	for(i = 0; i < 256; i++)
 	{
@@ -108,26 +139,26 @@ function drawImage()
 
 
 
-document.getElementById('files').addEventListener('change', handleFileSelect, false);
-function handleFileSelect(evt) 
-{
-	console.log("!!!!!!")
-	var files = evt.target.files; // FileList object
+// document.getElementById('files').addEventListener('change', handleFileSelect, false);
+// function handleFileSelect(evt) 
+// {
+// 	console.log("!!!!!!")
+// 	var files = evt.target.files; // FileList object
 
-	// files is a FileList of File objects. List some properties.
-	var output = [];
-	var f;
-	for (var i = 0; f = files[i]; i++) 
-	{
+// 	// files is a FileList of File objects. List some properties.
+// 	var output = [];
+// 	var f;
+// 	for (var i = 0; f = files[i]; i++) 
+// 	{
 
-		console.log(f.name)
-		// output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
-		//     f.size, ' bytes, last modified: ',
-		//     f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
-		//     '</li>');
-	}
-	// document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
-}
+// 		console.log(f.name)
+// 		// output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
+// 		//     f.size, ' bytes, last modified: ',
+// 		//     f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
+// 		//     '</li>');
+// 	}
+// 	// document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
+// }
 
 
 
