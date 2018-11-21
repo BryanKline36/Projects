@@ -40,6 +40,35 @@
 
     <script src="mapEditor.js"></script>
 
+
+
+    <input type="file" id="files" name="files[]" multiple />
+    <!-- <output id="list"></output> -->
+    
+    <!-- <script>
+      function handleFileSelect(evt) 
+      {
+        var files = evt.target.files; // FileList object
+    
+        // files is a FileList of File objects. List some properties.
+        var output = [];
+        var f;
+        for (var i = 0; f = files[i]; i++) 
+        {
+
+            console.log(f.name)
+            // output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
+            //     f.size, ' bytes, last modified: ',
+            //     f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
+            //     '</li>');
+        }
+        // document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
+      }
+    
+      document.getElementById('files').addEventListener('change', handleFileSelect, false);
+    </script> -->
+
+
 	<!-- <button onclick="window.changeSettings(0);"> Default Settings </button>
 	<button onclick="window.changeSettings(1);"> Alternative Settings </button> -->
 

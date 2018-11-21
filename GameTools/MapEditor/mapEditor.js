@@ -9,6 +9,28 @@ var input = document.getElementById("myFile");
 var output = document.getElementById("output");
 document.getElementById("load").addEventListener("click", drawImage);
 
+document.getElementById('files').addEventListener('change', handleFileSelect, false);
+function handleFileSelect(evt) 
+{
+	console.log("!!!!!!")
+	var files = evt.target.files; // FileList object
+
+	// files is a FileList of File objects. List some properties.
+	var output = [];
+	var f;
+	for (var i = 0; f = files[i]; i++) 
+	{
+
+		console.log(f.name)
+		// output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
+		//     f.size, ' bytes, last modified: ',
+		//     f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
+		//     '</li>');
+	}
+	// document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
+}
+
+
 var imageList = [];//[new Image(), new Image()];
 var labelList = ["g", "w"];
 
