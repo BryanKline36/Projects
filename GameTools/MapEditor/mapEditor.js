@@ -9,32 +9,12 @@ var input = document.getElementById("myFile");
 var output = document.getElementById("output");
 document.getElementById("load").addEventListener("click", drawImage);
 
-document.getElementById('files').addEventListener('change', handleFileSelect, false);
-function handleFileSelect(evt) 
-{
-	console.log("!!!!!!")
-	var files = evt.target.files; // FileList object
-
-	// files is a FileList of File objects. List some properties.
-	var output = [];
-	var f;
-	for (var i = 0; f = files[i]; i++) 
-	{
-
-		console.log(f.name)
-		// output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
-		//     f.size, ' bytes, last modified: ',
-		//     f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
-		//     '</li>');
-	}
-	// document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
-}
 
 
 var imageList = [];//[new Image(), new Image()];
-var labelList = ["g", "w"];
+var labelList = ["g", "w", "thing"];
 
-for(i = 0; i < 2; i++)
+for(i = 0; i < 3; i++)
 {
 	imageList[i] = new Image();
 	imageList[i].src = labelList[i] + ".png";
@@ -48,25 +28,25 @@ for(i = 0; i < 2; i++)
 
 
 input.addEventListener("change", 
-	function() 
+function() 
+{
+	if (this.files && this.files[0]) 
 	{
-  		if (this.files && this.files[0]) 
-  		{
-    		var myFile = this.files[0];
-    		var reader = new FileReader();
-    
-    		reader.addEventListener('load', 
-    			function(e) 
-    			{
-      				output.textContent = e.target.result;
-    			});
-    
-    		reader.readAsBinaryString(myFile);
-  		}   
-	});
+		var myFile = this.files[0];
+		var reader = new FileReader();
+		
+		reader.addEventListener('load', 
+		function(e) 
+		{
+			output.textContent = e.target.result;
+		});
+		
+		reader.readAsBinaryString(myFile);
+	}   
+});
 
 
-	
+
 function readMap()
 {
 	var mapText = document.getElementById("output").value
@@ -87,7 +67,7 @@ function formatMapString()
 			tempString += map[i];
 		}
 	}
-
+	
 	map = tempString;
 }
 
@@ -100,7 +80,7 @@ function drawImage()
 {
 	var i;
 	var xPosition = 0, yPosition = 0;
-
+	
 	readMap();
 	
 	for(i = 0; i < 256; i++)
@@ -110,7 +90,7 @@ function drawImage()
 			xPosition = 0;
 			yPosition += 32;
 		}
-
+		
 		if(map[i] == labelList[0])
 		{
 			gameWindow.drawImage(imageList[0], xPosition, yPosition);
@@ -119,7 +99,7 @@ function drawImage()
 		{
 			gameWindow.drawImage(imageList[1], xPosition, yPosition);
 		}
-
+		
 		xPosition += 32;
 	}
 }
@@ -128,6 +108,26 @@ function drawImage()
 
 
 
+document.getElementById('files').addEventListener('change', handleFileSelect, false);
+function handleFileSelect(evt) 
+{
+	console.log("!!!!!!")
+	var files = evt.target.files; // FileList object
+
+	// files is a FileList of File objects. List some properties.
+	var output = [];
+	var f;
+	for (var i = 0; f = files[i]; i++) 
+	{
+
+		console.log(f.name)
+		// output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
+		//     f.size, ' bytes, last modified: ',
+		//     f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
+		//     '</li>');
+	}
+	// document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
+}
 
 
 
