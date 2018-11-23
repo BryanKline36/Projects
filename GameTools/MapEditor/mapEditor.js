@@ -11,13 +11,21 @@ document.getElementById("load").addEventListener("click", drawImage);
 
 
 
-var imageList = [];//[new Image(), new Image()];
+var imageList = [];
 var labelList = [];
 
-for(i = 0; i < 3; i++)
+function loadImages()
 {
-	imageList[i] = new Image();
-	imageList[i].src = labelList[i] + ".png";
+	var labelSize = labelList.length;
+	var imageSize = imageList.length;
+	
+	for(i = imageSize; i < labelSize; i++)
+	{
+		imageList[i] = new Image();
+		imageList[i].src = labelList[i] + ".png";
+	}
+
+
 }
 
 // var grassImage = new Image();
@@ -71,10 +79,6 @@ function formatMapString()
 	map = tempString;
 }
 
-function writeMapToScreen(map)
-{
-	document.getElementById("textArea1").innerText = map;
-}
 
 function getUniqueTiles()
 {
@@ -90,7 +94,7 @@ function getUniqueTiles()
 		}
 	}
 
-	//console.log(labelList)
+	console.log(labelList)
 }
 
 function labelExists(tileChar)
