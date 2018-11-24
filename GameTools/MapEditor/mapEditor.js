@@ -64,13 +64,14 @@ function readMap()
 
 function drawImage()
 {
-	var i, size = map.length;
+	var i, size;
 	var xPosition = 0, yPosition = 0;
 	var tempImage = new Image();
 	
 	readMap();
 
 	labelList = Array.from(new Set(map.split('')));
+	size = map.length;
 
 	loadImages();
 	
@@ -83,6 +84,8 @@ function drawImage()
 		}
 		
 		tempImage = getImage(i);
+		
+
 		gameWindow.drawImage(tempImage, xPosition, yPosition);
 
 		xPosition += STEP_SIZE;

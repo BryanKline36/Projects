@@ -4,6 +4,8 @@
 
 <head>
 
+    <meta charset="utf-8"/>
+
 	<title>map Editor</title>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -12,15 +14,6 @@
 </head>
 
 <body>
-    <!-- <input type="file" style="display: none" />
-        <button>Open File Dialog</button>
-
-    <script>
-            $("button").on("click", function() {
-                $("input").trigger("click");
-            });
-
-     </script> -->
 
     <input type="file" id="fileLoader" name="files" title="Load File" style="display: none" />
     <input type="button" id="load" value = "Load" />
@@ -41,64 +34,6 @@
     <script src="mapEditor.js"></script>
 
 
-
-    <input type="file" id="files" multiple />
-    <!-- <output id="list"></output> -->
-    
-    <!-- <script>
-      function handleFileSelect(evt) 
-      {
-        var files = evt.target.files; // FileList object
-    
-        // files is a FileList of File objects. List some properties.
-        var output = [];
-        var f;
-        for (var i = 0; f = files[i]; i++) 
-        {
-
-            console.log(f.name)
-            // output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
-            //     f.size, ' bytes, last modified: ',
-            //     f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
-            //     '</li>');
-        }
-        // document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
-      }
-    
-      document.getElementById('files').addEventListener('change', handleFileSelect, false);
-    </script> -->
-
-
-	<!-- <button onclick="window.changeSettings(0);"> Default Settings </button>
-	<button onclick="window.changeSettings(1);"> Alternative Settings </button> -->
-
-<!-- 	<nav>
-	  <ul>
-	    <li><a href="index.html">Home</a></li>
-	  </ul>
-	</nav> -->
-
 </body>
 
 </html>
-
-
-<!-- <!DOCTYPE html>
-<html>
-<style type="text/css" media="all"> @import "canvas.css"; </style>
-<body>
-
-<h1>LOAD Image2 fuck</h1>
-
-
-<canvas id="map" width="640" height="480"></canvas>
-
-<p>  </p>
-
-
-
-<script src="mapEditor.js"> </script>
-
-
-</body>
-</html>  -->
