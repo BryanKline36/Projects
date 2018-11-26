@@ -1,4 +1,6 @@
 import pygame
+import Tkinter
+from tkFileDialog import askopenfilename
 
 
 
@@ -11,9 +13,13 @@ window.fill((255, 255, 255))
 
 map = []
 
+tk_root = Tkinter.Tk()
+tk_root.withdraw()
+
+result = askopenfilename(filetypes=[("", "*.map")],)
                  
 
-
+print(result)
 
 def drawImage():
 
@@ -42,7 +48,7 @@ def drawImage():
 
 def readMapFile():
 
-    file = open("testMap.map", "r")
+    file = open(result, "r")
 
     for line in file:
 
@@ -72,7 +78,7 @@ def writeMapContents():
 
     charCounter = 0
     xPosition = 576
-    yPosition = 8
+    yPosition = 16
     for i in map:
 
         if charCounter == 16:
@@ -91,16 +97,11 @@ writeMapContents()
 while True:
 
     drawImage()
-    # writeText("thing", 576, 64)
-
 
     pygame.display.flip()
-
-
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             
             print(map)
-            writeMapContents()
             pygame.quit()
