@@ -7,6 +7,7 @@ window = pygame.display.set_mode((1024, 512))
 
 waterimage = pygame.image.load("w.png")
 grassimage = pygame.image.load("g.png")
+window.fill((255, 255, 255))
 
 map = []
 
@@ -57,29 +58,49 @@ readMapFile()
 
 
 
-def message_display(text):
-    largeText = pygame.font.Font('freesansbold.ttf', 16)
-    TextSurf, TextRect = text_objects(text, largeText)
-    TextRect.center = (576, 64)
-    window.blit(TextSurf, TextRect)
+def writeText(text, xPosition, yPosition):
 
-def text_objects(text, font):
-    textSurface = font.render(text, True, (255,255,255))
-    return textSurface, textSurface.get_rect()    
+    textFont = pygame.font.Font('freesansbold.ttf', 16)
+    textSurface = textFont.render(text, True, (0,0,0))
+
+    textRectangle = textSurface.get_rect() 
+    textRectangle.center = (xPosition, yPosition)
+
+    window.blit(textSurface, textRectangle)
+
+def writeMapContents():
+
+    charCounter = 0
+    xPosition = 576
+    yPosition = 8
+    for i in map:
+
+        if charCounter == 16:
+            
+            charCounter = 0
+            xPosition = 576
+            yPosition += 16
+
+        writeText(i, xPosition, yPosition)
+
+        charCounter += 1
+        xPosition += 16
+
+writeMapContents()
 
 while True:
 
     drawImage()
-    message_display("thing")
+    # writeText("thing", 576, 64)
 
 
     pygame.display.flip()
 
 
-    # window.fill(black)
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             
             print(map)
+            writeMapContents()
             pygame.quit()
