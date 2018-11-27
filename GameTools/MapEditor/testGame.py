@@ -12,12 +12,38 @@ grassimage = pygame.image.load("g.png")
 window.fill((255, 255, 255))
 
 map = []
+result = None
 
-tk_root = Tkinter.Tk()
-tk_root.withdraw()
 
-result = askopenfilename(filetypes=[("", "*.map")],)
+
+def openBrowse():
+
+    tk_root = Tkinter.Tk()
+    tk_root.withdraw()
+    result = askopenfilename(filetypes=[("", "*.map")],)
+
+    readMapFile(result)
+
+    writeMapContents()
+
+    return True
+
                  
+button_x = 800
+button_y = 300
+newGameButton = pygame.image.load("base.png").convert_alpha()
+x_len = newGameButton.get_width()
+y_len = newGameButton.get_height()
+# mos_x, mos_y = pygame.mouse.get_pos()
+# if mos_x>button_x and (mos_x<button_x+x_len):
+#     x_inside = True
+# else: x_inside = False
+# if mos_y>button_y and (mos_y<button_y+y_len):
+#     y_inside = True
+# else: y_inside = False
+# if x_inside and y_inside:
+    #Mouse is hovering over button
+# screen.blit(newGameButton, (button_x,button_y))
 
 print(result)
 
@@ -46,9 +72,9 @@ def drawImage():
 
         xPosition += 32
 
-def readMapFile():
+def readMapFile(fileName):
 
-    file = open(result, "r")
+    file = open(fileName, "r")
 
     for line in file:
 
@@ -59,7 +85,7 @@ def readMapFile():
                 map.append(char)
 
 
-readMapFile()
+# readMapFile()
 
 
 
@@ -92,16 +118,39 @@ def writeMapContents():
         charCounter += 1
         xPosition += 16
 
-writeMapContents()
+# writeMapContents()
 
+window.blit(newGameButton, (button_x,button_y))
+
+fileRead = False
 while True:
 
-    drawImage()
+    if fileRead:
+        drawImage()
+
+
+    x_len = newGameButton.get_width()
+    y_len = newGameButton.get_height()
+    mos_x, mos_y = pygame.mouse.get_pos()
+    if mos_x>button_x and (mos_x<button_x+x_len):
+        x_inside = True
+    else: x_inside = False
+    if mos_y>button_y and (mos_y<button_y+y_len):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside:
+        fileRead = openBrowse()
+
 
     pygame.display.flip()
 
     for event in pygame.event.get():
+    
         if event.type == pygame.QUIT:
             
             print(map)
             pygame.quit()
+
+
+
+
