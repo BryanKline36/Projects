@@ -95,12 +95,12 @@ def writeMapContents():
 
 def onButton(xMouse, yMouse):
 
-    if xMouse > button_x and (yMouse < button_x + x_len):
+    if xMouse > button_x and xMouse < (button_x + x_len):
         x_inside = True
     else: 
         x_inside = False
     
-    if xMouse > button_y and (yMouse < button_y + y_len):
+    if yMouse > button_y and yMouse < (button_y + y_len):
         y_inside = True
     else:
         y_inside = False
