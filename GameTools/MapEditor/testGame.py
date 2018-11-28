@@ -5,10 +5,13 @@ from tkFileDialog import askopenfilename
 pygame.init()
 window = pygame.display.set_mode((1024, 512))
 
+WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
+
 waterimage = pygame.image.load("w.png")
 grassimage = pygame.image.load("g.png")
 newGameButton = pygame.image.load("base.png").convert_alpha()
-window.fill((255, 255, 255))
+window.fill(WHITE)
 
 map = []
 
@@ -34,25 +37,28 @@ def openBrowse():
 
 def drawImage():
 
+    counter = 0
     xPosition = 0 
     yPosition = 0
     image = None
 
-    for i in range(256):
+    for character in map:
 
-        if i != 0 and i % 16 == 0:
+        if counter != 0 and counter % 16 == 0:
             xPosition = 0
             yPosition += 32
 
-        if map[i] == "w":
+        if character == "w":
             window.blit(waterimage, (xPosition, yPosition))
 
-        if map[i] == "g":
+        if character == "g":
             window.blit(grassimage, (xPosition, yPosition))
 
         pygame.display.flip()
 
+        counter += 1
         xPosition += 32
+
 
 def readMapFile(fileName):
 
@@ -69,7 +75,7 @@ def readMapFile(fileName):
 def writeText(text, xPosition, yPosition):
 
     textFont = pygame.font.Font('freesansbold.ttf', 16)
-    textSurface = textFont.render(text, True, (0,0,0))
+    textSurface = textFont.render(text, True, BLACK)
 
     textRectangle = textSurface.get_rect() 
     textRectangle.center = (xPosition, yPosition)
@@ -82,17 +88,16 @@ def writeMapContents():
     xPosition = 576
     yPosition = 16
 
-    pygame.draw.rect(window, (255,255,255), [570, 10, 256, 256])
-    # window.blit()
+    pygame.draw.rect(window, WHITE, [570, 10, 256, 256])
 
-    for i in map:
+    for character in map:
 
         if charCounter == 16:
             charCounter = 0
             xPosition = 576
             yPosition += 16
 
-        writeText(i, xPosition, yPosition)
+        writeText(character, xPosition, yPosition)
 
         charCounter += 1
         xPosition += 16
@@ -131,6 +136,7 @@ while True:
         if event.type == pygame.QUIT:
             
             pygame.quit()
+            exit()
 
 
 
