@@ -82,6 +82,9 @@ def writeMapContents():
     xPosition = 576
     yPosition = 16
 
+    pygame.draw.rect(window, (255,255,255), [570, 10, 256, 256])
+    # window.blit()
+
     for i in map:
 
         if charCounter == 16:
