@@ -12,12 +12,12 @@ window.fill((255, 255, 255))
 
 map = []
 
-x_len = newGameButton.get_width()
-y_len = newGameButton.get_height()
+buttonWidth = newGameButton.get_width()
+buttonHeight = newGameButton.get_height()
 
-button_x = 800
-button_y = 300
-window.blit(newGameButton, (button_x,button_y))
+xButton = 800
+yButton = 300
+window.blit(newGameButton, (xButton, yButton))
 
 fileRead = False
 
@@ -28,9 +28,9 @@ def openBrowse():
     filePath = askopenfilename(filetypes=[("", "*.map")],)
     
     if type(filePath) == str:
+        del map[:]
         readMapFile(filePath)
         writeMapContents()
-
 
 def drawImage():
 
@@ -65,6 +65,7 @@ def readMapFile(fileName):
             if char != '\n':    
                 map.append(char)
 
+
 def writeText(text, xPosition, yPosition):
 
     textFont = pygame.font.Font('freesansbold.ttf', 16)
@@ -95,17 +96,17 @@ def writeMapContents():
 
 def onButton(xMouse, yMouse):
 
-    if xMouse > button_x and xMouse < (button_x + x_len):
-        x_inside = True
+    if xMouse > xButton and xMouse < (xButton + buttonWidth):
+        xInside = True
     else: 
-        x_inside = False
+        xInside = False
     
-    if yMouse > button_y and yMouse < (button_y + y_len):
-        y_inside = True
+    if yMouse > yButton and yMouse < (yButton + buttonHeight):
+        yInside = True
     else:
-        y_inside = False
+        yInside = False
 
-    if x_inside and y_inside:
+    if xInside and yInside:
         openBrowse()
         return True
     else:
@@ -117,12 +118,9 @@ while True:
     if fileRead:
         drawImage()
 
-
     xMouse, yMouse = pygame.mouse.get_pos()
     fileRead = onButton(xMouse, yMouse)
     
-
-
     pygame.display.flip()
 
     for event in pygame.event.get():
