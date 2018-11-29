@@ -22,7 +22,7 @@ xButton = 800
 yButton = 300
 window.blit(newGameButton, (xButton, yButton))
 
-fileRead = False
+
 
 def openBrowse():
 
@@ -34,6 +34,7 @@ def openBrowse():
         del map[:]
         readMapFile(filePath)
         writeMapContents()
+        drawImage()
 
 def drawImage():
 
@@ -115,7 +116,6 @@ def onButton(xMouse, yMouse):
         yInside = False
 
     if xInside and yInside:
-        openBrowse()
         return True
     else:
         return False
@@ -123,16 +123,17 @@ def onButton(xMouse, yMouse):
 
 while True:
 
-    if fileRead:
-        drawImage()
 
     xMouse, yMouse = pygame.mouse.get_pos()
-    fileRead = onButton(xMouse, yMouse)
+    overButton = onButton(xMouse, yMouse)
     
     pygame.display.flip()
 
     for event in pygame.event.get():
     
+        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and overButton:
+            openBrowse()
+
         if event.type == pygame.QUIT:
             
             pygame.quit()
