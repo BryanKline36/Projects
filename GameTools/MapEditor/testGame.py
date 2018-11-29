@@ -120,13 +120,29 @@ def onButton(xMouse, yMouse):
     else:
         return False
 
+def checkMouseOver():
+
+    row = 0
+    column = 0
+
+    xMouse, yMouse = pygame.mouse.get_pos()
+
+    if xMouse > 0 and xMouse < 512 and yMouse > 0 and yMouse < 512:
+        
+        row = int(xMouse / 32)
+        column = int(yMouse / 32)
+        
+        print("row: " + str(row) + " column: " + str(column))
+
+
 
 while True:
 
 
     xMouse, yMouse = pygame.mouse.get_pos()
     overButton = onButton(xMouse, yMouse)
-    
+    checkMouseOver()
+
     pygame.display.flip()
 
     for event in pygame.event.get():
