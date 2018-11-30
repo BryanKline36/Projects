@@ -24,6 +24,7 @@ xButton = 800
 yButton = 300
 window.blit(newGameButton, (xButton, yButton))
 
+clicked = False
 
 
 def openBrowse():
@@ -136,18 +137,26 @@ def checkMouseOver():
         row = int(xMouse / 32)
         column = int(yMouse / 32)
         
-        print("row: " + str(row) + " column: " + str(column))
+        # print("row: " + str(row) + " column: " + str(column))
 
         xPosition = row * 32
         yPosition = column * 32
 
+        # checkClick(xPosition, yPosition)
+        if clicked:
+            window.blit(zimage, (xPosition, yPosition))
 
-        window.blit(zimage, (xPosition, yPosition))
 
+def checkClick(xPosition, yPosition):
+
+    print("!!!!")
+    for event in pygame.event.get():
+    
+        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+            pass
 
 
 while True:
-
 
     xMouse, yMouse = pygame.mouse.get_pos()
     overButton = onButton(xMouse, yMouse)
@@ -157,8 +166,13 @@ while True:
 
     for event in pygame.event.get():
     
-        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and overButton:
-            openBrowse()
+        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+            clicked = True
+
+            if overButton:
+                openBrowse()
+        else:
+            clicked = False
 
         if event.type == pygame.QUIT:
             
