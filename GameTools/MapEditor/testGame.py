@@ -1,6 +1,30 @@
+
 import pygame
+import json
 import Tkinter
 from tkFileDialog import askopenfilename
+
+class CharMap:
+
+    __charMap = None
+    x = None
+    y = None
+    z = None
+
+    def __init__(self, a, b, c):
+
+        self.__charMap = []
+        self.x = a
+        self.y = b
+        self.z = c
+
+
+pythonObj = CharMap(1,'ashley','123456')
+
+jsonObj = json.dumps(pythonObj.__dict__)
+
+jsonFile = open("myfile.JSON", "w")
+jsonFile.write(jsonObj)
 
 pygame.init()
 window = pygame.display.set_mode((1024, 512))
@@ -140,14 +164,10 @@ def checkMouseOver():
         row = int(xMouse / 32)
         column = int(yMouse / 32)
         
-        # print("row: " + str(row) + " column: " + str(column))
-
         xPosition = row * 32
         yPosition = column * 32
 
-
         if clicked:
-            # window.blit(zimage, (xPosition, yPosition))
             position = (row + (column * 16))
 
     return position
