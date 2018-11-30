@@ -25,6 +25,7 @@ yButton = 300
 window.blit(newGameButton, (xButton, yButton))
 
 clicked = False
+fileLoaded = False
 
 
 def openBrowse():
@@ -38,6 +39,7 @@ def openBrowse():
         readMapFile(filePath)
         writeMapContents()
         drawImage()
+        fileLoaded = True
 
 def drawImage():
 
@@ -129,6 +131,7 @@ def checkMouseOver():
     column = 0
     xPosition = 0
     yPosition = 0
+    position = -1
 
     xMouse, yMouse = pygame.mouse.get_pos()
 
@@ -142,25 +145,23 @@ def checkMouseOver():
         xPosition = row * 32
         yPosition = column * 32
 
-        # checkClick(xPosition, yPosition)
+
         if clicked:
-            window.blit(zimage, (xPosition, yPosition))
+            # window.blit(zimage, (xPosition, yPosition))
+            position = (row + (column * 16))
 
+    return position
 
-def checkClick(xPosition, yPosition):
-
-    print("!!!!")
-    for event in pygame.event.get():
-    
-        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
-            pass
-
+position = 0
 
 while True:
 
     xMouse, yMouse = pygame.mouse.get_pos()
     overButton = onButton(xMouse, yMouse)
-    checkMouseOver()
+    position = checkMouseOver()
+    
+    if len(map) == 256 and position != -1:
+        print(map[position])
 
     pygame.display.flip()
 
