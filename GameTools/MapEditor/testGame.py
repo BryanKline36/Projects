@@ -34,7 +34,7 @@ BLACK = (0, 0, 0)
 
 waterimage = pygame.image.load("w.png")
 grassimage = pygame.image.load("g.png")
-zimage = pygame.image.load("z.png")
+zimage = pygame.image.load("border.png")
 
 newGameButton = pygame.image.load("base.png").convert_alpha()
 window.fill(WHITE)
@@ -169,6 +169,8 @@ def checkMouseOver():
 
         if clicked:
             position = (row + (column * 16))
+            drawImage()
+            window.blit(zimage, (xPosition, yPosition))
 
     return position
 
