@@ -6,25 +6,31 @@ from tkFileDialog import askopenfilename
 
 class CharMap:
 
-    __charMap = None
-    x = None
-    y = None
-    z = None
+    charMap = None
+    mapLength = 256
+    rows = 16
+    columns = 16
+    pixelSize = 32
 
-    def __init__(self, a, b, c):
+    def __init__(self, length, rows, columns, pixels):
+
+        self.charMap = []
+        self.mapLength = length
+        self.rows = rows
+        self.columns = columns
+        self.pixelSize = pixels
+
+    def setMap(self, charMap):
+
+        self.__charMap = charMap
+
+    def clearMap(self):
 
         self.__charMap = []
-        self.x = a
-        self.y = b
-        self.z = c
 
-
-pythonObj = CharMap(1,'ashley','123456')
-
-jsonObj = json.dumps(pythonObj.__dict__)
-
-jsonFile = open("myfile.JSON", "w")
-jsonFile.write(jsonObj)
+global CharMapObject 
+CharMapObject = CharMap(256, 16, 16, 32)
+print(CharMapObject.pixelSize)
 
 pygame.init()
 window = pygame.display.set_mode((1024, 512))
@@ -51,6 +57,13 @@ window.blit(newGameButton, (xButton, yButton))
 clicked = False
 fileLoaded = False
 
+def makeJSON(fileName):
+
+    JSONObject = json.dumps(CharMapObject.__dict__)
+
+    jsonFile = open(fileName, "w")
+    jsonFile.write(JSONObject)
+
 
 def openBrowse():
 
@@ -60,6 +73,7 @@ def openBrowse():
     
     if type(filePath) == str:
         del map[:]
+        CharMapObject.clearMap()
         readMapFile(filePath)
         writeMapContents()
         drawImage()
@@ -74,9 +88,9 @@ def drawImage():
 
     for character in map:
 
-        if counter != 0 and counter % 16 == 0:
+        if counter != 0 and counter % CharMapObject.columns == 0:
             xPosition = 0
-            yPosition += 32
+            yPosition += CharMapObject.pixelSize
 
         if character == "w":
             window.blit(waterimage, (xPosition, yPosition))
@@ -87,7 +101,7 @@ def drawImage():
         pygame.display.flip()
 
         counter += 1
-        xPosition += 32
+        xPosition += CharMapObject.pixelSize
 
 
 def readMapFile(fileName):
