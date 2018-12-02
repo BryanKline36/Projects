@@ -22,11 +22,11 @@ class CharMap:
 
     def setMap(self, charMap):
 
-        self.__charMap = charMap
+        self.charMap = charMap
 
     def clearMap(self):
 
-        self.__charMap = []
+        self.charMap = []
 
 global CharMapObject 
 CharMapObject = CharMap(256, 16, 16, 32)
@@ -42,17 +42,16 @@ waterimage = pygame.image.load("w.png")
 grassimage = pygame.image.load("g.png")
 zimage = pygame.image.load("border.png")
 
-newGameButton = pygame.image.load("base.png").convert_alpha()
+loadButton = pygame.image.load("loadmap.png").convert_alpha()
 window.fill(WHITE)
 
-map = []
 
-buttonWidth = newGameButton.get_width()
-buttonHeight = newGameButton.get_height()
+buttonWidth = loadButton.get_width()
+buttonHeight = loadButton.get_height()
 
-xButton = 800
-yButton = 300
-window.blit(newGameButton, (xButton, yButton))
+xButton = 570
+yButton = 280
+window.blit(loadButton, (xButton, yButton))
 
 clicked = False
 fileLoaded = False
@@ -72,7 +71,6 @@ def openBrowse():
     filePath = askopenfilename(filetypes=[("", "*.map")],)
     
     if type(filePath) == str:
-        del map[:]
         CharMapObject.clearMap()
         readMapFile(filePath)
         writeMapContents()
