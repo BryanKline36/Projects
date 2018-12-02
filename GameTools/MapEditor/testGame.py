@@ -86,7 +86,7 @@ def drawImage():
     yPosition = 0
     image = None
 
-    for character in map:
+    for character in CharMapObject.charMap:
 
         if counter != 0 and counter % CharMapObject.columns == 0:
             xPosition = 0
@@ -106,14 +106,15 @@ def drawImage():
 
 def readMapFile(fileName):
 
-    file = open(fileName, "r")
+    if fileName != None and fileName != '':
+        file = open(fileName, "r")
 
-    for line in file:
+        for line in file:
 
-        for char in line:
+            for char in line:
 
-            if char != '\n':    
-                map.append(char)
+                if char != '\n':    
+                    CharMapObject.charMap.append(char)
 
 
 def writeText(text, xPosition, yPosition):
@@ -134,7 +135,7 @@ def writeMapContents():
 
     pygame.draw.rect(window, WHITE, [570, 10, 256, 256])
 
-    for character in map:
+    for character in CharMapObject.charMap:
 
         if charCounter == 16:
             charCounter = 0
@@ -196,8 +197,8 @@ while True:
     overButton = onButton(xMouse, yMouse)
     position = checkMouseOver()
     
-    if len(map) == 256 and position != -1:
-        print(map[position])
+    if len(CharMapObject.charMap) == 256 and position != -1:
+        print(CharMapObject.charMap[position])
 
     pygame.display.flip()
 
