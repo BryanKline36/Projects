@@ -7,6 +7,7 @@ from tkFileDialog import askopenfilename
 class CharMap:
 
     charMap = None
+    JSONFileName = None
     mapLength = 256
     rows = 16
     columns = 16
@@ -43,6 +44,8 @@ grassimage = pygame.image.load("g.png")
 zimage = pygame.image.load("border.png")
 
 loadButton = pygame.image.load("loadmap.png").convert_alpha()
+JSONButton = pygame.image.load("savejson.png").convert_alpha()
+
 window.fill(WHITE)
 
 
@@ -52,6 +55,13 @@ loadButtonHeight = loadButton.get_height()
 xLoadButton = 570
 yLoadButton = 280
 window.blit(loadButton, (xLoadButton, yLoadButton))
+
+JSONButtonWidth = JSONButton.get_width()
+JSONButtonHeight = JSONButton.get_height()
+
+xJSONButton = 650
+yJSONButton = 280
+window.blit(JSONButton, (xJSONButton, yJSONButton))
 
 clicked = False
 fileLoaded = False
@@ -71,11 +81,22 @@ def openBrowse():
     filePath = askopenfilename(filetypes=[("", "*.map")],)
     
     if type(filePath) == str:
+        setJSONFileName(filePath)
         CharMapObject.clearMap()
         readMapFile(filePath)
         writeMapContents()
         drawImage()
+        
         fileLoaded = True
+
+def setJSONFileName(filePath):
+
+        fileName = filePath.split('/')
+        fileName = fileName[len(fileName) - 1]
+        fileName = fileName.split('.')
+        CharMapObject.JOSONFileName = fileName[0] + ".JSON"
+
+
 
 def drawImage():
 
@@ -145,14 +166,14 @@ def writeMapContents():
         charCounter += 1
         xPosition += 16
 
-def onButton(xMouse, yMouse):
+def onButton(xMouse, yMouse, xButton, yButton, buttonWidth, buttonHeight):
 
-    if xMouse > xLoadButton and xMouse < (xLoadButton + loadButtonWidth):
+    if xMouse > xButton and xMouse < (xButton + buttonWidth):
         xInside = True
     else: 
         xInside = False
     
-    if yMouse > yLoadButton and yMouse < (yLoadButton + loadButtonHeight):
+    if yMouse > yButton and yMouse < (yButton + buttonHeight):
         yInside = True
     else:
         yInside = False
@@ -192,7 +213,8 @@ position = 0
 while True:
 
     xMouse, yMouse = pygame.mouse.get_pos()
-    overButton = onButton(xMouse, yMouse)
+    overLoadButton = onButton(xMouse, yMouse, xLoadButton, yLoadButton, loadButtonWidth, loadButtonHeight)
+    overJSONButton = onButton(xMouse, yMouse, xJSONButton, yJSONButton, JSONButtonWidth, JSONButtonHeight)
     position = checkMouseOver()
     
     if len(CharMapObject.charMap) == 256 and position != -1:
@@ -205,8 +227,12 @@ while True:
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             clicked = True
 
-            if overButton:
+            if overLoadButton:
                 openBrowse()
+
+            if overJSONButton:
+                makeJSON(CharMapObject.JOSONFileName)
+
         else:
             clicked = False
 
