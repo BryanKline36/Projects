@@ -46,12 +46,12 @@ loadButton = pygame.image.load("loadmap.png").convert_alpha()
 window.fill(WHITE)
 
 
-buttonWidth = loadButton.get_width()
-buttonHeight = loadButton.get_height()
+loadButtonWidth = loadButton.get_width()
+loadButtonHeight = loadButton.get_height()
 
-xButton = 570
-yButton = 280
-window.blit(loadButton, (xButton, yButton))
+xLoadButton = 570
+yLoadButton = 280
+window.blit(loadButton, (xLoadButton, yLoadButton))
 
 clicked = False
 fileLoaded = False
@@ -147,12 +147,12 @@ def writeMapContents():
 
 def onButton(xMouse, yMouse):
 
-    if xMouse > xButton and xMouse < (xButton + buttonWidth):
+    if xMouse > xLoadButton and xMouse < (xLoadButton + loadButtonWidth):
         xInside = True
     else: 
         xInside = False
     
-    if yMouse > yButton and yMouse < (yButton + buttonHeight):
+    if yMouse > yLoadButton and yMouse < (yLoadButton + loadButtonHeight):
         yInside = True
     else:
         yInside = False
