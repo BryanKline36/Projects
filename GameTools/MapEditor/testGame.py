@@ -43,6 +43,9 @@ BLACK = (0, 0, 0)
 global imageDictionary
 imageDictionary = {}
 
+global images
+images = {}
+
 waterimage = pygame.image.load("w.png")
 grassimage = pygame.image.load("g.png")
 zimage = pygame.image.load("images/border.png")
@@ -81,7 +84,9 @@ def getImages():
         imageDictionary[key] = item[:-1]
 
 def loadImages():
-    pass
+    
+    for key in imageDictionary:
+        images[key] = pygame.image.load(imageDictionary[key]).convert_alpha()
 
 def makeJSON(fileName):
 
@@ -128,13 +133,7 @@ def drawImage():
             xPosition = 0
             yPosition += CharMapObject.pixelSize
 
-
-
-        if character == "w":
-            window.blit(waterimage, (xPosition, yPosition))
-
-        if character == "g":
-            window.blit(grassimage, (xPosition, yPosition))
+        window.blit(images[character], (xPosition, yPosition))
 
         pygame.display.flip()
 
@@ -230,7 +229,7 @@ def checkMouseOver():
 position = 0
 
 getImages()
-print(imageDictionary)
+loadImages()
 
 while True:
 
