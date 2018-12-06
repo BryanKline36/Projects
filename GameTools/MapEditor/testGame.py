@@ -1,5 +1,6 @@
 
 import pygame
+import subprocess
 import json
 import Tkinter
 from tkFileDialog import askopenfilename
@@ -39,12 +40,15 @@ window = pygame.display.set_mode((1024, 512))
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 
+global imageDictionary
+imageDictionary = {}
+
 waterimage = pygame.image.load("w.png")
 grassimage = pygame.image.load("g.png")
-zimage = pygame.image.load("border.png")
+zimage = pygame.image.load("images/border.png")
 
-loadButton = pygame.image.load("loadmap.png").convert_alpha()
-JSONButton = pygame.image.load("savejson.png").convert_alpha()
+loadButton = pygame.image.load("images/loadmap.png").convert_alpha()
+JSONButton = pygame.image.load("images/savejson.png").convert_alpha()
 
 window.fill(WHITE)
 
@@ -65,6 +69,17 @@ window.blit(JSONButton, (xJSONButton, yJSONButton))
 
 clicked = False
 fileLoaded = False
+
+def getImages():
+
+    directoryPath = "ls images/"
+
+    directoryContents = subprocess.Popen(directoryPath, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+
+    for item in directoryContents.stdout.readlines():
+
+        print(item)
+
 
 def makeJSON(fileName):
 
@@ -209,6 +224,8 @@ def checkMouseOver():
     return position
 
 position = 0
+
+getImages()
 
 while True:
 
