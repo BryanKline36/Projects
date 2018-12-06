@@ -77,9 +77,11 @@ def getImages():
     directoryContents = subprocess.Popen(directoryPath, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
 
     for item in directoryContents.stdout.readlines():
+        key = item.split('.')[0]
+        imageDictionary[key] = item[:-1]
 
-        print(item)
-
+def loadImages():
+    pass
 
 def makeJSON(fileName):
 
@@ -125,6 +127,8 @@ def drawImage():
         if counter != 0 and counter % CharMapObject.columns == 0:
             xPosition = 0
             yPosition += CharMapObject.pixelSize
+
+
 
         if character == "w":
             window.blit(waterimage, (xPosition, yPosition))
@@ -226,6 +230,7 @@ def checkMouseOver():
 position = 0
 
 getImages()
+print(imageDictionary)
 
 while True:
 
