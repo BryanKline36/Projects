@@ -39,6 +39,7 @@ window = pygame.display.set_mode((1024, 512))
 
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
+GREY = (128, 128, 128) 
 
 global imageDictionary
 imageDictionary = {}
@@ -54,7 +55,8 @@ loadButton = pygame.image.load("images/loadmap.png").convert_alpha()
 JSONButton = pygame.image.load("images/savejson.png").convert_alpha()
 
 window.fill(WHITE)
-
+pygame.draw.rect(window, GREY, [0,0,512,512])
+pygame.draw.rect(window, GREY, [570, 10, 256, 256])
 
 loadButtonWidth = loadButton.get_width()
 loadButtonHeight = loadButton.get_height()
