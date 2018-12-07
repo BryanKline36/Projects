@@ -47,11 +47,10 @@ imageDictionary = {}
 global images
 images = {}
 
-waterimage = pygame.image.load("w.png")
-grassimage = pygame.image.load("g.png")
+# TODO: remove, use dictionary
 zimage = pygame.image.load("images/border.png")
-
 loadButton = pygame.image.load("images/loadmap.png").convert_alpha()
+tileButton = pygame.image.load("images/loadTile.png").convert_alpha()
 JSONButton = pygame.image.load("images/savejson.png").convert_alpha()
 
 window.fill(WHITE)
@@ -64,6 +63,13 @@ loadButtonHeight = loadButton.get_height()
 xLoadButton = 570
 yLoadButton = 280
 window.blit(loadButton, (xLoadButton, yLoadButton))
+
+tileButtonWidth = loadButton.get_width()
+tileButtonHeight = loadButton.get_height()
+
+xTileButton = 570
+yTileButton = 328
+window.blit(tileButton, (xTileButton, yTileButton))
 
 JSONButtonWidth = JSONButton.get_width()
 JSONButtonHeight = JSONButton.get_height()
@@ -83,7 +89,7 @@ def getImages():
 
     for item in directoryContents.stdout.readlines():
         key = item.split('.')[0]
-        imageDictionary[key] = item[:-1]
+        imageDictionary[key] = "images/" + item[:-1]
 
 def loadImages():
     
