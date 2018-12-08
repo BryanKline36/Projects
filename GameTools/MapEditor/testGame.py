@@ -67,7 +67,6 @@ def loadImages():
 getImages()
 loadImages()
 
-print(imageDictionary)
 
 zimage = images["border"]
 loadButton = images["loadMap"]
@@ -238,7 +237,20 @@ def checkMouseOver():
 
 def redrawTiles():
 
-    print("!!!")
+    browseFile = Tkinter.Tk()
+    browseFile.withdraw()
+    filePath = askopenfilename(initialdir="images")
+    
+    
+
+    # if type(filePath) == str:
+    #     setJSONFileName(filePath)
+    #     CharMapObject.clearMap()
+    #     readMapFile(filePath)
+    #     writeMapContents()
+    #     drawImage()
+        
+    #     fileLoaded = True
 
 getImages()
 loadImages()
