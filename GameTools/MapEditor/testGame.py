@@ -234,9 +234,10 @@ def checkMouseOver():
         if clicked:
             position = (row + (column * 16))
             selectedTile = position
-            print(selectedTile)
             drawImage()
             window.blit(zimage, (xPosition, yPosition))
+    else:
+        position = -2        
 
     return position
 
@@ -252,8 +253,6 @@ def redrawTiles(selectedTile):
         filePath = filePath[len(filePath) - 1]
         CharMapObject.charMap[selectedTile] = filePath[0]
 
-        print(selectedTile)
-        
         writeMapContents()
         drawImage()
         
@@ -271,8 +270,7 @@ while True:
     overTileButton = onButton(xMouse, yMouse, xTileButton, yTileButton, tileButtonWidth, tileButtonHeight)
     position = checkMouseOver()
     
-    if len(CharMapObject.charMap) == 256 and position != -1:
-        print(CharMapObject.charMap[position])
+    if len(CharMapObject.charMap) == 256 and position > 0:
         selectedTile = position
 
     pygame.display.flip()
@@ -291,6 +289,9 @@ while True:
 
             if overTileButton:
                 redrawTiles(selectedTile)
+
+            if position == -2:
+                drawImage()
 
 
         else:
