@@ -210,6 +210,9 @@ def onButton(xMouse, yMouse, xButton, yButton, buttonWidth, buttonHeight):
     else:
         return False
 
+
+selectedTile = -1
+
 def checkMouseOver():
 
     row = 0
@@ -230,33 +233,35 @@ def checkMouseOver():
 
         if clicked:
             position = (row + (column * 16))
+            selectedTile = position
+            print(selectedTile)
             drawImage()
             window.blit(zimage, (xPosition, yPosition))
 
     return position
 
-def redrawTiles():
+def redrawTiles(selectedTile):
 
     browseFile = Tkinter.Tk()
     browseFile.withdraw()
     filePath = askopenfilename(initialdir="images")
-    
-    
 
-    # if type(filePath) == str:
-    #     setJSONFileName(filePath)
-    #     CharMapObject.clearMap()
-    #     readMapFile(filePath)
-    #     writeMapContents()
-    #     drawImage()
+
+    if type(filePath) == str:
+        filePath = filePath.split("/")
+        filePath = filePath[len(filePath) - 1]
+        CharMapObject.charMap[selectedTile] = filePath[0]
+
+        print(selectedTile)
         
-    #     fileLoaded = True
+        writeMapContents()
+        drawImage()
+        
 
 getImages()
 loadImages()
 
 position = 0
-
 
 while True:
 
@@ -268,6 +273,7 @@ while True:
     
     if len(CharMapObject.charMap) == 256 and position != -1:
         print(CharMapObject.charMap[position])
+        selectedTile = position
 
     pygame.display.flip()
 
@@ -275,6 +281,7 @@ while True:
     
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             clicked = True
+            
 
             if overLoadButton:
                 openBrowse()
@@ -283,7 +290,7 @@ while True:
                 makeJSON(CharMapObject.JOSONFileName)
 
             if overTileButton:
-                redrawTiles()
+                redrawTiles(selectedTile)
 
 
         else:
