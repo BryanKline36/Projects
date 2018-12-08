@@ -32,7 +32,6 @@ class CharMap:
 
 global CharMapObject 
 CharMapObject = CharMap(256, 16, 16, 32)
-print(CharMapObject.pixelSize)
 
 pygame.init()
 window = pygame.display.set_mode((1024, 512))
@@ -47,11 +46,36 @@ imageDictionary = {}
 global images
 images = {}
 
-# TODO: remove, use dictionary
-zimage = pygame.image.load("images/border.png")
-loadButton = pygame.image.load("images/loadmap.png").convert_alpha()
-tileButton = pygame.image.load("images/loadTile.png").convert_alpha()
-JSONButton = pygame.image.load("images/savejson.png").convert_alpha()
+
+clicked = False
+fileLoaded = False
+
+def getImages():
+
+    directoryPath = "ls images/"
+
+    directoryContents = subprocess.Popen(directoryPath, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+
+    for item in directoryContents.stdout.readlines():
+        key = item.split('.')[0]
+        imageDictionary[key] = "images/" + item[:-1]
+
+def loadImages():
+    
+    for key in imageDictionary:
+        images[key] = pygame.image.load(imageDictionary[key]).convert_alpha()
+
+
+
+getImages()
+loadImages()
+
+print(imageDictionary)
+
+zimage = images["border"]
+loadButton = images["loadMap"]
+tileButton = images["loadTile"]
+JSONButton = images["saveJSON"]
 
 window.fill(WHITE)
 pygame.draw.rect(window, GREY, [0,0,512,512])
@@ -78,23 +102,7 @@ xJSONButton = 650
 yJSONButton = 280
 window.blit(JSONButton, (xJSONButton, yJSONButton))
 
-clicked = False
-fileLoaded = False
 
-def getImages():
-
-    directoryPath = "ls images/"
-
-    directoryContents = subprocess.Popen(directoryPath, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-
-    for item in directoryContents.stdout.readlines():
-        key = item.split('.')[0]
-        imageDictionary[key] = "images/" + item[:-1]
-
-def loadImages():
-    
-    for key in imageDictionary:
-        images[key] = pygame.image.load(imageDictionary[key]).convert_alpha()
 
 def makeJSON(fileName):
 
@@ -234,10 +242,11 @@ def checkMouseOver():
 
     return position
 
-position = 0
-
 getImages()
 loadImages()
+
+position = 0
+
 
 while True:
 
