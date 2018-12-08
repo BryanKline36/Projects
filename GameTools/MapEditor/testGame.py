@@ -46,6 +46,9 @@ imageDictionary = {}
 global images
 images = {}
 
+global tileList
+tileList = []
+
 clicked = False
 fileLoaded = False
 
@@ -215,6 +218,8 @@ selectedTile = -1
 
 def checkMouseOver():
 
+    global tileList
+
     row = 0
     column = 0
     xPosition = 0
@@ -236,6 +241,13 @@ def checkMouseOver():
             selectedTile = position
             drawImage()
             window.blit(zimage, (xPosition, yPosition))
+
+            keys = pygame.key.get_pressed()
+            if keys[pygame.K_RCTRL] or keys[pygame.K_LCTRL]:
+                tileList.append(position)
+                print(tileList)
+            else:
+                tileList = []
     else:
         position = -2        
 
@@ -291,6 +303,7 @@ while True:
                 redrawTiles(selectedTile)
 
             if position == -2:
+                tileList = []
                 drawImage()
 
 
