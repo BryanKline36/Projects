@@ -46,7 +46,6 @@ imageDictionary = {}
 global images
 images = {}
 
-
 clicked = False
 fileLoaded = False
 
@@ -64,8 +63,6 @@ def loadImages():
     
     for key in imageDictionary:
         images[key] = pygame.image.load(imageDictionary[key]).convert_alpha()
-
-
 
 getImages()
 loadImages()
@@ -102,15 +99,12 @@ xJSONButton = 650
 yJSONButton = 280
 window.blit(JSONButton, (xJSONButton, yJSONButton))
 
-
-
 def makeJSON(fileName):
 
     JSONObject = json.dumps(CharMapObject.__dict__)
 
     jsonFile = open(fileName, "w")
     jsonFile.write(JSONObject)
-
 
 def openBrowse():
 
@@ -242,6 +236,10 @@ def checkMouseOver():
 
     return position
 
+def redrawTiles():
+
+    print("!!!")
+
 getImages()
 loadImages()
 
@@ -253,6 +251,7 @@ while True:
     xMouse, yMouse = pygame.mouse.get_pos()
     overLoadButton = onButton(xMouse, yMouse, xLoadButton, yLoadButton, loadButtonWidth, loadButtonHeight)
     overJSONButton = onButton(xMouse, yMouse, xJSONButton, yJSONButton, JSONButtonWidth, JSONButtonHeight)
+    overTileButton = onButton(xMouse, yMouse, xTileButton, yTileButton, tileButtonWidth, tileButtonHeight)
     position = checkMouseOver()
     
     if len(CharMapObject.charMap) == 256 and position != -1:
@@ -270,6 +269,10 @@ while True:
 
             if overJSONButton:
                 makeJSON(CharMapObject.JOSONFileName)
+
+            if overTileButton:
+                redrawTiles()
+
 
         else:
             clicked = False
