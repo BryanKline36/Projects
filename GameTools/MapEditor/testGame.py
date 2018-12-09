@@ -9,6 +9,7 @@ class CharMap:
 
     charMap = None
     JSONFileName = None
+    mapFileName = None
     mapLength = 256
     rows = 16
     columns = 16
@@ -113,11 +114,12 @@ def openBrowse():
     browseFile = Tkinter.Tk()
     browseFile.withdraw()
     filePath = askopenfilename(filetypes=[("", "*.map")],)
+    CharMapObject.mapFileName = filePath
     
-    if type(filePath) == str:
-        setJSONFileName(filePath)
+    if type(CharMapObject.mapFileName) == str:
+        setJSONFileName(CharMapObject.mapFileName)
         CharMapObject.clearMap()
-        readMapFile(filePath)
+        readMapFile(CharMapObject.mapFileName)
         writeMapContents()
         drawImage()
         
@@ -129,8 +131,6 @@ def setJSONFileName(filePath):
         fileName = fileName[len(fileName) - 1]
         fileName = fileName.split('.')
         CharMapObject.JOSONFileName = fileName[0] + ".JSON"
-
-
 
 def drawImage():
 
@@ -151,6 +151,20 @@ def drawImage():
 
         counter += 1
         xPosition += CharMapObject.pixelSize
+
+
+def writeMapFile(fileName):
+
+    if fileName != None and fileName != '':
+        file = open(fileName, "w")
+
+        counter = 0
+        for character in CharMapObject.charMap:
+            file.write(character)
+
+            if counter != 0 and counter % 16 == 0:  
+                file.write('\n')
+
 
 
 def readMapFile(fileName):
@@ -312,6 +326,7 @@ while True:
 
         if event.type == pygame.QUIT:
             
+            writeMapFile(CharMapObject.mapFileName)
             pygame.quit()
             exit()
 
