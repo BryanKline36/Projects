@@ -72,10 +72,11 @@ getImages()
 loadImages()
 
 
-zimage = images["border"]
+borderImage = images["border"]
 loadButton = images["loadMap"]
 tileButton = images["loadTile"]
 JSONButton = images["saveJSON"]
+saveMapButton = images["saveMap"]
 
 window.fill(WHITE)
 pygame.draw.rect(window, GREY, [0,0,512,512])
@@ -101,6 +102,13 @@ JSONButtonHeight = JSONButton.get_height()
 xJSONButton = 650
 yJSONButton = 280
 window.blit(JSONButton, (xJSONButton, yJSONButton))
+
+saveMapButtonWidth = saveMapButton.get_width()
+saveMapButtonHeight = saveMapButton.get_height()
+
+xSaveMapButton = 650
+ySaveMapButton = 328
+window.blit(saveMapButton, (xSaveMapButton, ySaveMapButton))
 
 def makeJSON(fileName):
 
@@ -254,7 +262,7 @@ def checkMouseOver():
             position = (row + (column * 16))
             selectedTile = position
             drawImage()
-            window.blit(zimage, (xPosition, yPosition))
+            window.blit(borderImage, (xPosition, yPosition))
 
             keys = pygame.key.get_pressed()
             if keys[pygame.K_RCTRL] or keys[pygame.K_LCTRL]:
