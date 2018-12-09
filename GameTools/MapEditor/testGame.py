@@ -302,7 +302,8 @@ while True:
     overLoadButton = onButton(xMouse, yMouse, xLoadButton, yLoadButton, loadButtonWidth, loadButtonHeight)
     overJSONButton = onButton(xMouse, yMouse, xJSONButton, yJSONButton, JSONButtonWidth, JSONButtonHeight)
     overTileButton = onButton(xMouse, yMouse, xTileButton, yTileButton, tileButtonWidth, tileButtonHeight)
-    position = checkMouseOver()
+    overSaveButton = onButton(xMouse, yMouse, xSaveMapButton, ySaveMapButton, saveMapButtonWidth, saveMapButtonHeight)
+    position = checkMouseOver() 
     
     if len(CharMapObject.charMap) == 256 and position > 0:
         selectedTile = position
@@ -324,6 +325,10 @@ while True:
             if overTileButton:
                 redrawTiles(selectedTile)
 
+            if overSaveButton:
+               writeMapFile(CharMapObject.mapFileName)
+
+
             if position == -2:
                 tileList = []
                 drawImage()
@@ -334,7 +339,6 @@ while True:
 
         if event.type == pygame.QUIT:
             
-            writeMapFile(CharMapObject.mapFileName)
             pygame.quit()
             exit()
 
