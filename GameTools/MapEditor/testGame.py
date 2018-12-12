@@ -319,6 +319,19 @@ while True:
 
     pygame.display.flip()
 
+
+    if overLoadButton:
+        printAction(overLoadMapButton)
+
+    if overJSONButton:
+        printAction(saveJSONMapButton)
+
+    if overTileButton:
+        printAction(overLoadTileButton)
+
+    if overSaveButton:
+        printAction(overSaveMapButton)
+
     for event in pygame.event.get():
     
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
