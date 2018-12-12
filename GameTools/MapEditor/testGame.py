@@ -71,6 +71,11 @@ def loadImages():
 getImages()
 loadImages()
 
+overLoadMapButton = "Load a map file"
+overLoadTileButton = "Load map tile"
+saveJSONMapButton = "Save map to JSON"
+overSaveMapButton = "Save changes to map file"
+
 
 borderImage = images["border"]
 loadButton = images["loadMap"]
@@ -327,7 +332,6 @@ while True:
 
             if overSaveButton:
                writeMapFile(CharMapObject.mapFileName)
-
 
             if position == -2:
                 tileList = []
