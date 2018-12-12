@@ -115,6 +115,10 @@ xSaveMapButton = 650
 ySaveMapButton = 328
 window.blit(saveMapButton, (xSaveMapButton, ySaveMapButton))
 
+def printAction(action):
+
+    print(action)
+
 def makeJSON(fileName):
 
     JSONObject = json.dumps(CharMapObject.__dict__)
