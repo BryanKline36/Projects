@@ -115,9 +115,28 @@ xSaveMapButton = 650
 ySaveMapButton = 328
 window.blit(saveMapButton, (xSaveMapButton, ySaveMapButton))
 
+
+
+
+
 def printAction(action):
 
-    print(action)
+    pygame.draw.rect(window, GREY, [550, 490, 400, 30])
+
+    textFont = pygame.font.Font('freesansbold.ttf', 16)
+    textSurface = textFont.render(action, True, BLACK)
+
+    textRectangle = textSurface.get_rect() 
+    textRectangle.center = (590, 500)
+
+    window.blit(textSurface, textRectangle)
+
+    pygame.draw.rect(window, GREY, [550, 490, 400, 30])
+
+printAction("thing")
+
+
+
 
 def makeJSON(fileName):
 
