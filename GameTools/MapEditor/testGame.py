@@ -121,19 +121,19 @@ window.blit(saveMapButton, (xSaveMapButton, ySaveMapButton))
 
 def printAction(action):
 
-    pygame.draw.rect(window, GREY, [550, 490, 400, 30])
+    pygame.draw.rect(window, WHITE, [550, 490, 400, 30])
 
     textFont = pygame.font.Font('freesansbold.ttf', 16)
     textSurface = textFont.render(action, True, BLACK)
 
     textRectangle = textSurface.get_rect() 
-    textRectangle.center = (590, 500)
+    textRectangle.left = 570 #(520, 500)
+    textRectangle.top = 490 #(520, 500)
 
     window.blit(textSurface, textRectangle)
 
-    pygame.draw.rect(window, GREY, [550, 490, 400, 30])
+    pygame.draw.rect(window, WHITE, [550, 490, 400, 30])
 
-printAction("thing")
 
 
 
