@@ -116,12 +116,14 @@ ySaveMapButton = 328
 window.blit(saveMapButton, (xSaveMapButton, ySaveMapButton))
 
 
+def clearMessage():
+    pygame.draw.rect(window, WHITE, [550, 490, 400, 30])
 
 
 
 def printAction(action):
 
-    pygame.draw.rect(window, WHITE, [550, 490, 400, 30])
+    clearMessage()
 
     textFont = pygame.font.Font('freesansbold.ttf', 16)
     textSurface = textFont.render(action, True, BLACK)
@@ -132,7 +134,7 @@ def printAction(action):
 
     window.blit(textSurface, textRectangle)
 
-    pygame.draw.rect(window, WHITE, [550, 490, 400, 30])
+    # pygame.draw.rect(window, WHITE, [550, 490, 400, 30])
 
 
 
@@ -342,14 +344,17 @@ while True:
     if overLoadButton:
         printAction(overLoadMapButton)
 
-    if overJSONButton:
+    elif overJSONButton:
         printAction(saveJSONMapButton)
 
-    if overTileButton:
+    elif overTileButton:
         printAction(overLoadTileButton)
 
-    if overSaveButton:
+    elif overSaveButton:
         printAction(overSaveMapButton)
+
+    else:
+        clearMessage()
 
     for event in pygame.event.get():
     
