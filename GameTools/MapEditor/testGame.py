@@ -3,6 +3,7 @@ import pygame
 import subprocess
 import json
 import Tkinter
+from threading import Thread
 from tkFileDialog import askopenfilename
 
 class CharMap:
@@ -75,6 +76,8 @@ overLoadMapButton = "Load a map file"
 overLoadTileButton = "Load map tile"
 saveJSONMapButton = "Save map to JSON"
 overSaveMapButton = "Save changes to map file"
+savedJSON = "Saved to JSON"
+savedMap = "Saved changes to map file"
 
 
 borderImage = images["border"]
@@ -115,8 +118,15 @@ xSaveMapButton = 650
 ySaveMapButton = 328
 window.blit(saveMapButton, (xSaveMapButton, ySaveMapButton))
 
+def threadedPrintAction(action):
+    
+    resetProxMinThread = Thread(target=resetProxMinCounter, args=(action,))	
+    resetProxMinThread.start()
+    print(action)
+
 
 def clearMessage():
+    
     pygame.draw.rect(window, WHITE, [550, 490, 400, 30])
 
 
@@ -361,18 +371,19 @@ while True:
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             clicked = True
             
-
             if overLoadButton:
                 openBrowse()
 
             if overJSONButton:
                 makeJSON(CharMapObject.JOSONFileName)
+                threadedPrintAction(savedJSON)
 
             if overTileButton:
                 redrawTiles(selectedTile)
 
             if overSaveButton:
-               writeMapFile(CharMapObject.mapFileName)
+                writeMapFile(CharMapObject.mapFileName)
+                threadedPrintAction(savedMap)
 
             if position == -2:
                 tileList = []
