@@ -4,6 +4,7 @@ import subprocess
 import json
 import Tkinter
 from threading import Thread
+from time import sleep
 from tkFileDialog import askopenfilename
 
 class CharMap:
@@ -45,8 +46,6 @@ GREY = (128, 128, 128)
 global locked
 locked = False
 
-global thread
-thread = None
 
 global imageDictionary
 imageDictionary = {}
@@ -126,20 +125,22 @@ window.blit(saveMapButton, (xSaveMapButton, ySaveMapButton))
 
 def threadedPrintAction(action):
     
-    global locked
-    locked = True
-
     printAction(action)
+
     thread = Thread(target=wait)	
     thread.start()
 
 
+def wait():
+
+    global locked
+    locked = True
+    sleep(5)
+    locked = False
 
 def clearMessage():
     
     pygame.draw.rect(window, WHITE, [550, 490, 400, 30])
-
-
 
 def printAction(action):
 
@@ -373,7 +374,7 @@ while True:
     elif overSaveButton and not locked:
         printAction(overSaveMapButton)
 
-    else:
+    elif not locked:
         clearMessage()
 
     for event in pygame.event.get():
