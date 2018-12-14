@@ -42,6 +42,12 @@ WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 GREY = (128, 128, 128) 
 
+global locked
+locked = False
+
+global thread
+thread = None
+
 global imageDictionary
 imageDictionary = {}
 
@@ -76,8 +82,8 @@ overLoadMapButton = "Load a map file"
 overLoadTileButton = "Load map tile"
 saveJSONMapButton = "Save map to JSON"
 overSaveMapButton = "Save changes to map file"
-savedJSON = "Saved to JSON"
-savedMap = "Saved changes to map file"
+savedJSON = "Saved map object to JSON"
+savedMap = "Saved changes made to map file"
 
 
 borderImage = images["border"]
@@ -120,9 +126,13 @@ window.blit(saveMapButton, (xSaveMapButton, ySaveMapButton))
 
 def threadedPrintAction(action):
     
-    resetProxMinThread = Thread(target=resetProxMinCounter, args=(action,))	
-    resetProxMinThread.start()
-    print(action)
+    global locked
+    locked = True
+
+    printAction(action)
+    thread = Thread(target=wait)	
+    thread.start()
+
 
 
 def clearMessage():
@@ -351,16 +361,16 @@ while True:
     pygame.display.flip()
 
 
-    if overLoadButton:
+    if overLoadButton and not locked:
         printAction(overLoadMapButton)
 
-    elif overJSONButton:
+    elif overJSONButton and not locked:
         printAction(saveJSONMapButton)
 
-    elif overTileButton:
+    elif overTileButton and not locked:
         printAction(overLoadTileButton)
 
-    elif overSaveButton:
+    elif overSaveButton and not locked:
         printAction(overSaveMapButton)
 
     else:
