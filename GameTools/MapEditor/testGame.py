@@ -310,14 +310,19 @@ def checkMouseOver():
         yPosition = column * 32
 
         if clicked:
+            if len(tileList) == 0:    
+                drawImage()
+
             position = (row + (column * 16))
             selectedTile = position
-            drawImage()
             window.blit(borderImage, (xPosition, yPosition))
 
             keys = pygame.key.get_pressed()
             if keys[pygame.K_RCTRL] or keys[pygame.K_LCTRL]:
                 tileList.append(position)
+                tileList = set(tileList)
+                tileList = list(tileList)
+                window.blit(borderImage, (xPosition, yPosition))
                 print(tileList)
             else:
                 tileList = []
