@@ -341,11 +341,20 @@ def redrawTiles(selectedTile):
     if type(filePath) == str:
         filePath = filePath.split("/")
         filePath = filePath[len(filePath) - 1]
-        CharMapObject.charMap[selectedTile] = filePath[0]
+
+        rewriteMap(selectedTile, filePath[0])
 
         writeMapContents()
         drawImage()
-        
+
+def rewriteMap(tilePosition, tileChar):
+
+    global tileList
+
+    CharMapObject.charMap[tilePosition] = tileChar
+
+    for index in tileList:
+        CharMapObject.charMap[index] = tileChar
 
 getImages()
 loadImages()
