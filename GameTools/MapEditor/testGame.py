@@ -10,6 +10,7 @@ from tkFileDialog import askopenfilename
 class CharMap:
 
     charMap = None
+    collidableTiles = None
     JSONFileName = None
     mapFileName = None
     mapLength = 256
@@ -20,6 +21,7 @@ class CharMap:
     def __init__(self, length, rows, columns, pixels):
 
         self.charMap = []
+        self.collidableTiles = []
         self.mapLength = length
         self.rows = rows
         self.columns = columns
@@ -32,6 +34,14 @@ class CharMap:
     def clearMap(self):
 
         self.charMap = []
+
+    def clearCollidableTiles(self):
+
+        self.collidableTiles = []    
+
+    def addCollidableTile(self, tile):
+
+        self.collidableTiles.append(tile)       
 
 global CharMapObject 
 CharMapObject = CharMap(256, 16, 16, 32)
