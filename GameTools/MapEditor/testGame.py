@@ -96,6 +96,7 @@ savedMap = "Saved changes made to map file"
 
 
 borderImage = images["border"]
+collisionImage = images["collision"]
 loadButton = images["loadMap"]
 tileButton = images["loadTile"]
 JSONButton = images["saveJSON"]
@@ -139,26 +140,27 @@ window.blit(saveMapButton, (xSaveMapButton, ySaveMapButton))
 collisionsOnButtonWidth = saveMapButton.get_width()
 collisionsOnButtonHeight = saveMapButton.get_height()
 
-xcollisionsOnButton = 570
-ycollisionsOnButton = 375
-window.blit(collisionsOnButton, (xcollisionsOnButton, ycollisionsOnButton))
+xCollisionsOnButton = 570
+yCollisionsOnButton = 375
+window.blit(collisionsOnButton, (xCollisionsOnButton, yCollisionsOnButton))
 
 collisionsOffButtonWidth = saveMapButton.get_width()
 collisionsOffButtonHeight = saveMapButton.get_height()
 
-xcollisionsOffButton = 650
-ycollisionsOffButton = 375
-window.blit(collisionsOffButton, (xcollisionsOffButton, ycollisionsOffButton))
+xCollisionsOffButton = 650
+yCollisionsOffButton = 375
+window.blit(collisionsOffButton, (xCollisionsOffButton, yCollisionsOffButton))
 
-def setCollidables(initialPosition):
-
-    CharMapObject.clearCollidableTiles()
-    CharMapObject.addCollidableTile(initialPosition)
+def setCollidables(initialPosition):    
 
     for tile in tileList:
         CharMapObject.addCollidableTile(tile)
 
     print(CharMapObject.collidableTiles)    
+
+def drawCollidables():
+
+    for 
 
 
 def threadedPrintAction(action):
@@ -352,20 +354,29 @@ def checkMouseOver():
                 drawImage()
 
             position = (row + (column * 16))
-            selectedTile = position
+            tileList.append(position)
+            tileList = set(tileList)
+            tileList = list(tileList)
             window.blit(borderImage, (xPosition, yPosition))
-
             keys = pygame.key.get_pressed()
-            if keys[pygame.K_RCTRL] or keys[pygame.K_LCTRL]:
-                tileList.append(position)
-                tileList = set(tileList)
-                tileList = list(tileList)
-                window.blit(borderImage, (xPosition, yPosition))
-                # print(tileList)
-            else:
+            
+            if not keys[pygame.K_RCTRL] and not keys[pygame.K_LCTRL]:
                 tileList = []
 
-            setCollidables(position)    
+
+            # position = (row + (column * 16))
+            # selectedTile = position
+            # window.blit(borderImage, (xPosition, yPosition))
+
+            # keys = pygame.key.get_pressed()
+            # if keys[pygame.K_RCTRL] or keys[pygame.K_LCTRL]:
+            #     tileList.append(position)
+            #     tileList = set(tileList)
+            #     tileList = list(tileList)
+            #     window.blit(borderImage, (xPosition, yPosition))
+            # else:
+            #     tileList = []
+
     else:
         position = -2        
 
@@ -408,6 +419,7 @@ while True:
     overJSONButton = onButton(xMouse, yMouse, xJSONButton, yJSONButton, JSONButtonWidth, JSONButtonHeight)
     overTileButton = onButton(xMouse, yMouse, xTileButton, yTileButton, tileButtonWidth, tileButtonHeight)
     overSaveButton = onButton(xMouse, yMouse, xSaveMapButton, ySaveMapButton, saveMapButtonWidth, saveMapButtonHeight)
+    overCollisionOnButton = onButton(xMouse, yMouse, xCollisionsOnButton, yCollisionsOnButton, collisionsOffButtonWidth, collisionsOnButtonHeight)
     position = checkMouseOver() 
     
     if len(CharMapObject.charMap) == 256 and position > 0:
@@ -450,9 +462,13 @@ while True:
                 writeMapFile(CharMapObject.mapFileName)
                 threadedPrintAction(savedMap)
 
+            if overCollisionOnButton:
+                setCollidables(position)    
+
             if position == -2:
                 tileList = []
                 drawImage()
+
 
 
         else:
