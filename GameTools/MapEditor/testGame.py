@@ -160,7 +160,11 @@ def setCollidables(initialPosition):
 
 def drawCollidables():
 
-    for 
+    for index in CharMapObject.collidableTiles:
+        xPosition = (index % CharMapObject.rows) * 32
+        yPosition = (index / CharMapObject.rows) * 32 
+        window.blit(collisionImage, (xPosition, yPosition))
+
 
 
 def threadedPrintAction(action):
@@ -250,6 +254,8 @@ def drawImage():
 
         counter += 1
         xPosition += CharMapObject.pixelSize
+
+    drawCollidables()
 
 
 def writeMapFile(fileName):
