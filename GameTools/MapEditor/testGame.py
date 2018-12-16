@@ -133,6 +133,17 @@ xSaveMapButton = 650
 ySaveMapButton = 328
 window.blit(saveMapButton, (xSaveMapButton, ySaveMapButton))
 
+def setCollidables(initialPosition):
+
+    CharMapObject.clearCollidableTiles()
+    CharMapObject.addCollidableTile(initialPosition)
+
+    for tile in tileList:
+        CharMapObject.addCollidableTile(tile)
+
+    print(CharMapObject.collidableTiles)    
+
+
 def threadedPrintAction(action):
     
     printAction(action)
@@ -333,9 +344,11 @@ def checkMouseOver():
                 tileList = set(tileList)
                 tileList = list(tileList)
                 window.blit(borderImage, (xPosition, yPosition))
-                print(tileList)
+                # print(tileList)
             else:
                 tileList = []
+
+            setCollidables(position)    
     else:
         position = -2        
 
