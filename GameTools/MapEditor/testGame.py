@@ -93,10 +93,15 @@ saveJSONMapButton = "Save map to JSON"
 overSaveMapButton = "Save changes to map file"
 savedJSON = "Saved map object to JSON"
 savedMap = "Saved changes made to map file"
+overSetCollisionButton = "Set selected tiles as collidable"
+overRemoveCollisionButton = "Remove collidability from selected tiles"
+setCollision = "Tiles made collidable"
+removeCollision = "Collidability removed from tiles"
 
 
 borderImage = images["border"]
 collisionImage = images["collision"]
+mapConnection = images["mapConnection"]
 loadButton = images["loadMap"]
 tileButton = images["loadTile"]
 JSONButton = images["saveJSON"]
@@ -425,7 +430,8 @@ while True:
     overJSONButton = onButton(xMouse, yMouse, xJSONButton, yJSONButton, JSONButtonWidth, JSONButtonHeight)
     overTileButton = onButton(xMouse, yMouse, xTileButton, yTileButton, tileButtonWidth, tileButtonHeight)
     overSaveButton = onButton(xMouse, yMouse, xSaveMapButton, ySaveMapButton, saveMapButtonWidth, saveMapButtonHeight)
-    overCollisionOnButton = onButton(xMouse, yMouse, xCollisionsOnButton, yCollisionsOnButton, collisionsOffButtonWidth, collisionsOnButtonHeight)
+    overCollisionOnButton = onButton(xMouse, yMouse, xCollisionsOnButton, yCollisionsOnButton, collisionsOnButtonWidth, collisionsOnButtonHeight)
+    overCollisionOffButton = onButton(xMouse, yMouse, xCollisionsOffButton, yCollisionsOffButton, collisionsOffButtonWidth, collisionsOffButtonHeight)    
     position = checkMouseOver() 
     
     if len(CharMapObject.charMap) == 256 and position > 0:
@@ -445,6 +451,12 @@ while True:
 
     elif overSaveButton and not locked:
         printAction(overSaveMapButton)
+
+    elif overCollisionOnButton and not locked:
+        printAction(overSetCollisionButton)
+
+    elif overCollisionOffButton and not locked:
+        printAction(overRemoveCollisionButton)
 
     elif not locked:
         clearMessage()
@@ -470,6 +482,7 @@ while True:
 
             if overCollisionOnButton:
                 setCollidables(position)    
+                threadedPrintAction(setCollision)
 
             if position == -2:
                 tileList = []
