@@ -163,6 +163,14 @@ def setCollidables(initialPosition):
 
     print(CharMapObject.collidableTiles)    
 
+def removeCollidables():
+
+    global tileList
+
+    for item in tileList:
+        if item in CharMapObject.collidableTiles:
+            CharMapObject.collidableTiles.remove(item)
+
 def drawCollidables():
 
     for index in CharMapObject.collidableTiles:
@@ -483,6 +491,10 @@ while True:
             if overCollisionOnButton:
                 setCollidables(position)    
                 threadedPrintAction(setCollision)
+
+            if overCollisionOffButton:
+                removeCollidables()
+                threadedPrintAction(removeCollision)
 
             if position == -2:
                 tileList = []
