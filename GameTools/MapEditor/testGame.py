@@ -157,11 +157,6 @@ xCollisionsOffButton = 650
 yCollisionsOffButton = 375
 window.blit(collisionsOffButton, (xCollisionsOffButton, yCollisionsOffButton))
 
-
-
-
-
-
 connectionsOnButtonWidth = saveMapButton.get_width()
 connectionsOnButtonHeight = saveMapButton.get_height()
 
@@ -194,6 +189,16 @@ def removeCollidables():
     for item in tileList:
         if item in CharMapObject.collidableTiles:
             CharMapObject.collidableTiles.remove(item)
+
+
+
+def setMapConnections():
+    print("???")
+
+def removeMapConnections():
+    print("!!!")
+
+
 
 def drawCollidables():
 
@@ -464,6 +469,9 @@ while True:
     overSaveButton = onButton(xMouse, yMouse, xSaveMapButton, ySaveMapButton, saveMapButtonWidth, saveMapButtonHeight)
     overCollisionOnButton = onButton(xMouse, yMouse, xCollisionsOnButton, yCollisionsOnButton, collisionsOnButtonWidth, collisionsOnButtonHeight)
     overCollisionOffButton = onButton(xMouse, yMouse, xCollisionsOffButton, yCollisionsOffButton, collisionsOffButtonWidth, collisionsOffButtonHeight)    
+    overConnectionOnButton = onButton(xMouse, yMouse, xConnectionsOnButton, yConnectionsOnButton, connectionsOnButtonWidth, connectionsOnButtonHeight)
+    overConnectionOffButton = onButton(xMouse, yMouse, xConnectionsOffButton, yConnectionsOffButton, connectionsOffButtonWidth, connectionsOffButtonHeight)    
+
     position = checkMouseOver() 
     
     if len(CharMapObject.charMap) == 256 and position > 0:
@@ -519,6 +527,13 @@ while True:
             if overCollisionOffButton:
                 removeCollidables()
                 threadedPrintAction(removeCollision)
+
+            if overConnectionOnButton:
+                setMapConnections()
+
+            if overConnectionOffButton:
+                removeMapConnections()
+
 
             if position == -2:
                 tileList = []
