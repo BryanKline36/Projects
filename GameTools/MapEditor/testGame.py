@@ -97,6 +97,10 @@ overSetCollisionButton = "Set selected tiles as collidable"
 overRemoveCollisionButton = "Remove collidability from selected tiles"
 setCollision = "Tiles made collidable"
 removeCollision = "Collidability removed from tiles"
+overSetConnectionsButton = "Create connection between selected tiles and another map"
+overRemoveConnectionsButton = "Remove connection bettween selected tiles and other map"
+setConnection = "Connection made from selected tiles to other map"
+removeConnection = "Connection removed from selected tiles to other map"
 
 
 borderImage = images["border"]
@@ -164,7 +168,6 @@ xConnectionsOnButton = 570
 yConnectionsOnButton = 425
 window.blit(connectionsOnButton, (xConnectionsOnButton, yConnectionsOnButton))
 
-
 connectionsOffButtonWidth = saveMapButton.get_width()
 connectionsOffButtonHeight = saveMapButton.get_height()
 
@@ -226,7 +229,7 @@ def wait():
 
 def clearMessage():
     
-    pygame.draw.rect(window, WHITE, [550, 490, 400, 30])
+    pygame.draw.rect(window, WHITE, [550, 490, 480, 30])
 
 def printAction(action):
 
@@ -498,6 +501,12 @@ while True:
     elif overCollisionOffButton and not locked:
         printAction(overRemoveCollisionButton)
 
+    elif overConnectionOnButton and not locked:
+        printAction(overSetConnectionsButton)
+
+    elif overConnectionOffButton and not locked:
+        printAction(overRemoveConnectionsButton)
+
     elif not locked:
         clearMessage()
 
@@ -530,9 +539,11 @@ while True:
 
             if overConnectionOnButton:
                 setMapConnections()
+                threadedPrintAction(setConnection)
 
             if overConnectionOffButton:
                 removeMapConnections()
+                threadedPrintAction(removeConnection)
 
 
             if position == -2:
