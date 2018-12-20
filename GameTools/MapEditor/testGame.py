@@ -108,7 +108,8 @@ JSONButton = images["saveJSON"]
 saveMapButton = images["saveMap"]
 collisionsOnButton = images["on"]
 collisionsOffButton = images["off"]
-
+connectionsOnButton = images["on"]
+connectionsOffButton = images["off"]
 
 window.fill(WHITE)
 pygame.draw.rect(window, GREY, [0,0,512,512])
@@ -155,6 +156,29 @@ collisionsOffButtonHeight = saveMapButton.get_height()
 xCollisionsOffButton = 650
 yCollisionsOffButton = 375
 window.blit(collisionsOffButton, (xCollisionsOffButton, yCollisionsOffButton))
+
+
+
+
+
+
+connectionsOnButtonWidth = saveMapButton.get_width()
+connectionsOnButtonHeight = saveMapButton.get_height()
+
+xConnectionsOnButton = 570
+yConnectionsOnButton = 425
+window.blit(connectionsOnButton, (xConnectionsOnButton, yConnectionsOnButton))
+
+
+connectionsOffButtonWidth = saveMapButton.get_width()
+connectionsOffButtonHeight = saveMapButton.get_height()
+
+xConnectionsOffButton = 650
+yConnectionsOffButton = 425
+window.blit(connectionsOffButton, (xConnectionsOffButton, yConnectionsOffButton))
+
+
+
 
 def setCollidables(initialPosition):    
 
