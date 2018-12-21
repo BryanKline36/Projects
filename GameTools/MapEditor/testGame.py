@@ -203,8 +203,6 @@ def removeCollidables():
         if item in CharMapObject.collidableTiles:
             CharMapObject.collidableTiles.remove(item)
 
-
-
 def setMapConnections():
     
     global tileList
@@ -216,14 +214,13 @@ def setMapConnections():
     if type(mapFile) == str:
         mapFile = mapFile.split("/")
         mapFile = mapFile[-2] + "/" + mapFile[-1]
-        print(mapFile)
         for item in tileList:
             CharMapObject.addMapConnection(item, mapFile)
 
 def removeMapConnections():
-    print("!!!")
 
-
+    for item in tileList:
+        CharMapObject.removeMapConnection(item)
 
 def drawCollidables():
 
