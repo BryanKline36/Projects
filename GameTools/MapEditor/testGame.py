@@ -9,20 +9,21 @@ from tkFileDialog import askopenfilename
 
 class CharMap:
 
-    self.charMap = None
-    self.collidableTiles = None
-    self.mapConnections = None
-    self.JSONFileName = None
-    self.mapFileName = None
-    self.mapLength = 256
-    self.rows = 16
-    self.columns = 16
-    self.pixelSize = 32
+    charMap = None
+    collidableTiles = None
+    mapConnections = None
+    JSONFileName = None
+    mapFileName = None
+    mapLength = 256
+    rows = 16
+    columns = 16
+    pixelSize = 32
 
     def __init__(self, length, rows, columns, pixels):
 
         self.charMap = []
         self.collidableTiles = []
+        self.mapConnections = {}
         self.mapLength = length
         self.rows = rows
         self.columns = columns
@@ -44,9 +45,9 @@ class CharMap:
 
         self.collidableTiles.append(tile)       
 
-    def addMapConnection(self, tile, map):
+    def addMapConnection(self, tile, mapFile):
 
-        self.mapConnections[tile] = map
+        self.mapConnections[tile] = mapFile
 
     def removeMapConnection(self, tile):
 
@@ -205,7 +206,19 @@ def removeCollidables():
 
 
 def setMapConnections():
-    print("???")
+    
+    global tileList
+
+    browseFile = Tkinter.Tk()
+    browseFile.withdraw()
+    mapFile = askopenfilename(initialdir="mapFiles")
+
+    if type(mapFile) == str:
+        mapFile = mapFile.split("/")
+        mapFile = mapFile[-2] + "/" + mapFile[-1]
+        print(mapFile)
+        for item in tileList:
+            CharMapObject.addMapConnection(item, mapFile)
 
 def removeMapConnections():
     print("!!!")
@@ -448,7 +461,6 @@ def redrawTiles(selectedTile):
     browseFile.withdraw()
     filePath = askopenfilename(initialdir="images")
 
-
     if type(filePath) == str:
         filePath = filePath.split("/")
         filePath = filePath[len(filePath) - 1]
@@ -553,6 +565,7 @@ while True:
             if overConnectionOffButton:
                 removeMapConnections()
                 threadedPrintAction(removeConnection)
+                print(CharMapObject.mapConnections)
 
 
             if position == -2:
