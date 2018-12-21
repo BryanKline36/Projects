@@ -209,7 +209,7 @@ def setMapConnections():
 
     browseFile = Tkinter.Tk()
     browseFile.withdraw()
-    mapFile = askopenfilename(initialdir="mapFiles")
+    mapFile = askopenfilename(initialdir="JSONmapFiles")
 
     if type(mapFile) == str:
         mapFile = mapFile.split("/")
@@ -280,7 +280,7 @@ def openBrowse():
 
     browseFile = Tkinter.Tk()
     browseFile.withdraw()
-    filePath = askopenfilename(filetypes=[("", "*.map")],)
+    filePath = askopenfilename(initialdir="charMapFiles")
     CharMapObject.mapFileName = filePath
     
     if type(CharMapObject.mapFileName) == str:
