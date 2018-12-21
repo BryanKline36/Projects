@@ -115,7 +115,7 @@ removeConnection = "Connection removed from selected tiles to other map"
 
 borderImage = images["border"]
 collisionImage = images["collision"]
-mapConnection = images["mapConnection"]
+mapConnectionImage = images["mapConnection"]
 loadButton = images["loadMap"]
 tileButton = images["loadTile"]
 JSONButton = images["saveJSON"]
@@ -241,7 +241,12 @@ def drawCollidables():
         yPosition = (index / CharMapObject.rows) * 32 
         window.blit(collisionImage, (xPosition, yPosition))
 
+def drawMapConnections():
 
+    for key in CharMapObject.mapConnections.keys():
+        xPosition = (key % CharMapObject.rows) * 32
+        yPosition = (key / CharMapObject.rows) * 32 
+        window.blit(mapConnectionImage, (xPosition, yPosition))
 
 def threadedPrintAction(action):
     
@@ -332,6 +337,7 @@ def drawImage():
         xPosition += CharMapObject.pixelSize
 
     drawCollidables()
+    drawMapConnections()
 
 
 def writeMapFile(fileName):
