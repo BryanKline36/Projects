@@ -212,10 +212,22 @@ def setMapConnections():
     mapFile = askopenfilename(initialdir="JSONmapFiles")
 
     if type(mapFile) == str:
-        mapFile = mapFile.split("/")
-        mapFile = mapFile[-2] + "/" + mapFile[-1]
+        mapFile = getTruncatedPath(mapFile)
         for item in tileList:
             CharMapObject.addMapConnection(item, mapFile)
+
+def getTruncatedPath(fullPath):
+
+    fullPath = fullPath.split("/")
+    baseIndex = fullPath.index("JSONmapFiles")
+
+    lastIndex = len(fullPath) - 1
+    truncatedPath = ""
+    for index in range(baseIndex, lastIndex):
+        truncatedPath += (fullPath[index] + "/")
+    truncatedPath += fullPath[lastIndex]
+
+    return truncatedPath
 
 def removeMapConnections():
 
