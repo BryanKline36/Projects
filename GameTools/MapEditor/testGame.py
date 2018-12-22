@@ -206,7 +206,7 @@ def setCollidables(initialPosition):
     for tile in tileList:
         CharMapObject.addCollidableTile(tile)
 
-    print(CharMapObject.collidableTiles)    
+    # print(CharMapObject.collidableTiles)    
 
 def removeCollidables():
 
@@ -222,7 +222,7 @@ def setMapConnections():
 
     browseFile = Tkinter.Tk()
     browseFile.withdraw()
-    mapFile = askopenfilename(initialdir="JSONmapFiles")
+    mapFile = askopenfilename(initialdir="JSONMapFiles")
 
     if type(mapFile) == str:
         mapFile = getTruncatedPath(mapFile)
@@ -232,7 +232,7 @@ def setMapConnections():
 def getTruncatedPath(fullPath):
 
     fullPath = fullPath.split("/")
-    baseIndex = fullPath.index("JSONmapFiles")
+    baseIndex = fullPath.index("JSONMapFiles")
 
     lastIndex = len(fullPath) - 1
     truncatedPath = ""
@@ -322,7 +322,7 @@ def setJSONFileName(filePath):
         fileName = filePath.split('/')
         fileName = fileName[len(fileName) - 1]
         fileName = fileName.split('.')
-        CharMapObject.JOSONFileName = fileName[0] + ".JSON"
+        CharMapObject.JOSONFileName = "JSONMapFiles/" + fileName[0] + ".JSON"
 
 def drawImage():
 
@@ -585,7 +585,7 @@ while True:
             if overConnectionOffButton:
                 removeMapConnections()
                 threadedPrintAction(removeConnection)
-                print(CharMapObject.mapConnections)
+                # print(CharMapObject.mapConnections)
 
 
             if position == -2:
