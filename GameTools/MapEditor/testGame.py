@@ -66,7 +66,6 @@ GREY = (128, 128, 128)
 global locked
 locked = False
 
-
 global imageDictionary
 imageDictionary = {}
 
@@ -111,7 +110,6 @@ overSetConnectionsButton = "Create connection between selected tiles and another
 overRemoveConnectionsButton = "Remove connection bettween selected tiles and other map"
 setConnection = "Connection made from selected tiles to other map"
 removeConnection = "Connection removed from selected tiles to other map"
-
 
 borderImage = images["border"]
 collisionImage = images["collision"]
@@ -175,18 +173,33 @@ connectionsOnButtonWidth = saveMapButton.get_width()
 connectionsOnButtonHeight = saveMapButton.get_height()
 
 xConnectionsOnButton = 570
-yConnectionsOnButton = 380
+yConnectionsOnButton = 384
 window.blit(connectionsOnButton, (xConnectionsOnButton, yConnectionsOnButton))
 
 connectionsOffButtonWidth = saveMapButton.get_width()
 connectionsOffButtonHeight = saveMapButton.get_height()
 
 xConnectionsOffButton = 667
-yConnectionsOffButton = 380
+yConnectionsOffButton = 384
 window.blit(connectionsOffButton, (xConnectionsOffButton, yConnectionsOffButton))
 
+collisionsTextFont = pygame.font.Font('freesansbold.ttf', 16)
+collisionsTextSurface = collisionsTextFont.render("Tile Collisions:", True, BLACK)
 
+collisionsTextRectangle = collisionsTextSurface.get_rect() 
+collisionsTextRectangle.left = 570 
+collisionsTextRectangle.top = 286
 
+window.blit(collisionsTextSurface, collisionsTextRectangle)
+
+connectionsTextFont = pygame.font.Font('freesansbold.ttf', 16)
+connectionsTextSurface = connectionsTextFont.render("Map Connections:", True, BLACK)
+
+connectionsTextRectangle = connectionsTextSurface.get_rect() 
+connectionsTextRectangle.left = 570 
+connectionsTextRectangle.top = 360
+
+window.blit(connectionsTextSurface, connectionsTextRectangle)
 
 def setCollidables(initialPosition):    
 
@@ -255,7 +268,6 @@ def threadedPrintAction(action):
     thread = Thread(target=wait)	
     thread.start()
 
-
 def wait():
 
     global locked
@@ -275,16 +287,12 @@ def printAction(action):
     textSurface = textFont.render(action, True, BLACK)
 
     textRectangle = textSurface.get_rect() 
-    textRectangle.left = 570 #(520, 500)
-    textRectangle.top = 490 #(520, 500)
+    textRectangle.left = 570 
+    textRectangle.top = 490
 
     window.blit(textSurface, textRectangle)
 
     # pygame.draw.rect(window, WHITE, [550, 490, 400, 30])
-
-
-
-
 
 def makeJSON(fileName):
 
@@ -352,8 +360,6 @@ def writeMapFile(fileName):
             if counter != 0 and counter % 16 == 0:  
                 file.write('\n')
 
-
-
 def readMapFile(fileName):
 
     if fileName != None and fileName != '':
@@ -413,7 +419,6 @@ def onButton(xMouse, yMouse, xButton, yButton, buttonWidth, buttonHeight):
         return True
     else:
         return False
-
 
 selectedTile = -1
 
@@ -586,8 +591,6 @@ while True:
             if position == -2:
                 tileList = []
                 drawImage()
-
-
 
         else:
             clicked = False
