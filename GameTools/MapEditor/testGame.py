@@ -116,7 +116,7 @@ removeConnection = "Connection removed from selected tiles to other map"
 borderImage = images["border"]
 collisionImage = images["collision"]
 mapConnectionImage = images["mapConnection"]
-loadButton = images["loadMap"]
+loadButton = images["maps"]
 tileButton = images["loadTile"]
 JSONButton = images["saveJSON"]
 saveMapButton = images["saveMap"]
@@ -132,57 +132,57 @@ pygame.draw.rect(window, GREY, [570, 10, 256, 256])
 loadButtonWidth = loadButton.get_width()
 loadButtonHeight = loadButton.get_height()
 
-xLoadButton = 570
-yLoadButton = 280
+xLoadButton = 850
+yLoadButton = 10
 window.blit(loadButton, (xLoadButton, yLoadButton))
 
 tileButtonWidth = loadButton.get_width()
 tileButtonHeight = loadButton.get_height()
 
-xTileButton = 570
-yTileButton = 328
+xTileButton = 850
+yTileButton = 58
 window.blit(tileButton, (xTileButton, yTileButton))
 
 JSONButtonWidth = JSONButton.get_width()
 JSONButtonHeight = JSONButton.get_height()
 
-xJSONButton = 650
-yJSONButton = 280
+xJSONButton = 850
+yJSONButton = 106
 window.blit(JSONButton, (xJSONButton, yJSONButton))
 
 saveMapButtonWidth = saveMapButton.get_width()
 saveMapButtonHeight = saveMapButton.get_height()
 
-xSaveMapButton = 650
-ySaveMapButton = 328
+xSaveMapButton = 850
+ySaveMapButton = 154
 window.blit(saveMapButton, (xSaveMapButton, ySaveMapButton))
 
 collisionsOnButtonWidth = saveMapButton.get_width()
 collisionsOnButtonHeight = saveMapButton.get_height()
 
 xCollisionsOnButton = 570
-yCollisionsOnButton = 375
+yCollisionsOnButton = 310
 window.blit(collisionsOnButton, (xCollisionsOnButton, yCollisionsOnButton))
 
 collisionsOffButtonWidth = saveMapButton.get_width()
 collisionsOffButtonHeight = saveMapButton.get_height()
 
-xCollisionsOffButton = 650
-yCollisionsOffButton = 375
+xCollisionsOffButton = 667
+yCollisionsOffButton = 310
 window.blit(collisionsOffButton, (xCollisionsOffButton, yCollisionsOffButton))
 
 connectionsOnButtonWidth = saveMapButton.get_width()
 connectionsOnButtonHeight = saveMapButton.get_height()
 
 xConnectionsOnButton = 570
-yConnectionsOnButton = 425
+yConnectionsOnButton = 380
 window.blit(connectionsOnButton, (xConnectionsOnButton, yConnectionsOnButton))
 
 connectionsOffButtonWidth = saveMapButton.get_width()
 connectionsOffButtonHeight = saveMapButton.get_height()
 
-xConnectionsOffButton = 650
-yConnectionsOffButton = 425
+xConnectionsOffButton = 667
+yConnectionsOffButton = 380
 window.blit(connectionsOffButton, (xConnectionsOffButton, yConnectionsOffButton))
 
 
