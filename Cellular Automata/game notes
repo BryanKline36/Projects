@@ -1,0 +1,30 @@
+Cellular Automaton:
+
+CellGrid:
+getNeighborCount(index)
+calculateNeighborIndices(index)
+
+Automaton:
+getCurrentStateObject()
+applyRules(index)
+updateState()
+
+
+global:
+resolveIndex((x,y))
+setClock()
+drawState()
+updateState()
+
+two objects hold state, lists of bools, current and future
+start, stop, resent, speed buttons
+grid lines, part of cell, left and top
+
+Rules:
+
+Births: Each dead cell adjacent to exactly three live neighbors will become live in the next generation.
+Death by isolation: Each live cell with one or fewer live neighbors will die in the next generation.
+Death by overcrowding: Each live cell with four or more live neighbors will die in the next generation.
+Survival: Each live cell with either two or three live neighbors will remain alive for the next generation.
+
+
