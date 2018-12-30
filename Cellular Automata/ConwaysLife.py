@@ -2,6 +2,7 @@
 import pygame
 import constants
 from math import sqrt
+from time import sleep
 
 # CellGrid class definition
 
@@ -82,6 +83,15 @@ class CellGrid:
 
         return state
 
+    def printGrid(self):
+
+        print("Grid Start:")
+        
+        for index in range(0, self.gridSize):
+            print(self.grid[index])
+        
+        print("Grid End")    
+
 # Automaton class definition
 
 class Automaton:
@@ -100,12 +110,13 @@ class Automaton:
         self.grids = []
         self.grids.append(CellGrid(size))
         self.grids.append(CellGrid(size))
+        print(self.grids)
         self.grids[0].setCurrent(True)
+        self.grids[1].setCurrent(False)
         self.currentGridIndex = 0
         self.gridSize = size
         self.gridSide = int(sqrt(self.gridSize))
         self.cellSize = int(sqrt(self.gridSide))
-
 
     def setImages(self, paths):
 
@@ -122,28 +133,24 @@ class Automaton:
             self.currentGridIndex = 1
 
     def setCurrentGrid(self, index):
-
+        # self.printGrids()
+        print(self.grids)
+        self.grids[1].printGrid()
         if index >= 0 and index < 2:
             self.currentGridIndex = index
-            self.grids[index].current = True    
-            self.grids[index ^ 1].current = False    
+            self.grids[1].setCurrent(True)    
+            self.grids[index ^ 1].setCurrent(False)    
 
     def updateGrid(self):
         
-        self.currentGridIndex = getCurrentGrid()
+        self.getCurrentGrid()
 
         for index in range(0, self.gridSize):
             self.grids[self.currentGridIndex ^ 1] = self.grids[self.currentGridIndex].applyRules(index) 
 
+
         self.grids[self.currentGridIndex].clearGrid()  
         self.setCurrentGrid(self.currentGridIndex ^ 1) 
-
-
-# 
-# 
-# 
-# 
-
 
     def drawGrid(self):
 
@@ -175,6 +182,10 @@ class Automaton:
         self.grids[0].clearGrid()
         self.grids[1].clearGrid()
 
+    def printGrids(self):
+
+        self.grids[0].printGrid()
+        self.grids[1].printGrid()
 
 # Free functions
 
@@ -237,7 +248,7 @@ drawText(constants.SLOWER_LABEL, 422, 535)
 
 automaton = Automaton(window, constants.TOTAL_INDICES)
 automaton.setImages([liveCell, deadCell])
-
+# automaton.printGrids()
 
 
 # Main loop
@@ -257,3 +268,7 @@ while True:
             
             pygame.quit()
             exit()
+
+
+    automaton.updateGrid()
+    sleep(1)
