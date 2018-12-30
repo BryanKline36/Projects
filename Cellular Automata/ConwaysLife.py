@@ -166,42 +166,14 @@ class Automaton:
 
         index = (xPosition + (yPosition * self.gridSide))
 
+        # print(index)
+
         self.grids[self.currentGridIndex].toggleCell(index)
 
     def resetGrids(self):
 
         self.grids[0].clearGrid()
         self.grids[1].clearGrid()
-
-
-
-
-# Constants
-
-# TOTAL_INDICES = 4096
-# GRID_SIZE = sqrt(TOTAL_INDICES)
-# ROOT_SIZE = sqrt(GRID_SIZE)
-
-# WINDOW_WIDTH = 512
-# WINDOW_LENGTH = 576
-# DEFAULT_DELAY = 1
-# DEFAULT_FONT_SIZE = 16
-# FONT_STYLE = "freesansbold.ttf"
-
-# BLACK = (0, 0, 0)
-# GREY = (128, 128, 128)
-# WHITE = (255, 255, 255)
-
-# BUTTON_BOX_LOCATION = [0, 512, 512, 128]
-# START_BUTTON = (32, 528)
-# STOP_BUTTON = (160, 528)
-# FASTER_BUTTON = (288, 528)
-# SLOWER_BUTTON = (416, 528)
-
-# START_LABEL = "Start"
-# STOP_LABEL = "Stop"
-# FASTER_LABEL = "Faster" 
-# SLOWER_LABEL = "Slower"
 
 
 # Free functions
@@ -267,14 +239,13 @@ automaton = Automaton(window, constants.TOTAL_INDICES)
 automaton.setImages([liveCell, deadCell])
 
 
-pygame.display.flip()
 
 # Main loop
 
 while True:
-
     
     automaton.drawGrid()
+    pygame.display.flip()
     xPosition, yPosition = pygame.mouse.get_pos()
 
     for event in pygame.event.get():
