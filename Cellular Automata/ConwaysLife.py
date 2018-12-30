@@ -1,5 +1,6 @@
 
 import pygame
+import constants
 from math import sqrt
 
 # CellGrid class definition
@@ -16,8 +17,8 @@ class CellGrid:
     def __init__(self, size):
 
         self.grid = []            
-        self.gridSize = size
-        self.offset = sqrt(size)
+        self.gridSize = int(size)
+        self.offset = int(sqrt(size))
         self.current = False
         self.dead = False
         self.alive = True
@@ -89,6 +90,7 @@ class Automaton:
     grids = None
     currentGridIndex = None
     gridSize = None
+    cellSize = None
     aliveImage = None
     deadImage = None
 
@@ -101,8 +103,11 @@ class Automaton:
         self.grids[0].setCurrent(True)
         self.currentGridIndex = 0
         self.gridSize = size
+        self.gridSide = int(sqrt(self.gridSize))
+        self.cellSize = int(sqrt(self.gridSide))
 
-    def setImagePaths(self, paths):
+
+    def setImages(self, paths):
 
         if len(paths) == 2:
             self.aliveImage = paths[0]
@@ -113,7 +118,7 @@ class Automaton:
 
         if self.grids[0].current and not self.grids[1].current:
             self.currentGridIndex = 0 
-        else:
+        elif not self.grids[0].current and self.grids[1].current:
             self.currentGridIndex = 1
 
     def setCurrentGrid(self, index):
@@ -133,30 +138,33 @@ class Automaton:
         self.grids[self.currentGridIndex].clearGrid()  
         self.setCurrentGrid(self.currentGridIndex ^ 1) 
 
+
+# 
+# 
+# 
+# 
+
+
     def drawGrid(self):
 
         if self.window != None:
-            rootSize = sqrt(self.gridSize)
-
             for index in range(0, self.gridSize):
-                xPosition = (index % self.gridSize) * rootSize
-                yPosition = (index / self.gridSize) * rootSize
-                
-                if self.grids[self.currentGridIndex]:
+                xPosition = (index % self.gridSide) * self.cellSize
+                yPosition = (index / self.gridSide) * self.cellSize
+
+                if self.grids[self.currentGridIndex].grid[index]:
                     image = self.aliveImage
                 else:
                     image = self.deadImage
 
-                self.window.blit(image, (xPostion, yPosition))
+                self.window.blit(image, (xPosition, yPosition))
 
     def setCell(self, position):
-
-        rootSize = sqrt(self.gridSize)
 
         xPosition = position[0] / self.cellSize
         yPosition = position[1] / self.cellSize
 
-        index = (xPosition + (yPosition * rootSize))
+        index = (xPosition + (yPosition * self.gridSide))
 
         self.grids[self.currentGridIndex].toggleCell(index)
 
@@ -170,38 +178,38 @@ class Automaton:
 
 # Constants
 
-TOTAL_INDICES = 4096
-GRID_SIZE = sqrt(TOTAL_INDICES)
-ROOT_SIZE = sqrt(GRID_SIZE)
+# TOTAL_INDICES = 4096
+# GRID_SIZE = sqrt(TOTAL_INDICES)
+# ROOT_SIZE = sqrt(GRID_SIZE)
 
-WINDOW_WIDTH = 512
-WINDOW_LENGTH = 576
-DEFAULT_DELAY = 1
-DEFAULT_FONT_SIZE = 16
-FONT_STYLE = "freesansbold.ttf"
+# WINDOW_WIDTH = 512
+# WINDOW_LENGTH = 576
+# DEFAULT_DELAY = 1
+# DEFAULT_FONT_SIZE = 16
+# FONT_STYLE = "freesansbold.ttf"
 
-BLACK = (0, 0, 0)
-GREY = (128, 128, 128)
-WHITE = (255, 255, 255)
+# BLACK = (0, 0, 0)
+# GREY = (128, 128, 128)
+# WHITE = (255, 255, 255)
 
-BUTTON_BOX_LOCATION = [0, 512, 512, 128]
-START_BUTTON = (32, 528)
-STOP_BUTTON = (160, 528)
-FASTER_BUTTON = (288, 528)
-SLOWER_BUTTON = (416, 528)
+# BUTTON_BOX_LOCATION = [0, 512, 512, 128]
+# START_BUTTON = (32, 528)
+# STOP_BUTTON = (160, 528)
+# FASTER_BUTTON = (288, 528)
+# SLOWER_BUTTON = (416, 528)
 
-START_LABEL = "Start"
-STOP_LABEL = "Stop"
-FASTER_LABEL = "Faster" 
-SLOWER_LABEL = "Slower"
+# START_LABEL = "Start"
+# STOP_LABEL = "Stop"
+# FASTER_LABEL = "Faster" 
+# SLOWER_LABEL = "Slower"
 
 
 # Free functions
 
 def drawText(text, xPostion, yPosition):
 
-    textFont = pygame.font.Font(FONT_STYLE, DEFAULT_FONT_SIZE)
-    textSurface = textFont.render(text, True, BLACK)
+    textFont = pygame.font.Font(constants.FONT_STYLE, constants.DEFAULT_FONT_SIZE)
+    textSurface = textFont.render(text, True, constants.BLACK)
 
     textRectangle = textSurface.get_rect() 
     textRectangle.left = xPostion
@@ -209,14 +217,14 @@ def drawText(text, xPostion, yPosition):
 
     window.blit(textSurface, textRectangle)
 
-def decreaseClockRate(clockRate, step):
+def decreaseClockRate(delay, step):
 
-    return clockRate + step
+    return delay + step
 
-def increaseClockRate(clockRate, step):
+def increaseClockRate(delay, step):
 
-    if clockRate > 0:
-        return clockRate - step
+    if delay > 0:
+        return delay - step
 
 def reset(automaton):
 
@@ -228,34 +236,35 @@ def reset(automaton):
 # Setup
 
 pygame.init()
-window = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_LENGTH))
+window = pygame.display.set_mode((constants.WINDOW_WIDTH, constants.WINDOW_LENGTH))
 
 cells = []
-globalClock = DEFAULT_DELAY
+globalClock = constants.DEFAULT_DELAY
 
 liveCell = pygame.image.load("alive.png").convert_alpha()
 deadCell = pygame.image.load("dead.png").convert_alpha()
 button = pygame.image.load("button.png").convert_alpha()
 
-for index in range(0, TOTAL_INDICES):
+for index in range(0, constants.TOTAL_INDICES):
     cells.append(False)
     
-    window.blit(liveCell, ((index % GRID_SIZE) * ROOT_SIZE, (index / GRID_SIZE) * ROOT_SIZE))
+    window.blit(liveCell, ((index % constants.GRID_SIZE) * constants.ROOT_SIZE, 
+        (index / constants.GRID_SIZE) * constants.ROOT_SIZE))
 
-pygame.draw.rect(window, GREY, BUTTON_BOX_LOCATION)
+pygame.draw.rect(window, constants.GREY, constants.BUTTON_BOX_LOCATION)
 
-window.blit(button, START_BUTTON)
-window.blit(button, STOP_BUTTON)
-window.blit(button, FASTER_BUTTON)
-window.blit(button, SLOWER_BUTTON)
+window.blit(button, constants.START_BUTTON)
+window.blit(button, constants.STOP_BUTTON)
+window.blit(button, constants.FASTER_BUTTON)
+window.blit(button, constants.SLOWER_BUTTON)
 
-drawText(START_LABEL, 45, 535)
-drawText(STOP_LABEL, 175, 535)
-drawText(FASTER_LABEL, 297, 535)
-drawText(SLOWER_LABEL, 422, 535)
+drawText(constants.START_LABEL, 45, 535)
+drawText(constants.STOP_LABEL, 175, 535)
+drawText(constants.FASTER_LABEL, 297, 535)
+drawText(constants.SLOWER_LABEL, 422, 535)
 
-automaton = Automaton(window, GRID_SIZE)
-
+automaton = Automaton(window, constants.TOTAL_INDICES)
+automaton.setImages([liveCell, deadCell])
 
 
 pygame.display.flip()
@@ -264,8 +273,15 @@ pygame.display.flip()
 
 while True:
 
+    
+    automaton.drawGrid()
+    xPosition, yPosition = pygame.mouse.get_pos()
+
     for event in pygame.event.get():
 
+        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+            automaton.setCell((xPosition, yPosition))
+            
         if event.type == pygame.QUIT:
             
             pygame.quit()
