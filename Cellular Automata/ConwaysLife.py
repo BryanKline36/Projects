@@ -223,7 +223,24 @@ globalClock = constants.DEFAULT_DELAY
 
 liveCell = pygame.image.load("alive.png").convert_alpha()
 deadCell = pygame.image.load("dead.png").convert_alpha()
-button = pygame.image.load("button.png").convert_alpha()
+startButton = pygame.image.load("button.png").convert_alpha()
+stopButton = pygame.image.load("button.png").convert_alpha()
+fasterButton = pygame.image.load("button.png").convert_alpha()
+slowerButton = pygame.image.load("button.png").convert_alpha()
+
+startButtonHeight =  startButton.get_height()
+startButtonWidth = startButton.get_width()
+
+stopButtonHeight = stopButton.get_height()
+stopButtonWidth = stopButton.get_width()
+
+fasterButtonHeight = stopButton.get_height()
+fasterButtonWidth = stopButton.get_width()
+
+slowerButtonHeight = stopButton.get_height()
+slowerButtonWidth = stopButton.get_width()
+
+
 
 for index in range(0, constants.TOTAL_INDICES):
     cells.append(False)
@@ -233,10 +250,10 @@ for index in range(0, constants.TOTAL_INDICES):
 
 pygame.draw.rect(window, constants.GREY, constants.BUTTON_BOX_LOCATION)
 
-window.blit(button, constants.START_BUTTON)
-window.blit(button, constants.STOP_BUTTON)
-window.blit(button, constants.FASTER_BUTTON)
-window.blit(button, constants.SLOWER_BUTTON)
+window.blit(startButton, constants.START_BUTTON)
+window.blit(stopButton, constants.STOP_BUTTON)
+window.blit(fasterButton, constants.FASTER_BUTTON)
+window.blit(slowerButton, constants.SLOWER_BUTTON)
 
 drawText(constants.START_LABEL, 45, 535)
 drawText(constants.STOP_LABEL, 175, 535)
@@ -245,7 +262,6 @@ drawText(constants.SLOWER_LABEL, 422, 535)
 
 automaton = Automaton(window, constants.TOTAL_INDICES)
 automaton.setImages([liveCell, deadCell])
-# automaton.printGrids()
 
 
 # Main loop
