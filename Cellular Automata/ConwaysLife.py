@@ -70,7 +70,7 @@ class CellGrid:
 
     def applyRules(self, index):
 
-        state = None
+        state = False
 
         if index >= 0 and index < self.gridSize:
             neighborCount = self.getLiveNeighborCount(index)
@@ -82,6 +82,10 @@ class CellGrid:
                 state = self.alive
 
         return state
+
+    def setCellState(self, index, state):
+
+        self.grid[index] = state
 
     def printGrid(self):
 
@@ -110,7 +114,6 @@ class Automaton:
         self.grids = []
         self.grids.append(CellGrid(size))
         self.grids.append(CellGrid(size))
-        print(self.grids)
         self.grids[0].setCurrent(True)
         self.grids[1].setCurrent(False)
         self.currentGridIndex = 0
@@ -133,24 +136,20 @@ class Automaton:
             self.currentGridIndex = 1
 
     def setCurrentGrid(self, index):
-        # self.printGrids()
-        print(self.grids)
-        self.grids[1].printGrid()
         if index >= 0 and index < 2:
             self.currentGridIndex = index
-            self.grids[1].setCurrent(True)    
+            self.grids[index].setCurrent(True)    
             self.grids[index ^ 1].setCurrent(False)    
 
     def updateGrid(self):
         
         self.getCurrentGrid()
-
         for index in range(0, self.gridSize):
-            self.grids[self.currentGridIndex ^ 1] = self.grids[self.currentGridIndex].applyRules(index) 
-
+            print(self.currentGridIndex ^ 1)
+            self.grids[self.currentGridIndex ^ 1].setCellState(index, self.grids[self.currentGridIndex].applyRules(index)) 
 
         self.grids[self.currentGridIndex].clearGrid()  
-        self.setCurrentGrid(self.currentGridIndex ^ 1) 
+        self.setCurrentGrid(self.currentGridIndex ^ 1)
 
     def drawGrid(self):
 
@@ -172,8 +171,6 @@ class Automaton:
         yPosition = position[1] / self.cellSize
 
         index = (xPosition + (yPosition * self.gridSide))
-
-        # print(index)
 
         self.grids[self.currentGridIndex].toggleCell(index)
 
@@ -270,5 +267,5 @@ while True:
             exit()
 
 
-    automaton.updateGrid()
-    sleep(1)
+    # automaton.updateGrid()
+    # sleep(1)
