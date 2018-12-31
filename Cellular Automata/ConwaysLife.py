@@ -212,6 +212,37 @@ def reset(automaton):
         automaton.resetGrids()
         automaton.drawGrid()
 
+def checkButtons(mousePosition, buttonPositions, buttonDimensions):
+
+    overButton = 0
+
+    if len(buttonPositions) == 4:
+        if onButton(mousePosition, buttonPositions[0], buttonDimensions):
+            overButton = constants.START_BUTTON
+        elif onButton(mousePosition, buttonPositions[1], buttonDimensions):
+            overButton = constants.STOP_BUTTON
+        elif onButton(mousePosition, buttonPositions[2], buttonDimensions):
+            overButton = constants.FASTER_BUTTON
+        elif onButton(mousePosition, buttonPositions[3], buttonDimensions):
+            overButton = constants.SLOWER_BUTTON
+
+    return overButton
+
+def onButton(mousePosition, buttonPosition, buttonDimensions):
+
+    xInside = False
+    yInside = False    
+
+    if mousePosition[0] > buttonPosition[0] and mousePosition[0] < (buttonPosition[0] + buttonDimensions[0]):
+        xInside = True
+    
+    if mousePosition[1] > buttonPosition[1] and mousePosition[1] < (buttonPosition[1] + buttonDimensions[1]):
+        yInside = True
+
+    if xInside and yInside:
+        return True
+    else:
+        return False
 
 # Setup
 
@@ -223,24 +254,19 @@ globalClock = constants.DEFAULT_DELAY
 
 liveCell = pygame.image.load("alive.png").convert_alpha()
 deadCell = pygame.image.load("dead.png").convert_alpha()
-startButton = pygame.image.load("button.png").convert_alpha()
-stopButton = pygame.image.load("button.png").convert_alpha()
-fasterButton = pygame.image.load("button.png").convert_alpha()
-slowerButton = pygame.image.load("button.png").convert_alpha()
+button = pygame.image.load("button.png").convert_alpha()
 
-startButtonHeight =  startButton.get_height()
-startButtonWidth = startButton.get_width()
+buttonDimensions = (button.get_width(), button.get_height())
 
-stopButtonHeight = stopButton.get_height()
-stopButtonWidth = stopButton.get_width()
+buttonPositions = []
 
-fasterButtonHeight = stopButton.get_height()
-fasterButtonWidth = stopButton.get_width()
+buttonPositions.append(constants.START_BUTTON_LOCATION)
+buttonPositions.append(constants.STOP_BUTTON_LOCATION)
+buttonPositions.append(constants.FASTER_BUTTON_LOCATION)
+buttonPositions.append(constants.SLOWER_BUTTON_LOCATION)
 
-slowerButtonHeight = stopButton.get_height()
-slowerButtonWidth = stopButton.get_width()
-
-
+print(buttonPositions)
+print(buttonDimensions)
 
 for index in range(0, constants.TOTAL_INDICES):
     cells.append(False)
@@ -250,10 +276,10 @@ for index in range(0, constants.TOTAL_INDICES):
 
 pygame.draw.rect(window, constants.GREY, constants.BUTTON_BOX_LOCATION)
 
-window.blit(startButton, constants.START_BUTTON)
-window.blit(stopButton, constants.STOP_BUTTON)
-window.blit(fasterButton, constants.FASTER_BUTTON)
-window.blit(slowerButton, constants.SLOWER_BUTTON)
+window.blit(button, constants.START_BUTTON_LOCATION)
+window.blit(button, constants.STOP_BUTTON_LOCATION)
+window.blit(button, constants.FASTER_BUTTON_LOCATION)
+window.blit(button, constants.SLOWER_BUTTON_LOCATION)
 
 drawText(constants.START_LABEL, 45, 535)
 drawText(constants.STOP_LABEL, 175, 535)
@@ -272,10 +298,22 @@ while True:
     pygame.display.flip()
     xPosition, yPosition = pygame.mouse.get_pos()
 
+    overButton = checkButtons((xPosition, yPosition), buttonPositions, buttonDimensions)
+
     for event in pygame.event.get():
 
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             automaton.setCell((xPosition, yPosition))
+
+            if overButton == constants.START_BUTTON:
+                print("start")
+            if overButton == constants.STOP_BUTTON:
+                print("stop")
+            if overButton == constants.FASTER_BUTTON:
+                print("faster")
+            if overButton == constants.SLOWER_BUTTON:
+                print("slower")
+
             
         if event.type == pygame.QUIT:
             
