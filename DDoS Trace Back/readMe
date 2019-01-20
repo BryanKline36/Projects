@@ -1,0 +1,23 @@
+
+Bryan Kline
+CS445 
+HW1
+02/10/18
+
+As a makefile is used, in order to compile the following command is used:
+
+    make
+
+To run to program:
+
+    ./HW1
+
+This will prompt the user to manually input the topolpgy, alternatively one of the configuration files can be used
+by redirecting it into the program:
+
+    ./HW1 < network_1.txt
+
+This will build the topology, run the attack simulation, and produce a file called output.txt containing the
+results of the attack, in order to specify a different name:
+
+    ./HW1 newOutput.txt < network_1.txt 
