@@ -1,5 +1,3 @@
-//~sushil/bin/submitFP to submit
-
 
 
 var map = document.getElementById("map"); 
@@ -72,9 +70,9 @@ function Frogs()
 	this.frogImage1 = new Image();
 	this.frogImage2 = new Image();
 	this.frogImageDead = new Image();  
-	this.frogImage1.src = "images/upfrog1.jpg";
-	this.frogImage2.src = "images/upfrog2.jpg"; 
-	this.frogImageDead.src = "images/deadfrog.jpg"; 
+	this.frogImage1.src = "images/upfrog1.png";
+	this.frogImage2.src = "images/upfrog2.png"; 
+	this.frogImageDead.src = "images/blood.png"; 
 	this.y;
 	this.x;
 	this.left = (this.x) + 40;
