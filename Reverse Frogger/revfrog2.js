@@ -50,7 +50,7 @@ var musicLose = new Audio("audio/lose.wav");
 function Player()
 {
 	this.playerImage = new Image();  
-	this.playerImage.src = "images/player1.jpg"; 
+	this.playerImage.src = "images/player1.png"; 
 	//this.playerImage.addEventListener("load", drawImage);
 	this.y = 410;
 	this.x = 320 - (this.playerImage.width/2);
