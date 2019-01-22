@@ -109,7 +109,7 @@ function TopScene()
 	this.topImage2.src = "images/TopScene2.jpg"; 
 	//this.topImage2.addEventListener("load", drawImage);
 	this.topImage3 = new Image();  
-	this.topImage3.src = "images/TopScene3.jpg"; 
+	this.topImage3.src = "images/TopScene3.png"; 
 	//this.topImage3.addEventListener("load", drawImage);
 	this.x = 0;
 	this.y = 0;		
@@ -125,7 +125,7 @@ function MedianScene()
 	this.medianImage2.src = "images/MedianScene2.jpg"; 
 	//this.medianImage2.addEventListener("load", drawImage); 
 	this.medianImage3 = new Image();  
-	this.medianImage3.src = "images/MedianScene3.jpg"; 
+	this.medianImage3.src = "images/MedianScene3.png"; 
 	//this.medianImage3.addEventListener("load", drawImage); 
 	this.x = 0;
 	this.y = 275;
@@ -146,7 +146,7 @@ function BottomScene()
 	this.bottomImage2.src = "images/BottomScene2.jpg"; 
 	//this.bottomImage2.addEventListener("load", drawImage);
 	this.bottomImage3 = new Image(); 
-	this.bottomImage3.src = "images/BottomScene3.jpg"; 
+	this.bottomImage3.src = "images/BottomScene3.png"; 
 	//this.bottomImage3.addEventListener("load", drawImage);
 	this.x = 0;
 	this.y = 450;		
