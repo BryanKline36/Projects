@@ -3,6 +3,10 @@
 var map = document.getElementById("map"); 
 var ctx = map.getContext("2d");
 
+
+
+
+
 //Menus
 var pauseImage = new Image();
 pauseImage.src = "images/pauseBack.png";
@@ -35,15 +39,27 @@ resumeSel.src = "images/buttons/ResumeSel.png";
 var resumeUn = new Image();
 resumeUn.src = "images/buttons/ResumeUn.png";
 
+var SQUASH_SOUND_PATH = "audio/squash.wav";
+var CRASH_SOUND_PATH = "audio/crash.wav";
+var POLICE_SOUND_PATH = "audio/police.wav";
+var LEVEL_TRANSIT_SOUND_PATH = "audio/levelTransit.wav"; 
+var GAME_MUSIC_PATH = "audio/musicGame.wav";
+var MENU_MUSIC_PATH = "audio/start.wav";
+var WIN_MUSIC_PATH = "audio/musicWin.wav";
+var LOSE_MUSIC_PATH = "audio/lose.wav";
+
+
+
+
 //Sound initialization
-var soundSquash = new Audio("audio/squash.wav");
-var soundCrash = new Audio("audio/crash.wav");
-var soundCop = new Audio("audio/police.wav");
-var soundTransit = new Audio("audio/levelTransit.wav");
-var musicGameplay = new Audio("audio/musicGame.wav");
-var musicMenu = new Audio("audio/start.wav");
-var musicWin = new Audio("audio/musicWin.wav");
-var musicLose = new Audio("audio/lose.wav");
+var soundSquash = new Audio(SQUASH_SOUND_PATH);
+var soundCrash = new Audio(CRASH_SOUND_PATH);
+var soundCop = new Audio(POLICE_SOUND_PATH);
+var soundTransit = new Audio(LEVEL_TRANSIT_SOUND_PATH);
+var musicGameplay = new Audio(GAME_MUSIC_PATH);
+var musicMenu = new Audio(MENU_MUSIC_PATH);
+var musicWin = new Audio(WIN_MUSIC_PATH);
+var musicLose = new Audio(LOSE_MUSIC_PATH);
 
 
 //The player struct.	
