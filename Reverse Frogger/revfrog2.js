@@ -49,8 +49,6 @@ var WIN_MUSIC_PATH = "audio/musicWin.wav";
 var LOSE_MUSIC_PATH = "audio/lose.wav";
 
 
-
-
 //Sound initialization
 var soundSquash = new Audio(SQUASH_SOUND_PATH);
 var soundCrash = new Audio(CRASH_SOUND_PATH);
@@ -62,11 +60,13 @@ var musicWin = new Audio(WIN_MUSIC_PATH);
 var musicLose = new Audio(LOSE_MUSIC_PATH);
 
 
+var PLAYER_IMAGE = "images/player1.png";
+
 //The player struct.	
 function Player()
 {
 	this.playerImage = new Image();  
-	this.playerImage.src = "images/player1.png"; 
+	this.playerImage.src = PLAYER_IMAGE; 
 	//this.playerImage.addEventListener("load", drawImage);
 	this.y = 410;
 	this.x = 320 - (this.playerImage.width/2);
@@ -79,6 +79,11 @@ function Player()
 	this.isCop = false;
 }
 
+var FROG_IMAGE_ONE = "images/upfrog1.png";
+var FROG_IMAGE_TWO = "images/upfrog2.png";
+var DEAD_FROG_IMAGE = "images/blood.png";
+
+
 //The Frogs struct has two images which are cycled through to simulate frog motion and one image
 //for a dead frog when it gets it.
 function Frogs()
@@ -86,9 +91,9 @@ function Frogs()
 	this.frogImage1 = new Image();
 	this.frogImage2 = new Image();
 	this.frogImageDead = new Image();  
-	this.frogImage1.src = "images/upfrog1.png";
-	this.frogImage2.src = "images/upfrog2.png"; 
-	this.frogImageDead.src = "images/blood.png"; 
+	this.frogImage1.src = FROG_IMAGE_ONE;
+	this.frogImage2.src = FROG_IMAGE_TWO; 
+	this.frogImageDead.src = DEAD_FROG_IMAGE; 
 	this.y;
 	this.x;
 	this.left = (this.x) + 40;
@@ -115,17 +120,27 @@ function Cars()
 	this.isCop = false;
 }
 
+var TOP_SCENE_IMAGE_ONE = "images/TopScene.jpg";
+var MEDIAN_SCENE_IMAGE_ONE = "images/MedianScene.jpg"; 
+var BOTTOM_SCENE_IMAGE_ONE = "images/BottomScene.jpg";
+var TOP_SCENE_IMAGE_TWO = "images/TopScene2.jpg";
+var MEDIAN_SCENE_IMAGE_TWO = "images/MedianScene2.jpg"; 
+var BOTTOM_SCENE_IMAGE_TWO = "images/BottomScene2.jpg";
+var TOP_SCENE_IMAGE_THREE = "images/TopScene3.png";
+var MEDIAN_SCENE_IMAGE_THREE = "images/MedianScene3.jpg"; 
+var BOTTOM_SCENE_IMAGE_THREE = "images/BottomScene3.png";
+
 //This is a struct that creates the top of the scene.
 function TopScene()
 {
 	this.topImage = new Image();  
-	this.topImage.src = "images/TopScene.jpg"; 
+	this.topImage.src = TOP_SCENE_IMAGE_ONE;
 	//this.topImage.addEventListener("load", drawImage); 
 	this.topImage2 = new Image();  
-	this.topImage2.src = "images/TopScene2.jpg"; 
+	this.topImage2.src = TOP_SCENE_IMAGE_TWO; 
 	//this.topImage2.addEventListener("load", drawImage);
 	this.topImage3 = new Image();  
-	this.topImage3.src = "images/TopScene3.png"; 
+	this.topImage3.src = TOP_SCENE_IMAGE_THREE;
 	//this.topImage3.addEventListener("load", drawImage);
 	this.x = 0;
 	this.y = 0;		
@@ -135,13 +150,13 @@ function TopScene()
 function MedianScene()
 {
 	this.medianImage = new Image();  
-	this.medianImage.src = "images/MedianScene.jpg"; 
+	this.medianImage.src = MEDIAN_SCENE_IMAGE_ONE;
 	//this.medianImage.addEventListener("load", drawImage); 
 	this.medianImage2 = new Image();  
-	this.medianImage2.src = "images/MedianScene2.jpg"; 
+	this.medianImage2.src = MEDIAN_SCENE_IMAGE_TWO;
 	//this.medianImage2.addEventListener("load", drawImage); 
 	this.medianImage3 = new Image();  
-	this.medianImage3.src = "images/MedianScene3.png"; 
+	this.medianImage3.src = MEDIAN_SCENE_IMAGE_THREE;
 	//this.medianImage3.addEventListener("load", drawImage); 
 	this.x = 0;
 	this.y = 275;
@@ -156,13 +171,13 @@ function MedianScene()
 function BottomScene()
 {
 	this.bottomImage = new Image();  
-	this.bottomImage.src = "images/BottomScene.jpg"; 
+	this.bottomImage.src = BOTTOM_SCENE_IMAGE_ONE;
 	//this.bottomImage.addEventListener("load", drawImage); 
 	this.bottomImage2 = new Image(); 
-	this.bottomImage2.src = "images/BottomScene2.jpg"; 
+	this.bottomImage2.src = BOTTOM_SCENE_IMAGE_TWO;
 	//this.bottomImage2.addEventListener("load", drawImage);
 	this.bottomImage3 = new Image(); 
-	this.bottomImage3.src = "images/BottomScene3.png"; 
+	this.bottomImage3.src = BOTTOM_SCENE_IMAGE_THREE;
 	//this.bottomImage3.addEventListener("load", drawImage);
 	this.x = 0;
 	this.y = 450;		
@@ -190,27 +205,36 @@ for (var i = 0; i < frogProbability; i++)
 	objectArray[1][i] = new Frogs();
 }
 
+var LEFT_SEMI_IMAGE_ONE = "images/leftsemi1.jpg"; 
+var LEFT_CAR_IMAGE_ONE = "images/leftcar1.jpg"; 
+var RIGHT_CAR_IMAGE_TWO = "images/rightcar2.jpg"; 
+var RIGHT_CAR_IMAGE_FIVE = "images/rightcar5.jpg"; 
+var COP_CAR_IMAGE = "images/copRight.jpg";
+var COP_CAR_RED = "images/copRightRed.jpg";
+var COP_CAR_BLUE = "images/copRightBlue.jpg";
+
+
 //Image initialization
 semiLeft = new Image();  
-semiLeft.src = "images/leftsemi1.jpg"; 
+semiLeft.src = LEFT_SEMI_IMAGE_ONE; 
 //semiLeft.addEventListener("load", drawImage);
 carLeft = new Image();  
-carLeft.src = "images/leftcar1.jpg"; 
+carLeft.src = LEFT_CAR_IMAGE_ONE; 
 //carLeft.addEventListener("load", drawImage);
 carRight1 = new Image();  
-carRight1.src = "images/rightcar2.jpg"; 
+carRight1.src = RIGHT_CAR_IMAGE_TWO; 
 //carRight1.addEventListener("load", drawImage);
 carRight0 = new Image();  
-carRight0.src = "images/rightcar5.jpg"; 
+carRight0.src = RIGHT_CAR_IMAGE_FIVE; 
 //carRight0.addEventListener("load", drawImage);
 copRight = new Image();
-copRight.src = "images/copRight.jpg" ;
+copRight.src = COP_CAR_IMAGE;
 //copRight.addEventListener("load", drawImage);
 copRightRed = new Image();
-copRightRed.src = "images/copRightRed.jpg" ;
+copRightRed.src = COP_CAR_RED;
 //copRightRed.addEventListener("load", drawImage);
 copRightBlue = new Image();
-copRightBlue.src = "images/copRightBlue.jpg" ;
+copRightBlue.src = COP_CAR_BLUE;
 //copRightBlue.addEventListener("load", drawImage);
 
 gameStatusInterval();
