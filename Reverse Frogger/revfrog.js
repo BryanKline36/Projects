@@ -46,6 +46,27 @@ var WHITE = "white";
 var SCORE_LABEL = "Score: ";
 var LIVES_LABEL = "Lives: ";
 
+var pauseSelection = 0;
+var soundOn = true;
+var pause = false;
+var dt = 1000/30.0;
+var scrollSpeed = 0.4;
+var horizontal = 0;
+var vertical = 0;
+var level = 1;
+var e;
+var gameOn = true;
+var carCountDifficulty = 150;
+var carCount = 150;
+var frogCount = 150;
+var frogCountDifficulty = 150;
+var musicFlag = 0;
+var startFlag = false;
+var keyPressed = false;
+var soundKey = false;
+var resumeKey = false;
+var quitKey = false;
+
 var map = document.getElementById("map"); 
 var ctx = map.getContext("2d");
 
@@ -254,26 +275,6 @@ copRightBlue.src = COP_CAR_BLUE;
 gameStatusInterval();
 
 //Variables that are used globally, scrollSpeed changes the speed of the scenery scrolling.	
-var pauseSelection = 0;
-var soundOn = true;
-var pause = false;
-var dt = 1000/30.0;
-var scrollSpeed = 0.4;
-var horizontal = 0;
-var vertical = 0;
-var level = 1;
-var e;
-var gameOn = true;
-var carCountDifficulty = 150;
-var carCount = 150;
-var frogCount = 150;
-var frogCountDifficulty = 150;
-var musicFlag = 0;
-var startFlag = false;
-var keyPressed = false;
-var soundKey = false;
-var resumeKey = false;
-var quitKey = false;
 
 
 
@@ -296,7 +297,8 @@ for(i = 0; i < frogProbability; i++)
 }
 
 //this function moves cars to the top of their row in the array, and randomly creates a car
-function carManager() {
+function carManager() 
+{
 	var lengthDown = 0;
 	//removes cars outside the map from the array, and consolidates cars in their array
 	for (var i = 0; i < objectArray[2].length; i++) {
@@ -395,7 +397,7 @@ function carManager() {
 	}
 }
 
-function copImageChanger()
+function copAnimation()
 {
 	setTimeout(copRed, 300);
 	setTimeout(wait, 100);
@@ -1128,7 +1130,7 @@ function update()
 		
 		levelCheck();
 		carManager();
-		copImageChanger();
+		copAnimation();
 	}
 	if (pause == true) {
 		pauseMenu();
