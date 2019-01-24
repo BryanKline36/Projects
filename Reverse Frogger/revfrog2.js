@@ -1,44 +1,3 @@
-
-
-var map = document.getElementById("map"); 
-var ctx = map.getContext("2d");
-
-
-
-
-
-//Menus
-var pauseImage = new Image();
-pauseImage.src = "images/pauseBack.png";
-var winImage = new Image();
-winImage.src = "images/winMenu.png";
-var loseImage = new Image();
-loseImage.src = "images/loseMenu.png";
-var level1Image = new Image();
-level1Image.src = "images/level1Menu.png";
-var level2Image = new Image();
-level2Image.src = "images/level2Menu.png";
-var level3Image = new Image();
-level3Image.src = "images/level3Menu.png";
-
-//buttons
-var quitSel = new Image();
-quitSel.src = "images/buttons/QuitSel.png";
-var quitUn = new Image();
-quitUn.src = "images/buttons/QuitUn.png";
-var soundOffSel = new Image();
-soundOffSel.src = "images/buttons/SoundOffSel.png";
-var soundOffUn = new Image();
-soundOffUn.src = "images/buttons/SoundOffUn.png";
-var soundOnSel = new Image();
-soundOnSel.src = "images/buttons/SoundOnSel.png";
-var soundOnUn = new Image();
-soundOnUn.src = "images/buttons/SoundOnUn.png";
-var resumeSel = new Image();
-resumeSel.src = "images/buttons/ResumeSel.png";
-var resumeUn = new Image();
-resumeUn.src = "images/buttons/ResumeUn.png";
-
 var SQUASH_SOUND_PATH = "audio/squash.wav";
 var CRASH_SOUND_PATH = "audio/crash.wav";
 var POLICE_SOUND_PATH = "audio/police.wav";
@@ -47,6 +6,79 @@ var GAME_MUSIC_PATH = "audio/musicGame.wav";
 var MENU_MUSIC_PATH = "audio/start.wav";
 var WIN_MUSIC_PATH = "audio/musicWin.wav";
 var LOSE_MUSIC_PATH = "audio/lose.wav";
+var PLAYER_IMAGE = "images/player1.png";
+var FROG_IMAGE_ONE = "images/upfrog1.png";
+var FROG_IMAGE_TWO = "images/upfrog2.png";
+var DEAD_FROG_IMAGE = "images/blood.png";
+var TOP_SCENE_IMAGE_ONE = "images/TopScene.jpg";
+var MEDIAN_SCENE_IMAGE_ONE = "images/MedianScene.jpg"; 
+var BOTTOM_SCENE_IMAGE_ONE = "images/BottomScene.jpg";
+var TOP_SCENE_IMAGE_TWO = "images/TopScene2.jpg";
+var MEDIAN_SCENE_IMAGE_TWO = "images/MedianScene2.jpg"; 
+var BOTTOM_SCENE_IMAGE_TWO = "images/BottomScene2.jpg";
+var TOP_SCENE_IMAGE_THREE = "images/TopScene3.png";
+var MEDIAN_SCENE_IMAGE_THREE = "images/MedianScene3.png"; 
+var BOTTOM_SCENE_IMAGE_THREE = "images/BottomScene3.png";
+var LEFT_SEMI_IMAGE_ONE = "images/leftsemi1.jpg"; 
+var LEFT_CAR_IMAGE_ONE = "images/leftcar1.jpg"; 
+var RIGHT_CAR_IMAGE_TWO = "images/rightcar2.jpg"; 
+var RIGHT_CAR_IMAGE_FIVE = "images/rightcar5.jpg"; 
+var COP_CAR_IMAGE = "images/copRight.jpg";
+var COP_CAR_RED = "images/copRightRed.jpg";
+var COP_CAR_BLUE = "images/copRightBlue.jpg";
+var PAUSE_IMAGE = "images/pauseBack.png";
+var WIN_IMAGE = "images/winMenu.png";
+var LOSE_IMAGE = "images/loseMenu.png";
+var LEVEL_IMAGE_ONE = "images/level1Menu.png";
+var LEVEL_IMAGE_TWO = "images/level2Menu.png";
+var LEVEL_IMAGE_THREE = "images/level3Menu.png";
+var QUIT_SELECT_BUTTON = "images/buttons/QuitSel.png";
+var QUIT_UNSELECT_BUTTON = "images/buttons/QuitUn.png";
+var SOUND_OFF_SELECT_BUTTON = "images/buttons/SoundOffSel.png";
+var SOUND_OFF_UNSELECT_BUTTON = "images/buttons/SoundOffUn.png";
+var SOUND_ON_SELECT_BUTTON = "images/buttons/SoundOnSel.png";
+var SOUND_ON_UNSELECT_BUTTON = "images/buttons/SoundOnUn.png";
+var RESUME_SELECT_BUTTON = "images/buttons/ResumeSel.png";
+var RESUME_UNSELECT_BUTTON = "images/buttons/ResumeUn.png";
+
+
+
+
+var map = document.getElementById("map"); 
+var ctx = map.getContext("2d");
+
+//Menus
+var pauseImage = new Image();
+pauseImage.src = PAUSE_IMAGE;
+var winImage = new Image();
+winImage.src = WIN_IMAGE;
+var loseImage = new Image();
+loseImage.src = LOSE_IMAGE;
+var level1Image = new Image();
+level1Image.src = LEVEL_IMAGE_ONE;
+var level2Image = new Image();
+level2Image.src = LEVEL_IMAGE_TWO;
+var level3Image = new Image();
+level3Image.src = LEVEL_IMAGE_THREE;
+
+//buttons
+var quitSel = new Image();
+quitSel.src = QUIT_SELECT_BUTTON;
+var quitUn = new Image();
+quitUn.src = QUIT_UNSELECT_BUTTON;
+var soundOffSel = new Image();
+soundOffSel.src = SOUND_OFF_SELECT_BUTTON;
+var soundOffUn = new Image();
+soundOffUn.src = SOUND_OFF_UNSELECT_BUTTON;
+var soundOnSel = new Image();
+soundOnSel.src = SOUND_ON_SELECT_BUTTON;
+var soundOnUn = new Image();
+soundOnUn.src = SOUND_ON_UNSELECT_BUTTON;
+var resumeSel = new Image();
+resumeSel.src = RESUME_SELECT_BUTTON;
+var resumeUn = new Image();
+resumeUn.src = RESUME_UNSELECT_BUTTON;
+
 
 
 //Sound initialization
@@ -60,14 +92,12 @@ var musicWin = new Audio(WIN_MUSIC_PATH);
 var musicLose = new Audio(LOSE_MUSIC_PATH);
 
 
-var PLAYER_IMAGE = "images/player1.png";
 
 //The player struct.	
 function Player()
 {
 	this.playerImage = new Image();  
 	this.playerImage.src = PLAYER_IMAGE; 
-	//this.playerImage.addEventListener("load", drawImage);
 	this.y = 410;
 	this.x = 320 - (this.playerImage.width/2);
 	this.left = this.x;
@@ -79,9 +109,6 @@ function Player()
 	this.isCop = false;
 }
 
-var FROG_IMAGE_ONE = "images/upfrog1.png";
-var FROG_IMAGE_TWO = "images/upfrog2.png";
-var DEAD_FROG_IMAGE = "images/blood.png";
 
 
 //The Frogs struct has two images which are cycled through to simulate frog motion and one image
@@ -120,15 +147,6 @@ function Cars()
 	this.isCop = false;
 }
 
-var TOP_SCENE_IMAGE_ONE = "images/TopScene.jpg";
-var MEDIAN_SCENE_IMAGE_ONE = "images/MedianScene.jpg"; 
-var BOTTOM_SCENE_IMAGE_ONE = "images/BottomScene.jpg";
-var TOP_SCENE_IMAGE_TWO = "images/TopScene2.jpg";
-var MEDIAN_SCENE_IMAGE_TWO = "images/MedianScene2.jpg"; 
-var BOTTOM_SCENE_IMAGE_TWO = "images/BottomScene2.jpg";
-var TOP_SCENE_IMAGE_THREE = "images/TopScene3.png";
-var MEDIAN_SCENE_IMAGE_THREE = "images/MedianScene3.jpg"; 
-var BOTTOM_SCENE_IMAGE_THREE = "images/BottomScene3.png";
 
 //This is a struct that creates the top of the scene.
 function TopScene()
@@ -205,13 +223,6 @@ for (var i = 0; i < frogProbability; i++)
 	objectArray[1][i] = new Frogs();
 }
 
-var LEFT_SEMI_IMAGE_ONE = "images/leftsemi1.jpg"; 
-var LEFT_CAR_IMAGE_ONE = "images/leftcar1.jpg"; 
-var RIGHT_CAR_IMAGE_TWO = "images/rightcar2.jpg"; 
-var RIGHT_CAR_IMAGE_FIVE = "images/rightcar5.jpg"; 
-var COP_CAR_IMAGE = "images/copRight.jpg";
-var COP_CAR_RED = "images/copRightRed.jpg";
-var COP_CAR_BLUE = "images/copRightBlue.jpg";
 
 
 //Image initialization
