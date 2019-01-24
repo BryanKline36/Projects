@@ -40,9 +40,11 @@ var SOUND_ON_SELECT_BUTTON = "images/buttons/SoundOnSel.png";
 var SOUND_ON_UNSELECT_BUTTON = "images/buttons/SoundOnUn.png";
 var RESUME_SELECT_BUTTON = "images/buttons/ResumeSel.png";
 var RESUME_UNSELECT_BUTTON = "images/buttons/ResumeUn.png";
-
-
-
+var BLACK = "#000000";
+var HELVETICA = "40px Helvetica";
+var WHITE = "white";
+var SCORE_LABEL = "Score: ";
+var LIVES_LABEL = "Lives: ";
 
 var map = document.getElementById("map"); 
 var ctx = map.getContext("2d");
@@ -98,6 +100,7 @@ function Player()
 {
 	this.playerImage = new Image();  
 	this.playerImage.src = PLAYER_IMAGE; 
+	//this.playerImage.addEventListener("load", drawImage);
 	this.y = 410;
 	this.x = 320 - (this.playerImage.width/2);
 	this.left = this.x;
@@ -733,19 +736,19 @@ function levelMenu()
 		gameOn = false;
 		if(level == 1)
 		{
-			ctx.fillStyle = "#000000";
+			ctx.fillStyle = BLACK;
 			ctx.fillRect(0, 0, 640, 480);
 			ctx.drawImage(level1Image, 0, 0);
 		}	
 		if(level == 2)
 		{
-			ctx.fillStyle = "#000000";
+			ctx.fillStyle = BLACK;
 			ctx.fillRect(0, 0, 640, 480);
 			ctx.drawImage(level2Image, 0, 0);
 		}
 		if(level == 3)
 		{
-			ctx.fillStyle = "#000000";
+			ctx.fillStyle = BLACK;
 			ctx.fillRect(0, 0, 640, 480);
 			ctx.drawImage(level3Image, 0, 0);
 		}
@@ -808,7 +811,7 @@ function pauseMenu()
 		pauseSelection = 2;
 	}
 	//musicGameplay.pause();
-	ctx.fillStyle = "#000000";
+	ctx.fillStyle = BLACK;
 	ctx.fillRect(0, 0, 640, 480);
 	ctx.drawImage(pauseImage,0,0);
 	if (pauseSelection == 0)
@@ -932,7 +935,7 @@ function levelCheck()
 		{
 			musicWin.play();
 		}	
-		ctx.fillStyle = "#000000";
+		ctx.fillStyle = BLACK;
 		ctx.fillRect(0, 0, 640, 480);
 		ctx.drawImage(winImage, 0, 0);
 		gameOn = false;
@@ -996,7 +999,7 @@ function gameEnd()
 	{
 		musicLose.play();
 	}
-	ctx.fillStyle = "#000000";
+	ctx.fillStyle = BLACK;
 	ctx.fillRect(0, 0, 640, 480);
 	ctx.drawImage(loseImage, 0, 0);
 	gameOn = false;
@@ -1010,7 +1013,7 @@ function update()
 { 
 	if (pause == false) {
 		
-		ctx.fillStyle = "#000000";
+		ctx.fillStyle = BLACK;
 		ctx.fillRect(0, 0, 640, 480);
 	   
 		ctx.drawImage(objectArray[0][0].playerImage, objectArray[0][0].x, objectArray[0][0].y);
@@ -1106,11 +1109,11 @@ function update()
 			}
 		}
 
-		ctx.font = "40px Helvetica";
-		ctx.fillStyle = "white";
-		ctx.fillText("Score:", 380, 50);
+		ctx.font = HELVETICA;
+		ctx.fillStyle = WHITE;
+		ctx.fillText(SCORE_LABEL, 380, 50);
 		ctx.fillText(objectArray[0][0].score, 500, 50);
-		ctx.fillText("Lives:", 380, 100);	
+		ctx.fillText(LIVES_LABEL, 380, 100);	
 		ctx.fillText(objectArray[0][0].lives, 500, 100);	
 		
 		for (var i = 0; i < objectArray[1].length; i++) 
