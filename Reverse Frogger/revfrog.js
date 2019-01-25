@@ -115,6 +115,16 @@ var musicWin = new Audio(WIN_MUSIC_PATH);
 var musicLose = new Audio(LOSE_MUSIC_PATH);
 
 
+function JQueryKeyCodes ()
+{
+	this.LEFT = 37;
+	this.RIGHT = 39;
+	this.UP = 38;
+	this.DOWN = 40;
+	this.SPACE = 32; 
+	this.ESCAPE = 27;
+}
+
 
 //The player struct.	
 function Player()
@@ -293,7 +303,7 @@ for(i = 0; i < frogProbability; i++)
 	{
 		yNum += 80;
 	}
-	objectArray[1][i].x = (Math.random()* 640) + Math.random()*100;
+	objectArray[1][i].x = (Math.random()* 640) + Math.random() * 100;
 	objectArray[1][i].y = yNum;
 }
 
@@ -302,37 +312,37 @@ function carManager()
 {
 	var lengthDown = 0;
 	//removes cars outside the map from the array, and consolidates cars in their array
-	for (var i = 0; i < objectArray[2].length; i++) 
+	for(var i = 0; i < objectArray[2].length; i++) 
 	{
-		if (i != objectArray[2].length - 1) 
+		if(i != objectArray[2].length - 1) 
 		{
-			if (objectArray[2][i].x < -100 || objectArray[2][i].x > 640) 
+			if(objectArray[2][i].x < -100 || objectArray[2][i].x > 640) 
 			{
 				objectArray[2][i] = objectArray[2][i+1];
 				objectArray[2][i+1] = 0;
 				lengthDown++;		
 			}
-			else if ((objectArray[2][i] == 0) && i != objectArray[2].length - 1) 
+			else if((objectArray[2][i] == 0) && i != objectArray[2].length - 1) 
 			{
 				objectArray[2][i] = objectArray[2][i+1];
 				objectArray[2][i+1] = 0;	
 			}
 		}
-		else if (objectArray[2][i].x < -100 || objectArray[2][i].x > 640) 
+		else if(objectArray[2][i].x < -100 || objectArray[2][i].x > 640) 
 		{
 			lengthDown++;
 		}
 	}
 	objectArray[2].length = objectArray[2].length - lengthDown;
 	//randomly creates cars using carCount variable to keep them regularly spaced
-	if (carCount > 0) 
+	if(carCount > 0) 
 	{
 		carCount--;
 	}
-	else if (Math.random() * 100 <= carProbability && carCount == 0) 
+	else if(Math.random() * 100 <= carProbability && carCount == 0) 
 	{
 		var carType = Math.random() * 100;
-		if (carType < 20) 
+		if(carType < 20) 
 		{
 			var currentCarIndex = objectArray[2].length;
 			objectArray[2][currentCarIndex] = new Cars();
@@ -340,7 +350,8 @@ function carManager()
 			objectArray[2][currentCarIndex].speed = carSpeed;
 			objectArray[2][currentCarIndex].x = 640;
 			objectArray[2][currentCarIndex].y = 160;
-			if (Math.random() * 100 < 50) 
+
+			if(Math.random() * 100 < 50) 
 			{
 				objectArray[2][currentCarIndex].image = carLeft;
 			}
@@ -349,7 +360,7 @@ function carManager()
 				objectArray[2][currentCarIndex].image = semiLeft;
 			}
 		}
-		else if (carType >= 20 && carType < 40) 
+		else if(carType >= 20 && carType < 40) 
 		{
 			var currentCarIndex = objectArray[2].length;
 			objectArray[2][currentCarIndex] = new Cars();
@@ -357,7 +368,8 @@ function carManager()
 			objectArray[2][currentCarIndex].speed = carSpeed;
 			objectArray[2][currentCarIndex].x = 640;
 			objectArray[2][currentCarIndex].y = 220;
-			if (Math.random() * 100 < 50) 
+
+			if(Math.random() * 100 < 50) 
 			{
 				objectArray[2][currentCarIndex].image = carLeft;
 			}
@@ -366,7 +378,7 @@ function carManager()
 				objectArray[2][currentCarIndex].image = semiLeft;
 			}
 		}
-		else if (carType >= 40 && carType < 60) 
+		else if(carType >= 40 && carType < 60) 
 		{
 			var currentCarIndex = objectArray[2].length;
 			objectArray[2][currentCarIndex] = new Cars();
@@ -375,7 +387,7 @@ function carManager()
 			objectArray[2][currentCarIndex].x = -100;
 			objectArray[2][currentCarIndex].y = 400;
 			
-			if (Math.random() * 100 < 50) 
+			if(Math.random() * 100 < 50) 
 			{
 				objectArray[2][currentCarIndex].image = carRight0;
 			}
@@ -384,7 +396,7 @@ function carManager()
 				objectArray[2][currentCarIndex].image = carRight1;
 			}
 		} 
-		else if (carType >= 60 && carType < 80) 
+		else if(carType >= 60 && carType < 80) 
 		{
 			var currentCarIndex = objectArray[2].length;
 			objectArray[2][currentCarIndex] = new Cars();
@@ -392,7 +404,7 @@ function carManager()
 			objectArray[2][currentCarIndex].speed = carSpeed;
 			objectArray[2][currentCarIndex].x = -100;
 			objectArray[2][currentCarIndex].y = 340;
-			if (Math.random() * 100 < 50) 
+			if(Math.random() * 100 < 50) 
 			{
 				objectArray[2][currentCarIndex].image = carRight0;
 			}
@@ -401,7 +413,7 @@ function carManager()
 				objectArray[2][currentCarIndex].image = carRight1;
 			}
 		}
-		else if (carType >= 80) 
+		else if(carType >= 80) 
 		{
 			var currentCarIndex = objectArray[2].length;
 			objectArray[2][currentCarIndex] = new Cars();
@@ -445,23 +457,23 @@ function copBlue()
 //JQuery function that senses keystrokes.  
 $(document).keydown(function(e) 
 {
-	if(e.keyCode == 37)
+	if(e.keyCode == JQueryKeyCodes.LEFT)
 	{
 		horizontal = -1;
 	}
-	else if(e.keyCode == 39)	
+	else if(e.keyCode == JQueryKeyCodes.RIGHT)	
 	{	
 		horizontal = 1;
 	}
-	else if(e.keyCode == 38)
+	else if(e.keyCode == JQueryKeyCodes.UP)
 	{
 		 vertical = -1;
 	}
-	else if(e.keyCode == 40)
+	else if(e.keyCode == JQueryKeyCodes.DOWN)
 	{		
 		vertical = 1;
 	}
-	else if(e.keyCode == 32)
+	else if(e.keyCode == JQueryKeyCodes.SPACE)
 	{
 		if(!gameOn)
 		{				
@@ -471,17 +483,18 @@ $(document).keydown(function(e)
 			SceneTop.x = 0;
 			SceneMedian.x = 0;
 			SceneBottom.x = 0;
+
 			for(i = 0; i < objectArray[1].length; i++)
 			{
 				objectArray[1][i].x = (Math.random() * 640 + 700);
 			}
 		}
 	}
-	if (e.keyCode == 27 && pause) 
+	if (e.keyCode == JQueryKeyCodes.ESCAPE && pause) 
 	{
 		pause = false;
 	}
-	else if (e.keyCode == 27 && !pause && gameOn) 
+	else if (e.keyCode == JQueryKeyCodes.ESCAPE && !pause && gameOn) 
 	{
 		pauseSelection = 0;
 		pause = true;
@@ -493,19 +506,11 @@ $(document).keydown(function(e)
 
 $(document).keyup(function(e) 
 {
-	if(e.keyCode == 37)
+	if(e.keyCode == JQueryKeyCodes.LEFT || e.keyCode == JQueryKeyCodes.RIGHT)
 	{
 		horizontal = 0;
 	}
-	if(e.keyCode == 39)
-	{
-		horizontal = 0;
-	}
-	if(e.keyCode == 38)
-	{
-		vertical = 0;
-	}
-	if(e.keyCode == 40)
+	if(e.keyCode == JQueryKeyCodes.UP || e.keyCode == JQueryKeyCodes.DOWN)
 	{
 		vertical = 0;
 	}
