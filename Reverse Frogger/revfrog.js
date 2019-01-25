@@ -404,9 +404,11 @@ function copAnimation()
 	setTimeout(copBlue, 400);
 }
 
+setTimeout(wait, 0);
+
 function wait()
 {
-	//console.log("Waiting");
+	console.log("Waiting");
 }
 
 function copRed()
@@ -926,6 +928,7 @@ function levelCheck()
 		//carProbability = 1;
 		//carCountDifficulty = 300;
 		//frogCountDifficulty = 300;
+		
 		for(i = 0; i < objectArray[1].length; i++)
 		{
 			objectArray[1][i].x = (Math.random()*640 + 700);
@@ -954,7 +957,7 @@ function positionUpdate(struct, width, height)
 	struct.top = struct.y;
 	struct.bottom = (struct.y + height);
 	
-	if(struct.isCop == true)
+	if(struct.isCop)
 	{
 		struct.top += 30;
 		struct.bottom += 30;
@@ -973,7 +976,8 @@ function collision(R2, R1)
 	{	
 		return true;
 	}
-	else {
+	else 
+	{
 		return false;
 	}
 }
@@ -989,7 +993,7 @@ function gameStatusInterval()
 //Updates game unless the global bool gameOn is false in which case the game ends. 
 function gameStatus()
 {
-	if(gameOn == true)
+	if(gameOn)
 	{
 		update();
 	}
@@ -997,7 +1001,7 @@ function gameStatus()
 
 function gameEnd()
 {
-	if(soundOn == true)
+	if(soundOn)
 	{
 		musicLose.play();
 	}
@@ -1013,7 +1017,8 @@ levelMenu();
 //Update function.
 function update()
 { 
-	if (pause == false) {
+	if(!pause) 
+	{
 		
 		ctx.fillStyle = BLACK;
 		ctx.fillRect(0, 0, 640, 480);
@@ -1048,23 +1053,26 @@ function update()
 
 		for (var i = 0; i < objectArray[2].length; i++) 
 		{
-			if(objectArray[2][i].isCop == true)
+			if(objectArray[2][i].isCop)
 			{
 				objectArray[2][i].image = copImage;
 			}
+
 			positionUpdate(objectArray[2][i], objectArray[2][i].image.width, objectArray[2][i].image.height);
 			ctx.drawImage(objectArray[2][i].image, objectArray[2][i].x, objectArray[2][i].y);
 			driveCar(objectArray[2][i]);
-			if(collision(objectArray[0][0], objectArray[2][i]) == true)
+
+			if(collision(objectArray[0][0], objectArray[2][i]))
 			{
-				if((objectArray[2][i].isCop == false)&&(soundOn == true))
+				if(!objectArray[2][i].isCop && soundOn)
 				{
 					soundCrash.play();
 				}
-				 else if((objectArray[2][i].isCop == true)&&(soundOn == true))
+				else if(objectArray[2][i].isCop && soundOn)
 				{
 					soundCop.play();
 				}
+
 				gameOn = false;
 				objectArray[0][0].lives--;
 				objectArray[0][0].score = 0;
@@ -1073,12 +1081,12 @@ function update()
 			}
 		}
 		
-		if(collision(objectArray[0][0], SceneMedian) == false)			
+		if(!collision(objectArray[0][0], SceneMedian))			
 		{	
 			scroll();
 		}	
 
-		if(collision(objectArray[0][0], SceneMedian) == true)
+		if(collision(objectArray[0][0], SceneMedian))
 		{
 			gameOn = false;
 			objectArray[0][0].lives--;
@@ -1091,14 +1099,15 @@ function update()
 			//objectArray[1] = [];
 		}
 
-		for (var i = 0; i < objectArray[2].length; i++) {
-			if(collision(objectArray[0][0], objectArray[2][i]) == true)
+		for (var i = 0; i < objectArray[2].length; i++) 
+		{
+			if(collision(objectArray[0][0], objectArray[2][i]))
 			{
-				if((objectArray[2][i].isCop == false)&&(soundOn == true))
+				if(!objectArray[2][i].isCop && soundOn)
 				{
 					soundCrash.play();
 				}
-				else((objectArray[2][i].isCop == true)&&(soundOn == true))
+				else(objectArray[2][i].isCop && soundOn)
 				{
 					soundCop.play();
 				}
@@ -1132,6 +1141,7 @@ function update()
 		carManager();
 		copAnimation();
 	}
+
 	if (pause == true) {
 		pauseMenu();
 	}
