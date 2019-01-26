@@ -56,27 +56,36 @@ function JQueryKeyCodes()
 	this.ESCAPE = 27;
 }
 
-let jsonObject;
+var jsonObject = {};
+
+// $.getJSON("constants.JSON", {}, function(json) {
+// 	console.log(json); // this will show the info it in firebug console
+// 	alert("!!");
+// });
 
 function getJSON()
 {
 	var xmlhttp = new XMLHttpRequest();
 
+	alert("!s");
 	xmlhttp.onreadystatechange = function() 
 	{
 		if(this.readyState == 4 && this.status == 200) 
 		{
 			settings = JSON.parse(this.responseText);
 			jsonObject = settings;
+			console.log(jsonObject)
 		}
 	};
 
 	var file = "constants.JSON";
 	
 	xmlhttp.open("GET", file, true);
+	xmlhttp.responseType = 'json';
 	xmlhttp.send();
-	alert("!!");
 }
+
+//console.log(jsonObject)
 
 getJSON();
 
@@ -320,12 +329,12 @@ objectArray[0][0].lives = 3;
 
 for(i = 0; i < frogProbability; i++)
 {
-	var yNum = Math.random()*430;
+	var yNum = Math.random() * 430;
 	if(yNum < 150)
 	{
 		yNum += 160; 
 	}
-	if((yNum > 270)&&(yNum < 350))
+	if((yNum > 270) && (yNum < 350))
 	{
 		yNum += 80;
 	}
@@ -344,14 +353,14 @@ function carManager()
 		{
 			if(objectArray[2][i].x < -100 || objectArray[2][i].x > 640) 
 			{
-				objectArray[2][i] = objectArray[2][i+1];
-				objectArray[2][i+1] = 0;
+				objectArray[2][i] = objectArray[2][i + 1];
+				objectArray[2][i + 1] = 0;
 				lengthDown++;		
 			}
 			else if((objectArray[2][i] == 0) && i != objectArray[2].length - 1) 
 			{
-				objectArray[2][i] = objectArray[2][i+1];
-				objectArray[2][i+1] = 0;	
+				objectArray[2][i] = objectArray[2][i + 1];
+				objectArray[2][i + 1] = 0;	
 			}
 		}
 		else if(objectArray[2][i].x < -100 || objectArray[2][i].x > 640) 
@@ -487,15 +496,15 @@ $(document).keydown(function(e)
 	{
 		horizontal = -1;
 	}
-	else if(e.keyCode == JQueryKeyCodes.RIGHT)	
+	else if(e.keyCode == 39)	
 	{	
 		horizontal = 1;
 	}
-	else if(e.keyCode == JQueryKeyCodes.UP)
+	else if(e.keyCode == 38)
 	{
 		 vertical = -1;
 	}
-	else if(e.keyCode == JQueryKeyCodes.DOWN)
+	else if(e.keyCode == 40)
 	{		
 		vertical = 1;
 	}
@@ -516,11 +525,11 @@ $(document).keydown(function(e)
 			}
 		}
 	}
-	if (e.keyCode == JQueryKeyCodes.ESCAPE && pause) 
+	if (e.keyCode == 32 && pause) 
 	{
 		pause = false;
 	}
-	else if (e.keyCode == JQueryKeyCodes.ESCAPE && !pause && gameOn) 
+	else if (e.keyCode == 32 && !pause && gameOn) 
 	{
 		pauseSelection = 0;
 		pause = true;
@@ -532,11 +541,11 @@ $(document).keydown(function(e)
 
 $(document).keyup(function(e) 
 {
-	if(e.keyCode == JQueryKeyCodes.LEFT || e.keyCode == JQueryKeyCodes.RIGHT)
+	if(e.keyCode == 37 || e.keyCode == 39)
 	{
 		horizontal = 0;
 	}
-	if(e.keyCode == JQueryKeyCodes.UP || e.keyCode == JQueryKeyCodes.DOWN)
+	if(e.keyCode == 38 || e.keyCode == 40)
 	{
 		vertical = 0;
 	}
@@ -991,7 +1000,7 @@ function levelCheck()
 		{
 			musicWin.play();
 		}	
-		ctx.fillStyle = BLACK;
+		ctx.fillStyle = jsonObject.BLACK;
 		ctx.fillRect(0, 0, 640, 480);
 		ctx.drawImage(winImage, 0, 0);
 		gameOn = false;
