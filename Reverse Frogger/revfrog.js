@@ -115,22 +115,47 @@ var musicWin = new Audio(WIN_MUSIC_PATH);
 var musicLose = new Audio(LOSE_MUSIC_PATH);
 
 
-function JQueryKeyCodes ()
+JQueryKeyCodes =
 {
-	this.LEFT = 37;
-	this.RIGHT = 39;
-	this.UP = 38;
-	this.DOWN = 40;
-	this.SPACE = 32; 
-	this.ESCAPE = 27;
+	LEFT = 37,
+	RIGHT = 39,
+	UP = 38,
+	DOWN = 40,
+	SPACE = 32, 
+	ESCAPE = 27,
 }
 
+let jsonObject;
+
+function getJSON()
+{
+	var xmlhttp = new XMLHttpRequest();
+
+	xmlhttp.onreadystatechange = function() 
+	{
+		if(this.readyState == 4 && this.status == 200) 
+		{
+			settings = JSON.parse(this.responseText);
+			jsonObject = settings;
+		}
+	};
+
+	var file = "constants.JSON";
+	
+	xmlhttp.open("GET", file, true);
+	xmlhttp.send();
+	alert("!!");
+}
+
+getJSON();
+
+// jsonObject = JSON.parse("constants.json");
 
 //The player struct.	
 function Player()
 {
 	this.playerImage = new Image();  
-	this.playerImage.src = PLAYER_IMAGE; 
+	this.playerImage.src = PLAYER_IMAGE;// jsonObject.PLAYER_IMAGE; 
 	//this.playerImage.addEventListener("load", drawImage);
 	this.y = 410;
 	this.x = 320 - (this.playerImage.width/2);
@@ -457,7 +482,7 @@ function copBlue()
 //JQuery function that senses keystrokes.  
 $(document).keydown(function(e) 
 {
-	if(e.keyCode == JQueryKeyCodes.LEFT)
+	if(e.keyCode == 37)
 	{
 		horizontal = -1;
 	}
