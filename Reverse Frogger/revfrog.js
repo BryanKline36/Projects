@@ -63,31 +63,70 @@ var jsonObject = {};
 // 	alert("!!");
 // });
 
-function getJSON()
-{
-	var xmlhttp = new XMLHttpRequest();
+// function getJSON()
+// {
+// 	var xmlhttp = new XMLHttpRequest();
 
-	alert("!s");
-	xmlhttp.onreadystatechange = function() 
-	{
-		if(this.readyState == 4 && this.status == 200) 
-		{
-			settings = JSON.parse(this.responseText);
-			jsonObject = settings;
-			console.log(jsonObject)
-		}
-	};
+// 	alert("!s");
+// 	xmlhttp.onreadystatechange = function() 
+// 	{
+// 		if(this.readyState == 4 && this.status == 200) 
+// 		{
+// 			settings = JSON.parse(this.responseText);
+// 			jsonObject = settings;
+// 			console.log(jsonObject)
+// 		}
+// 	};
 
-	var file = "constants.JSON";
+// 	var file = "constants.JSON";
 	
-	xmlhttp.open("GET", file, true);
-	xmlhttp.responseType = 'json';
-	xmlhttp.send();
-}
+// 	xmlhttp.open("GET", file, true);
+// 	xmlhttp.responseType = 'json';
+// 	xmlhttp.send();
+// }
 
 //console.log(jsonObject)
 
-getJSON();
+// getJSON();
+
+
+
+
+
+function loadJSON(callback) 
+{   
+    var xobj = new XMLHttpRequest();
+	xobj.overrideMimeType("application/json");
+	xobj.open('GET', 'constants.JSON', true);
+	
+	xobj.onreadystatechange = function () 
+	{
+		if (xobj.readyState == 4 && xobj.status == "200") 
+		{
+			callback(xobj.responseText);
+		}
+	};
+	
+    xobj.send(null);  
+ }
+
+ function loadConstants() 
+ {
+	loadJSON(function(response) 
+	{
+	   var actual_JSON = JSON.parse(response);
+	   console.log(actual_JSON);
+
+	//    e = actual_JSON;
+
+	   alert("!");
+	   
+	});
+}
+
+loadConstants();
+
+
 
 var pauseSelection = 0;
 var soundOn = true;
