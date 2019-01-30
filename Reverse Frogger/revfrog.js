@@ -1,50 +1,50 @@
-// var SQUASH_SOUND_PATH = "audio/squash.wav";
-// var CRASH_SOUND_PATH = "audio/crash.wav";
-// var POLICE_SOUND_PATH = "audio/police.wav";
-// var LEVEL_TRANSIT_SOUND_PATH = "audio/levelTransit.wav"; 
-// var GAME_MUSIC_PATH = "audio/musicGame.wav";
-// var MENU_MUSIC_PATH = "audio/start.wav";
-// var WIN_MUSIC_PATH = "audio/musicWin.wav";
-// var LOSE_MUSIC_PATH = "audio/lose.wav";
-// var PLAYER_IMAGE = "images/player1.png";
-// var FROG_IMAGE_ONE = "images/upfrog1.png";
-// var FROG_IMAGE_TWO = "images/upfrog2.png";
-// var DEAD_FROG_IMAGE = "images/blood.png";
-// var TOP_SCENE_IMAGE_ONE = "images/TopScene.jpg";
-// var MEDIAN_SCENE_IMAGE_ONE = "images/MedianScene.jpg"; 
-// var BOTTOM_SCENE_IMAGE_ONE = "images/BottomScene.jpg";
-// var TOP_SCENE_IMAGE_TWO = "images/TopScene2.jpg";
-// var MEDIAN_SCENE_IMAGE_TWO = "images/MedianScene2.jpg"; 
-// var BOTTOM_SCENE_IMAGE_TWO = "images/BottomScene2.jpg";
-// var TOP_SCENE_IMAGE_THREE = "images/TopScene3.png";
-// var MEDIAN_SCENE_IMAGE_THREE = "images/MedianScene3.png"; 
-// var BOTTOM_SCENE_IMAGE_THREE = "images/BottomScene3.png";
-// var LEFT_SEMI_IMAGE_ONE = "images/leftsemi1.jpg"; 
-// var LEFT_CAR_IMAGE_ONE = "images/leftcar1.jpg"; 
-// var RIGHT_CAR_IMAGE_TWO = "images/rightcar2.jpg"; 
-// var RIGHT_CAR_IMAGE_FIVE = "images/rightcar5.jpg"; 
-// var COP_CAR_IMAGE = "images/copRight.jpg";
-// var COP_CAR_RED = "images/copRightRed.jpg";
-// var COP_CAR_BLUE = "images/copRightBlue.jpg";
-// var PAUSE_IMAGE = "images/pauseBack.png";
-// var WIN_IMAGE = "images/winMenu.png";
-// var LOSE_IMAGE = "images/loseMenu.png";
-// var LEVEL_IMAGE_ONE = "images/level1Menu.png";
-// var LEVEL_IMAGE_TWO = "images/level2Menu.png";
-// var LEVEL_IMAGE_THREE = "images/level3Menu.png";
-// var QUIT_SELECT_BUTTON = "images/buttons/QuitSel.png";
-// var QUIT_UNSELECT_BUTTON = "images/buttons/QuitUn.png";
-// var SOUND_OFF_SELECT_BUTTON = "images/buttons/SoundOffSel.png";
-// var SOUND_OFF_UNSELECT_BUTTON = "images/buttons/SoundOffUn.png";
-// var SOUND_ON_SELECT_BUTTON = "images/buttons/SoundOnSel.png";
-// var SOUND_ON_UNSELECT_BUTTON = "images/buttons/SoundOnUn.png";
-// var RESUME_SELECT_BUTTON = "images/buttons/ResumeSel.png";
-// var RESUME_UNSELECT_BUTTON = "images/buttons/ResumeUn.png";
-// var BLACK = "#000000";
-// var HELVETICA = "40px Helvetica";
-// var WHITE = "white";
-// var SCORE_LABEL = "Score: ";
-// var LIVES_LABEL = "Lives: ";
+var SQUASH_SOUND_PATH = "audio/squash.wav";
+var CRASH_SOUND_PATH = "audio/crash.wav";
+var POLICE_SOUND_PATH = "audio/police.wav";
+var LEVEL_TRANSIT_SOUND_PATH = "audio/levelTransit.wav"; 
+var GAME_MUSIC_PATH = "audio/musicGame.wav";
+var MENU_MUSIC_PATH = "audio/start.wav";
+var WIN_MUSIC_PATH = "audio/musicWin.wav";
+var LOSE_MUSIC_PATH = "audio/lose.wav";
+var PLAYER_IMAGE = "images/player1.png";
+var FROG_IMAGE_ONE = "images/upfrog1.png";
+var FROG_IMAGE_TWO = "images/upfrog2.png";
+var DEAD_FROG_IMAGE = "images/blood.png";
+var TOP_SCENE_IMAGE_ONE = "images/TopScene.jpg";
+var MEDIAN_SCENE_IMAGE_ONE = "images/MedianScene.jpg"; 
+var BOTTOM_SCENE_IMAGE_ONE = "images/BottomScene.jpg";
+var TOP_SCENE_IMAGE_TWO = "images/TopScene2.jpg";
+var MEDIAN_SCENE_IMAGE_TWO = "images/MedianScene2.jpg"; 
+var BOTTOM_SCENE_IMAGE_TWO = "images/BottomScene2.jpg";
+var TOP_SCENE_IMAGE_THREE = "images/TopScene3.png";
+var MEDIAN_SCENE_IMAGE_THREE = "images/MedianScene3.png"; 
+var BOTTOM_SCENE_IMAGE_THREE = "images/BottomScene3.png";
+var LEFT_SEMI_IMAGE_ONE = "images/leftsemi1.jpg"; 
+var LEFT_CAR_IMAGE_ONE = "images/leftcar1.jpg"; 
+var RIGHT_CAR_IMAGE_TWO = "images/rightcar2.jpg"; 
+var RIGHT_CAR_IMAGE_FIVE = "images/rightcar5.jpg"; 
+var COP_CAR_IMAGE = "images/copRight.jpg";
+var COP_CAR_RED = "images/copRightRed.jpg";
+var COP_CAR_BLUE = "images/copRightBlue.jpg";
+var PAUSE_IMAGE = "images/pauseBack.png";
+var WIN_IMAGE = "images/winMenu.png";
+var LOSE_IMAGE = "images/loseMenu.png";
+var LEVEL_IMAGE_ONE = "images/level1Menu.png";
+var LEVEL_IMAGE_TWO = "images/level2Menu.png";
+var LEVEL_IMAGE_THREE = "images/level3Menu.png";
+var QUIT_SELECT_BUTTON = "images/buttons/QuitSel.png";
+var QUIT_UNSELECT_BUTTON = "images/buttons/QuitUn.png";
+var SOUND_OFF_SELECT_BUTTON = "images/buttons/SoundOffSel.png";
+var SOUND_OFF_UNSELECT_BUTTON = "images/buttons/SoundOffUn.png";
+var SOUND_ON_SELECT_BUTTON = "images/buttons/SoundOnSel.png";
+var SOUND_ON_UNSELECT_BUTTON = "images/buttons/SoundOnUn.png";
+var RESUME_SELECT_BUTTON = "images/buttons/ResumeSel.png";
+var RESUME_UNSELECT_BUTTON = "images/buttons/ResumeUn.png";
+var BLACK = "#000000";
+var HELVETICA = "40px Helvetica";
+var WHITE = "white";
+var SCORE_LABEL = "Score: ";
+var LIVES_LABEL = "Lives: ";
 
 function JQueryKeyCodes()
 {
@@ -56,7 +56,7 @@ function JQueryKeyCodes()
 	this.ESCAPE = 27;
 }
 
-var jsonObject = {};
+// var jsonObject = {};
 
 // $.getJSON("constants.JSON", {}, function(json) {
 // 	console.log(json); // this will show the info it in firebug console
@@ -93,40 +93,56 @@ var jsonObject = {};
 
 
 
-function loadJSON(callback) 
-{   
-    var xobj = new XMLHttpRequest();
-	xobj.overrideMimeType("application/json");
-	xobj.open('GET', 'constants.JSON', true);
+// function loadJSON(callback) 
+// {   
+//     var xobj = new XMLHttpRequest();
+// 	xobj.overrideMimeType("application/json");
+// 	xobj.open('GET', 'constants.JSON', true);
 	
-	xobj.onreadystatechange = function () 
-	{
-		if (xobj.readyState == 4 && xobj.status == "200") 
-		{
-			callback(xobj.responseText);
-		}
-	};
+// 	xobj.onreadystatechange = function () 
+// 	{
+// 		if (xobj.readyState == 4 && xobj.status == "200") 
+// 		{
+// 			callback(xobj.responseText);
+// 		}
+// 	};
 	
-    xobj.send(null);  
- }
+//     xobj.send(null);  
+// }
 
- function loadConstants() 
- {
-	loadJSON(function(response) 
-	{
-	   var actual_JSON = JSON.parse(response);
-	   console.log(actual_JSON);
+// function loadConstants() 
+// {
+// 	loadJSON(function(response) 
+// 	{
+// 		var actual_JSON = JSON.parse(response);
+		
+		
+// 		//    e = actual_JSON;
+		
+// 		alert("!");
+// 		return actual_JSON;
+// 	});
+// }
 
-	//    e = actual_JSON;
+// jsonObject = loadConstants();
+// console.log(jsonObject);
 
-	   alert("!");
-	   
-	});
-}
-
-loadConstants();
-
-
+// function loadJSON(callback) 
+// {   
+//     var xobj = new XMLHttpRequest();
+// 	xobj.overrideMimeType("application/json");
+// 	xobj.open('GET', 'constants.JSON', true);
+	
+// 	xobj.onreadystatechange = function () 
+// 	{
+// 		if (xobj.readyState == 4 && xobj.status == "200") 
+// 		{
+// 			callback(xobj.responseText);
+// 		}
+// 	};
+	
+//     xobj.send(null);  
+// }
 
 var pauseSelection = 0;
 var soundOn = true;
@@ -154,47 +170,47 @@ var ctx = map.getContext("2d");
 
 //Menus
 var pauseImage = new Image();
-pauseImage.src = jsonObject.PAUSE_IMAGE;
+pauseImage.src = PAUSE_IMAGE;
 var winImage = new Image();
-winImage.src = jsonObject.WIN_IMAGE;
+winImage.src = WIN_IMAGE;
 var loseImage = new Image();
-loseImage.src = jsonObject.LOSE_IMAGE;
+loseImage.src = LOSE_IMAGE;
 var level1Image = new Image();
-level1Image.src = jsonObject.LEVEL_IMAGE_ONE;
+level1Image.src = LEVEL_IMAGE_ONE;
 var level2Image = new Image();
-level2Image.src = jsonObject.LEVEL_IMAGE_TWO;
+level2Image.src = LEVEL_IMAGE_TWO;
 var level3Image = new Image();
-level3Image.src = jsonObject.LEVEL_IMAGE_THREE;
+level3Image.src = LEVEL_IMAGE_THREE;
 
 //buttons
 var quitSel = new Image();
-quitSel.src = jsonObject.QUIT_SELECT_BUTTON;
+quitSel.src = QUIT_SELECT_BUTTON;
 var quitUn = new Image();
-quitUn.src = jsonObject.QUIT_UNSELECT_BUTTON;
+quitUn.src = QUIT_UNSELECT_BUTTON;
 var soundOffSel = new Image();
-soundOffSel.src = jsonObject.SOUND_OFF_SELECT_BUTTON;
+soundOffSel.src = SOUND_OFF_SELECT_BUTTON;
 var soundOffUn = new Image();
-soundOffUn.src = jsonObject.SOUND_OFF_UNSELECT_BUTTON;
+soundOffUn.src = SOUND_OFF_UNSELECT_BUTTON;
 var soundOnSel = new Image();
-soundOnSel.src = jsonObject.SOUND_ON_SELECT_BUTTON;
+soundOnSel.src = SOUND_ON_SELECT_BUTTON;
 var soundOnUn = new Image();
-soundOnUn.src = jsonObject.SOUND_ON_UNSELECT_BUTTON;
+soundOnUn.src = SOUND_ON_UNSELECT_BUTTON;
 var resumeSel = new Image();
-resumeSel.src = jsonObject.RESUME_SELECT_BUTTON;
+resumeSel.src = RESUME_SELECT_BUTTON;
 var resumeUn = new Image();
-resumeUn.src = jsonObject.RESUME_UNSELECT_BUTTON;
+resumeUn.src = RESUME_UNSELECT_BUTTON;
 
 
 
 //Sound initialization
-var soundSquash = new Audio(jsonObject.SQUASH_SOUND_PATH);
-var soundCrash = new Audio(jsonObject.CRASH_SOUND_PATH);
-var soundCop = new Audio(jsonObject.POLICE_SOUND_PATH);
-var soundTransit = new Audio(jsonObject.LEVEL_TRANSIT_SOUND_PATH);
-var musicGameplay = new Audio(jsonObject.GAME_MUSIC_PATH);
-var musicMenu = new Audio(jsonObject.MENU_MUSIC_PATH);
-var musicWin = new Audio(jsonObject.WIN_MUSIC_PATH);
-var musicLose = new Audio(jsonObject.LOSE_MUSIC_PATH);
+var soundSquash = new Audio(SQUASH_SOUND_PATH);
+var soundCrash = new Audio(CRASH_SOUND_PATH);
+var soundCop = new Audio(POLICE_SOUND_PATH);
+var soundTransit = new Audio(LEVEL_TRANSIT_SOUND_PATH);
+var musicGameplay = new Audio(GAME_MUSIC_PATH);
+var musicMenu = new Audio(MENU_MUSIC_PATH);
+var musicWin = new Audio(WIN_MUSIC_PATH);
+var musicLose = new Audio(LOSE_MUSIC_PATH);
 
 
 
@@ -204,7 +220,7 @@ var musicLose = new Audio(jsonObject.LOSE_MUSIC_PATH);
 function Player()
 {
 	this.playerImage = new Image();  
-	this.playerImage.src = jsonObject.PLAYER_IMAGE;// jsonObject.PLAYER_IMAGE; 
+	this.playerImage.src = PLAYER_IMAGE;// PLAYER_IMAGE; 
 	//this.playerImage.addEventListener("load", drawImage);
 	this.y = 410;
 	this.x = 320 - (this.playerImage.width/2);
@@ -226,9 +242,9 @@ function Frogs()
 	this.frogImage1 = new Image();
 	this.frogImage2 = new Image();
 	this.frogImageDead = new Image();  
-	this.frogImage1.src = jsonObject.FROG_IMAGE_ONE;
-	this.frogImage2.src = jsonObject.FROG_IMAGE_TWO; 
-	this.frogImageDead.src = jsonObject.DEAD_FROG_IMAGE; 
+	this.frogImage1.src = FROG_IMAGE_ONE;
+	this.frogImage2.src = FROG_IMAGE_TWO; 
+	this.frogImageDead.src = DEAD_FROG_IMAGE; 
 	this.y;
 	this.x;
 	this.left = (this.x) + 40;
@@ -260,13 +276,13 @@ function Cars()
 function TopScene()
 {
 	this.topImage = new Image();  
-	this.topImage.src = jsonObject.TOP_SCENE_IMAGE_ONE;
+	this.topImage.src = TOP_SCENE_IMAGE_ONE;
 	//this.topImage.addEventListener("load", drawImage); 
 	this.topImage2 = new Image();  
-	this.topImage2.src = jsonObject.TOP_SCENE_IMAGE_TWO; 
+	this.topImage2.src = TOP_SCENE_IMAGE_TWO; 
 	//this.topImage2.addEventListener("load", drawImage);
 	this.topImage3 = new Image();  
-	this.topImage3.src = jsonObject.TOP_SCENE_IMAGE_THREE;
+	this.topImage3.src = TOP_SCENE_IMAGE_THREE;
 	//this.topImage3.addEventListener("load", drawImage);
 	this.x = 0;
 	this.y = 0;		
@@ -276,13 +292,13 @@ function TopScene()
 function MedianScene()
 {
 	this.medianImage = new Image();  
-	this.medianImage.src = jsonObject.MEDIAN_SCENE_IMAGE_ONE;
+	this.medianImage.src = MEDIAN_SCENE_IMAGE_ONE;
 	//this.medianImage.addEventListener("load", drawImage); 
 	this.medianImage2 = new Image();  
-	this.medianImage2.src = jsonObject.MEDIAN_SCENE_IMAGE_TWO;
+	this.medianImage2.src = MEDIAN_SCENE_IMAGE_TWO;
 	//this.medianImage2.addEventListener("load", drawImage); 
 	this.medianImage3 = new Image();  
-	this.medianImage3.src = jsonObject.MEDIAN_SCENE_IMAGE_THREE;
+	this.medianImage3.src = MEDIAN_SCENE_IMAGE_THREE;
 	//this.medianImage3.addEventListener("load", drawImage); 
 	this.x = 0;
 	this.y = 275;
@@ -297,13 +313,13 @@ function MedianScene()
 function BottomScene()
 {
 	this.bottomImage = new Image();  
-	this.bottomImage.src = jsonObject.BOTTOM_SCENE_IMAGE_ONE;
+	this.bottomImage.src = BOTTOM_SCENE_IMAGE_ONE;
 	//this.bottomImage.addEventListener("load", drawImage); 
 	this.bottomImage2 = new Image(); 
-	this.bottomImage2.src = jsonObject.BOTTOM_SCENE_IMAGE_TWO;
+	this.bottomImage2.src = BOTTOM_SCENE_IMAGE_TWO;
 	//this.bottomImage2.addEventListener("load", drawImage);
 	this.bottomImage3 = new Image(); 
-	this.bottomImage3.src = jsonObject.BOTTOM_SCENE_IMAGE_THREE;
+	this.bottomImage3.src = BOTTOM_SCENE_IMAGE_THREE;
 	//this.bottomImage3.addEventListener("load", drawImage);
 	this.x = 0;
 	this.y = 450;		
@@ -335,25 +351,25 @@ for (var i = 0; i < frogProbability; i++)
 
 //Image initialization
 semiLeft = new Image();  
-semiLeft.src = jsonObject.LEFT_SEMI_IMAGE_ONE; 
+semiLeft.src = LEFT_SEMI_IMAGE_ONE; 
 //semiLeft.addEventListener("load", drawImage);
 carLeft = new Image();  
-carLeft.src = jsonObject.LEFT_CAR_IMAGE_ONE; 
+carLeft.src = LEFT_CAR_IMAGE_ONE; 
 //carLeft.addEventListener("load", drawImage);
 carRight1 = new Image();  
-carRight1.src = jsonObject.RIGHT_CAR_IMAGE_TWO; 
+carRight1.src = RIGHT_CAR_IMAGE_TWO; 
 //carRight1.addEventListener("load", drawImage);
 carRight0 = new Image();  
-carRight0.src = jsonObject.RIGHT_CAR_IMAGE_FIVE; 
+carRight0.src = RIGHT_CAR_IMAGE_FIVE; 
 //carRight0.addEventListener("load", drawImage);
 copRight = new Image();
-copRight.src = jsonObject.COP_CAR_IMAGE;
+copRight.src = COP_CAR_IMAGE;
 //copRight.addEventListener("load", drawImage);
 copRightRed = new Image();
-copRightRed.src = jsonObject.COP_CAR_RED;
+copRightRed.src = COP_CAR_RED;
 //copRightRed.addEventListener("load", drawImage);
 copRightBlue = new Image();
-copRightBlue.src = jsonObject.COP_CAR_BLUE;
+copRightBlue.src = COP_CAR_BLUE;
 //copRightBlue.addEventListener("load", drawImage);
 
 gameStatusInterval();
@@ -838,19 +854,19 @@ function levelMenu()
 		gameOn = false;
 		if(level == 1)
 		{
-			ctx.fillStyle = jsonObject.BLACK;
+			ctx.fillStyle = BLACK;
 			ctx.fillRect(0, 0, 640, 480);
 			ctx.drawImage(level1Image, 0, 0);
 		}	
 		if(level == 2)
 		{
-			ctx.fillStyle = jsonObject.BLACK;
+			ctx.fillStyle = BLACK;
 			ctx.fillRect(0, 0, 640, 480);
 			ctx.drawImage(level2Image, 0, 0);
 		}
 		if(level == 3)
 		{
-			ctx.fillStyle = jsonObject.BLACK;
+			ctx.fillStyle = BLACK;
 			ctx.fillRect(0, 0, 640, 480);
 			ctx.drawImage(level3Image, 0, 0);
 		}
@@ -914,7 +930,7 @@ function pauseMenu()
 		pauseSelection = 2;
 	}
 	//musicGameplay.pause();
-	ctx.fillStyle = jsonObject.BLACK;
+	ctx.fillStyle = BLACK;
 	ctx.fillRect(0, 0, 640, 480);
 	ctx.drawImage(pauseImage,0,0);
 	if (pauseSelection == 0)
@@ -1039,7 +1055,7 @@ function levelCheck()
 		{
 			musicWin.play();
 		}	
-		ctx.fillStyle = jsonObject.BLACK;
+		ctx.fillStyle = BLACK;
 		ctx.fillRect(0, 0, 640, 480);
 		ctx.drawImage(winImage, 0, 0);
 		gameOn = false;
@@ -1104,7 +1120,7 @@ function gameEnd()
 	{
 		musicLose.play();
 	}
-	ctx.fillStyle = jsonObject.BLACK;
+	ctx.fillStyle = BLACK;
 	ctx.fillRect(0, 0, 640, 480);
 	ctx.drawImage(loseImage, 0, 0);
 	gameOn = false;
@@ -1119,7 +1135,7 @@ function update()
 	if(!pause) 
 	{
 		
-		ctx.fillStyle = jsonObject.BLACK;
+		ctx.fillStyle = BLACK;
 		ctx.fillRect(0, 0, 640, 480);
 	   
 		ctx.drawImage(objectArray[0][0].playerImage, objectArray[0][0].x, objectArray[0][0].y);
@@ -1219,8 +1235,8 @@ function update()
 			}
 		}
 
-		ctx.font = jsonObject.HELVETICA;
-		ctx.fillStyle = jsonObject.WHITE;
+		ctx.font = HELVETICA;
+		ctx.fillStyle = WHITE;
 		ctx.fillText(SCORE_LABEL, 380, 50);
 		ctx.fillText(objectArray[0][0].score, 500, 50);
 		ctx.fillText(LIVES_LABEL, 380, 100);	
