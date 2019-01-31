@@ -563,7 +563,7 @@ $(document).keydown(function(e)
 	{		
 		vertical = 1;
 	}
-	else if(e.keyCode == JQueryKeyCodes.SPACE)
+	else if(e.keyCode == 32)
 	{
 		if(!gameOn)
 		{				
@@ -1257,7 +1257,8 @@ function update()
 		copAnimation();
 	}
 
-	if (pause) {
+	if (pause) 
+	{
 		pauseMenu();
 	}
 }
