@@ -46,40 +46,31 @@ var WHITE = "white";
 var SCORE_LABEL = "Score: ";
 var LIVES_LABEL = "Lives: ";
 
-function JQueryKeyCodes()
-{
-	this.LEFT = 37;
-	this.RIGHT = 39;
-	this.UP = 38;
-	this.DOWN = 40;
-	this.SPACE = 32; 
-	this.ESCAPE = 27;
-}
 
 // var jsonObject = {};
 
 // $.getJSON("constants.JSON", {}, function(json) {
-// 	console.log(json); // this will show the info it in firebug console
-// 	alert("!!");
-// });
-
-// function getJSON()
-// {
-// 	var xmlhttp = new XMLHttpRequest();
-
-// 	alert("!s");
-// 	xmlhttp.onreadystatechange = function() 
-// 	{
-// 		if(this.readyState == 4 && this.status == 200) 
-// 		{
-// 			settings = JSON.parse(this.responseText);
-// 			jsonObject = settings;
-// 			console.log(jsonObject)
+	// 	console.log(json); // this will show the info it in firebug console
+	// 	alert("!!");
+	// });
+	
+	// function getJSON()
+	// {
+		// 	var xmlhttp = new XMLHttpRequest();
+		
+		// 	alert("!s");
+		// 	xmlhttp.onreadystatechange = function() 
+		// 	{
+			// 		if(this.readyState == 4 && this.status == 200) 
+			// 		{
+				// 			settings = JSON.parse(this.responseText);
+				// 			jsonObject = settings;
+				// 			console.log(jsonObject)
 // 		}
 // 	};
 
 // 	var file = "constants.JSON";
-	
+
 // 	xmlhttp.open("GET", file, true);
 // 	xmlhttp.responseType = 'json';
 // 	xmlhttp.send();
@@ -89,60 +80,64 @@ function JQueryKeyCodes()
 
 // getJSON();
 
-
-
-
-
 // function loadJSON(callback) 
 // {   
-//     var xobj = new XMLHttpRequest();
-// 	xobj.overrideMimeType("application/json");
-// 	xobj.open('GET', 'constants.JSON', true);
+	//     var xobj = new XMLHttpRequest();
+	// 	xobj.overrideMimeType("application/json");
+	// 	xobj.open('GET', 'constants.JSON', true);
 	
-// 	xobj.onreadystatechange = function () 
-// 	{
-// 		if (xobj.readyState == 4 && xobj.status == "200") 
-// 		{
-// 			callback(xobj.responseText);
-// 		}
-// 	};
-	
-//     xobj.send(null);  
-// }
-
-// function loadConstants() 
+	// 	xobj.onreadystatechange = function () 
+	// 	{
+		// 		if (xobj.readyState == 4 && xobj.status == "200") 
+		// 		{
+			// 			callback(xobj.responseText);
+			// 		}
+			// 	};
+			
+			//     xobj.send(null);  
+			// }
+			
+			// function loadConstants() 
 // {
-// 	loadJSON(function(response) 
-// 	{
-// 		var actual_JSON = JSON.parse(response);
+	// 	loadJSON(function(response) 
+	// 	{
+		// 		var actual_JSON = JSON.parse(response);
 		
 		
-// 		//    e = actual_JSON;
+		// 		//    e = actual_JSON;
 		
-// 		alert("!");
-// 		return actual_JSON;
-// 	});
-// }
-
-// jsonObject = loadConstants();
-// console.log(jsonObject);
-
-// function loadJSON(callback) 
-// {   
-//     var xobj = new XMLHttpRequest();
+		// 		alert("!");
+		// 		return actual_JSON;
+		// 	});
+		// }
+		
+		// jsonObject = loadConstants();
+		// console.log(jsonObject);
+		
+		// function loadJSON(callback) 
+		// {   
+			//     var xobj = new XMLHttpRequest();
 // 	xobj.overrideMimeType("application/json");
 // 	xobj.open('GET', 'constants.JSON', true);
-	
+
 // 	xobj.onreadystatechange = function () 
 // 	{
-// 		if (xobj.readyState == 4 && xobj.status == "200") 
-// 		{
-// 			callback(xobj.responseText);
-// 		}
-// 	};
-	
-//     xobj.send(null);  
-// }
+	// 		if (xobj.readyState == 4 && xobj.status == "200") 
+	// 		{
+		// 			callback(xobj.responseText);
+		// 		}
+		// 	};
+		
+		//     xobj.send(null);  
+		// }
+		
+var LEFT = 37
+var RIGHT = 39;
+var UP = 38;
+var DOWN = 40;
+var SPACE = 32
+var ESCAPE = 27;
+var ENTER = 13;
 
 var pauseSelection = 0;
 var soundOn = true;
@@ -200,8 +195,6 @@ resumeSel.src = RESUME_SELECT_BUTTON;
 var resumeUn = new Image();
 resumeUn.src = RESUME_UNSELECT_BUTTON;
 
-
-
 //Sound initialization
 var soundSquash = new Audio(SQUASH_SOUND_PATH);
 var soundCrash = new Audio(CRASH_SOUND_PATH);
@@ -212,9 +205,6 @@ var musicMenu = new Audio(MENU_MUSIC_PATH);
 var musicWin = new Audio(WIN_MUSIC_PATH);
 var musicLose = new Audio(LOSE_MUSIC_PATH);
 
-
-
-// jsonObject = JSON.parse("constants.json");
 
 //The player struct.	
 function Player()
@@ -232,8 +222,6 @@ function Player()
 	this.score;	
 	this.isCop = false;
 }
-
-
 
 //The Frogs struct has two images which are cycled through to simulate frog motion and one image
 //for a dead frog when it gets it.
@@ -270,7 +258,6 @@ function Cars()
 	this.speed;
 	this.isCop = false;
 }
-
 
 //This is a struct that creates the top of the scene.
 function TopScene()
@@ -375,8 +362,6 @@ copRightBlue.src = COP_CAR_BLUE;
 gameStatusInterval();
 
 //Variables that are used globally, scrollSpeed changes the speed of the scenery scrolling.	
-
-
 
 //Variable initializations for initial game conditions.
 objectArray[0][0].score = 0;
@@ -547,23 +532,23 @@ function copBlue()
 //JQuery function that senses keystrokes.  
 $(document).keydown(function(e) 
 {
-	if(e.keyCode == 37)
+	if(e.keyCode == LEFT)
 	{
 		horizontal = -1;
 	}
-	else if(e.keyCode == 39)	
+	else if(e.keyCode == RIGHT)	
 	{	
 		horizontal = 1;
 	}
-	else if(e.keyCode == 38)
+	else if(e.keyCode == UP)
 	{
 		 vertical = -1;
 	}
-	else if(e.keyCode == 40)
+	else if(e.keyCode == DOWN)
 	{		
 		vertical = 1;
 	}
-	else if(e.keyCode == 32)
+	else if(e.keyCode == SPACE)
 	{
 		if(!gameOn)
 		{				
@@ -580,11 +565,11 @@ $(document).keydown(function(e)
 			}
 		}
 	}
-	if (e.keyCode == 32 && pause) 
+	if (e.keyCode == SPACE && pause) 
 	{
 		pause = false;
 	}
-	else if (e.keyCode == 32 && !pause && gameOn) 
+	else if (e.keyCode == SPACE && !pause && gameOn) 
 	{
 		pauseSelection = 0;
 		pause = true;
@@ -596,11 +581,11 @@ $(document).keydown(function(e)
 
 $(document).keyup(function(e) 
 {
-	if(e.keyCode == 37 || e.keyCode == 39)
+	if(e.keyCode == LEFT || e.keyCode == RIGHT)
 	{
 		horizontal = 0;
 	}
-	if(e.keyCode == 38 || e.keyCode == 40)
+	if(e.keyCode == UP || e.keyCode == DOWN)
 	{
 		vertical = 0;
 	}
@@ -751,7 +736,7 @@ function frogPosition(Frog)
 	{
 		Frog.alive = true;
 		Frog.y = yNum;
-		Frog.x = Math.random()*100 + 900;
+		Frog.x = Math.random() * 100 + 900;
 	}
 	if(Frog.y <= 140)
 	{
@@ -878,17 +863,17 @@ function pauseMenu()
 	console.log(pauseSelection);
 	$(document).keydown(function(e) 
 	{
-		if((e.keyCode == 38) && !keyPressed)
+		if((e.keyCode == UP) && !keyPressed)
 		{
 			pauseSelection--;
 			keyPressed = true;
 		}
-		if((e.keyCode == 40) && !keyPressed)
+		if((e.keyCode == DOWN) && !keyPressed)
 		{
 			pauseSelection++;
 			keyPressed = true;
 		}
-		if((e.keyCode == 13) && !keyPressed)
+		if((e.keyCode == ENTER) && !keyPressed)
 		{
 			resumeKey = true;
 			quitKey = true;
@@ -906,15 +891,15 @@ function pauseMenu()
 	});
 	$(document).keyup(function(e) 
 	{
-		if(e.keyCode == 38)
+		if(e.keyCode == UP)
 		{
 			keyPressed = false;
 		}
-		if(e.keyCode == 40)
+		if(e.keyCode == DOWN)
 		{
 			keyPressed = false;
 		}
-		if(e.keyCode == 13)
+		if(e.keyCode == ENTER)
 		{
 			resumeKey = false;
 			quitKey = false;
@@ -1046,7 +1031,7 @@ function levelCheck()
 
 		for(i = 0; i < objectArray[1].length; i++)
 		{
-			objectArray[1][i].x = (Math.random()*640 + 700);
+			objectArray[1][i].x = (Math.random() * 640 + 700);
 		}
 	}
 	else if((objectArray[0][0].score >= 100) && (level == 3))
