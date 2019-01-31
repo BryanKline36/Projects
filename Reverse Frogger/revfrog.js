@@ -1,3 +1,6 @@
+
+// Asset path constants
+
 var SQUASH_SOUND_PATH = "audio/squash.wav";
 var CRASH_SOUND_PATH = "audio/crash.wav";
 var POLICE_SOUND_PATH = "audio/police.wav";
@@ -40,11 +43,139 @@ var SOUND_ON_SELECT_BUTTON = "images/buttons/SoundOnSel.png";
 var SOUND_ON_UNSELECT_BUTTON = "images/buttons/SoundOnUn.png";
 var RESUME_SELECT_BUTTON = "images/buttons/ResumeSel.png";
 var RESUME_UNSELECT_BUTTON = "images/buttons/ResumeUn.png";
+
+
 var BLACK = "#000000";
 var HELVETICA = "40px Helvetica";
 var WHITE = "white";
 var SCORE_LABEL = "Score: ";
 var LIVES_LABEL = "Lives: ";
+
+// JQuery key code constants
+
+var LEFT = 37
+var RIGHT = 39;
+var UP = 38;
+var DOWN = 40;
+var SPACE = 32
+var ESCAPE = 27;
+var ENTER = 13;
+
+var pauseSelection = 0;
+var soundOn = true;
+var pause = false;
+var dt = 1000/30.0;
+var scrollSpeed = 0.4;
+var horizontal = 0;
+var vertical = 0;
+var level = 1;
+var e;
+var gameOn = true;
+var carCountDifficulty = 150;
+var carCount = 150;
+var frogCount = 150;
+var frogCountDifficulty = 150;
+var musicFlag = 0;
+var startFlag = false;
+var keyPressed = false;
+var soundKey = false;
+var resumeKey = false;
+var quitKey = false;
+
+//Menus
+var pauseImage = new Image();
+pauseImage.src = PAUSE_IMAGE;
+var winImage = new Image();
+winImage.src = WIN_IMAGE;
+var loseImage = new Image();
+loseImage.src = LOSE_IMAGE;
+var level1Image = new Image();
+level1Image.src = LEVEL_IMAGE_ONE;
+var level2Image = new Image();
+level2Image.src = LEVEL_IMAGE_TWO;
+var level3Image = new Image();
+level3Image.src = LEVEL_IMAGE_THREE;
+
+//buttons
+var quitSel = new Image();
+quitSel.src = QUIT_SELECT_BUTTON;
+var quitUn = new Image();
+quitUn.src = QUIT_UNSELECT_BUTTON;
+var soundOffSel = new Image();
+soundOffSel.src = SOUND_OFF_SELECT_BUTTON;
+var soundOffUn = new Image();
+soundOffUn.src = SOUND_OFF_UNSELECT_BUTTON;
+var soundOnSel = new Image();
+soundOnSel.src = SOUND_ON_SELECT_BUTTON;
+var soundOnUn = new Image();
+soundOnUn.src = SOUND_ON_UNSELECT_BUTTON;
+var resumeSel = new Image();
+resumeSel.src = RESUME_SELECT_BUTTON;
+var resumeUn = new Image();
+resumeUn.src = RESUME_UNSELECT_BUTTON;
+
+//Sound initialization
+var soundSquash = new Audio(SQUASH_SOUND_PATH);
+var soundCrash = new Audio(CRASH_SOUND_PATH);
+var soundCop = new Audio(POLICE_SOUND_PATH);
+var soundTransit = new Audio(LEVEL_TRANSIT_SOUND_PATH);
+var musicGameplay = new Audio(GAME_MUSIC_PATH);
+var musicMenu = new Audio(MENU_MUSIC_PATH);
+var musicWin = new Audio(WIN_MUSIC_PATH);
+var musicLose = new Audio(LOSE_MUSIC_PATH);
+
+
+//Objects of the above struct types are created here.
+var SceneTop = new TopScene();
+var SceneMedian = new MedianScene();
+var SceneBottom = new BottomScene();
+
+var frogProbability = 0.75;
+var carProbability = 0.5;
+var copProbability = 0;
+var carSpeed = 7.5;
+
+//Image initialization
+semiLeft = new Image();  
+semiLeft.src = LEFT_SEMI_IMAGE_ONE; 
+//semiLeft.addEventListener("load", drawImage);
+carLeft = new Image();  
+carLeft.src = LEFT_CAR_IMAGE_ONE; 
+//carLeft.addEventListener("load", drawImage);
+carRight1 = new Image();  
+carRight1.src = RIGHT_CAR_IMAGE_TWO; 
+//carRight1.addEventListener("load", drawImage);
+carRight0 = new Image();  
+carRight0.src = RIGHT_CAR_IMAGE_FIVE; 
+//carRight0.addEventListener("load", drawImage);
+copRight = new Image();
+copRight.src = COP_CAR_IMAGE;
+//copRight.addEventListener("load", drawImage);
+copRightRed = new Image();
+copRightRed.src = COP_CAR_RED;
+//copRightRed.addEventListener("load", drawImage);
+copRightBlue = new Image();
+copRightBlue.src = COP_CAR_BLUE;
+//copRightBlue.addEventListener("load", drawImage);
+
+var map = document.getElementById("map"); 
+var ctx = map.getContext("2d");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // var jsonObject = {};
@@ -130,87 +261,25 @@ var LIVES_LABEL = "Lives: ";
 		
 		//     xobj.send(null);  
 		// }
-		
-var LEFT = 37
-var RIGHT = 39;
-var UP = 38;
-var DOWN = 40;
-var SPACE = 32
-var ESCAPE = 27;
-var ENTER = 13;
 
-var pauseSelection = 0;
-var soundOn = true;
-var pause = false;
-var dt = 1000/30.0;
-var scrollSpeed = 0.4;
-var horizontal = 0;
-var vertical = 0;
-var level = 1;
-var e;
-var gameOn = true;
-var carCountDifficulty = 150;
-var carCount = 150;
-var frogCount = 150;
-var frogCountDifficulty = 150;
-var musicFlag = 0;
-var startFlag = false;
-var keyPressed = false;
-var soundKey = false;
-var resumeKey = false;
-var quitKey = false;
 
-var map = document.getElementById("map"); 
-var ctx = map.getContext("2d");
 
-//Menus
-var pauseImage = new Image();
-pauseImage.src = PAUSE_IMAGE;
-var winImage = new Image();
-winImage.src = WIN_IMAGE;
-var loseImage = new Image();
-loseImage.src = LOSE_IMAGE;
-var level1Image = new Image();
-level1Image.src = LEVEL_IMAGE_ONE;
-var level2Image = new Image();
-level2Image.src = LEVEL_IMAGE_TWO;
-var level3Image = new Image();
-level3Image.src = LEVEL_IMAGE_THREE;
 
-//buttons
-var quitSel = new Image();
-quitSel.src = QUIT_SELECT_BUTTON;
-var quitUn = new Image();
-quitUn.src = QUIT_UNSELECT_BUTTON;
-var soundOffSel = new Image();
-soundOffSel.src = SOUND_OFF_SELECT_BUTTON;
-var soundOffUn = new Image();
-soundOffUn.src = SOUND_OFF_UNSELECT_BUTTON;
-var soundOnSel = new Image();
-soundOnSel.src = SOUND_ON_SELECT_BUTTON;
-var soundOnUn = new Image();
-soundOnUn.src = SOUND_ON_UNSELECT_BUTTON;
-var resumeSel = new Image();
-resumeSel.src = RESUME_SELECT_BUTTON;
-var resumeUn = new Image();
-resumeUn.src = RESUME_UNSELECT_BUTTON;
 
-//Sound initialization
-var soundSquash = new Audio(SQUASH_SOUND_PATH);
-var soundCrash = new Audio(CRASH_SOUND_PATH);
-var soundCop = new Audio(POLICE_SOUND_PATH);
-var soundTransit = new Audio(LEVEL_TRANSIT_SOUND_PATH);
-var musicGameplay = new Audio(GAME_MUSIC_PATH);
-var musicMenu = new Audio(MENU_MUSIC_PATH);
-var musicWin = new Audio(WIN_MUSIC_PATH);
-var musicLose = new Audio(LOSE_MUSIC_PATH);
+
+
+
+
+
+
+
 
 
 //The player struct.	
 function Player()
 {
 	this.playerImage = new Image();  
-	this.playerImage.src = PLAYER_IMAGE;// PLAYER_IMAGE; 
+	this.playerImage.src = PLAYER_IMAGE; 
 	//this.playerImage.addEventListener("load", drawImage);
 	this.y = 410;
 	this.x = 320 - (this.playerImage.width/2);
@@ -312,14 +381,29 @@ function BottomScene()
 	this.y = 450;		
 }
 
-//Objects of the above struct types are created here.
-var SceneTop = new TopScene();
-var SceneMedian = new MedianScene();
-var SceneBottom = new BottomScene();
-var frogProbability = 0.75;
-var carProbability = 0.5;
-var copProbability = 0;
-var carSpeed = 7.5;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //in objectArray, 0 = player, 1 = frog, 2 = cars
 //These lines initialize the array and its subarrays:
@@ -336,28 +420,6 @@ for (var i = 0; i < frogProbability; i++)
 
 
 
-//Image initialization
-semiLeft = new Image();  
-semiLeft.src = LEFT_SEMI_IMAGE_ONE; 
-//semiLeft.addEventListener("load", drawImage);
-carLeft = new Image();  
-carLeft.src = LEFT_CAR_IMAGE_ONE; 
-//carLeft.addEventListener("load", drawImage);
-carRight1 = new Image();  
-carRight1.src = RIGHT_CAR_IMAGE_TWO; 
-//carRight1.addEventListener("load", drawImage);
-carRight0 = new Image();  
-carRight0.src = RIGHT_CAR_IMAGE_FIVE; 
-//carRight0.addEventListener("load", drawImage);
-copRight = new Image();
-copRight.src = COP_CAR_IMAGE;
-//copRight.addEventListener("load", drawImage);
-copRightRed = new Image();
-copRightRed.src = COP_CAR_RED;
-//copRightRed.addEventListener("load", drawImage);
-copRightBlue = new Image();
-copRightBlue.src = COP_CAR_BLUE;
-//copRightBlue.addEventListener("load", drawImage);
 
 gameStatusInterval();
 
@@ -527,7 +589,31 @@ function copBlue()
 	copImage = copRightBlue;
 }
 
+
 //Functions:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //JQuery function that senses keystrokes.  
 $(document).keydown(function(e) 
@@ -590,6 +676,36 @@ $(document).keyup(function(e)
 		vertical = 0;
 	}
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //Function that changes game state depending on keystrokes sensed.
 function controls()
