@@ -158,6 +158,11 @@ copRightBlue = new Image();
 copRightBlue.src = COP_CAR_BLUE;
 //copRightBlue.addEventListener("load", drawImage);
 
+var SCREEN_WIDTH = SCREEN_WIDTH;
+var SCREEN_HEIGHT = SCREEN_HEIGHT;
+var START_X_POSITION = START_X_POSITION;
+var START_Y_POSITION = START_Y_POSITION;
+
 var map = document.getElementById("map"); 
 var ctx = map.getContext("2d");
 
@@ -281,8 +286,8 @@ function Player()
 	this.playerImage = new Image();  
 	this.playerImage.src = PLAYER_IMAGE; 
 	//this.playerImage.addEventListener("load", drawImage);
-	this.y = 410;
-	this.x = 320 - (this.playerImage.width/2);
+	this.y = START_Y_POSITION;
+	this.x = START_X_POSITION - (this.playerImage.width/2);
 	this.left = this.x;
 	this.right = (this.x + this.playerImage.width);
 	this.top = this.y;
@@ -440,7 +445,7 @@ for(i = 0; i < frogProbability; i++)
 	{
 		yNum += 80;
 	}
-	objectArray[1][i].x = (Math.random()* 640) + Math.random() * 100;
+	objectArray[1][i].x = (Math.random()* SCREEN_WIDTH) + Math.random() * 100;
 	objectArray[1][i].y = yNum;
 }
 
@@ -453,7 +458,7 @@ function carManager()
 	{
 		if(i != objectArray[2].length - 1) 
 		{
-			if(objectArray[2][i].x < -100 || objectArray[2][i].x > 640) 
+			if(objectArray[2][i].x < -100 || objectArray[2][i].x > SCREEN_WIDTH) 
 			{
 				objectArray[2][i] = objectArray[2][i + 1];
 				objectArray[2][i + 1] = 0;
@@ -465,7 +470,7 @@ function carManager()
 				objectArray[2][i + 1] = 0;	
 			}
 		}
-		else if(objectArray[2][i].x < -100 || objectArray[2][i].x > 640) 
+		else if(objectArray[2][i].x < -100 || objectArray[2][i].x > SCREEN_WIDTH) 
 		{
 			lengthDown++;
 		}
@@ -485,7 +490,7 @@ function carManager()
 			objectArray[2][currentCarIndex] = new Cars();
 			objectArray[2][currentCarIndex].direction = -1;
 			objectArray[2][currentCarIndex].speed = carSpeed;
-			objectArray[2][currentCarIndex].x = 640;
+			objectArray[2][currentCarIndex].x = SCREEN_WIDTH;
 			objectArray[2][currentCarIndex].y = 160;
 
 			if(Math.random() * 100 < 50) 
@@ -503,7 +508,7 @@ function carManager()
 			objectArray[2][currentCarIndex] = new Cars();
 			objectArray[2][currentCarIndex].direction = -1;
 			objectArray[2][currentCarIndex].speed = carSpeed;
-			objectArray[2][currentCarIndex].x = 640;
+			objectArray[2][currentCarIndex].x = SCREEN_WIDTH;
 			objectArray[2][currentCarIndex].y = 220;
 
 			if(Math.random() * 100 < 50) 
@@ -639,15 +644,15 @@ $(document).keydown(function(e)
 		if(!gameOn)
 		{				
 			gameOn = true;
-			objectArray[0][0].x = 320 - (objectArray[0][0].playerImage.width/1);
-			objectArray[0][0].y = 410;
+			objectArray[0][0].x = START_X_POSITION - (objectArray[0][0].playerImage.width/1);
+			objectArray[0][0].y = START_Y_POSITION;
 			SceneTop.x = 0;
 			SceneMedian.x = 0;
 			SceneBottom.x = 0;
 
 			for(i = 0; i < objectArray[1].length; i++)
 			{
-				objectArray[1][i].x = (Math.random() * 640 + 700);
+				objectArray[1][i].x = (Math.random() * SCREEN_WIDTH + 700);
 			}
 		}
 	}
@@ -734,9 +739,9 @@ function controls()
 	{
 		objectArray[0][0].x = 570;
 	}
-	if(objectArray[0][0].y >= 410)
+	if(objectArray[0][0].y >= START_Y_POSITION)
 	{
-		objectArray[0][0].y = 410;
+		objectArray[0][0].y = START_Y_POSITION;
 	}
 	if(objectArray[0][0].y <= 150)
 	{
@@ -749,7 +754,7 @@ function controls()
 function scroll()
 {
 	SceneTop.x -=  scrollSpeed * dt;
-	if(SceneTop.x < -(SceneTop.topImage.width - 640))
+	if(SceneTop.x < -(SceneTop.topImage.width - SCREEN_WIDTH))
 	{
 		SceneTop.x = 0;
 	}
@@ -757,11 +762,11 @@ function scroll()
 	SceneMedian.x -=  scrollSpeed * dt;
 	if(SceneMedian.x < -(SceneMedian.medianImage.width + 300))
 	{
-		SceneMedian.x = 640;
+		SceneMedian.x = SCREEN_WIDTH;
 	}
 
 	SceneBottom.x -=  scrollSpeed * dt;
-	if(SceneBottom.x < -(SceneBottom.bottomImage.width - 640))
+	if(SceneBottom.x < -(SceneBottom.bottomImage.width - SCREEN_WIDTH))
 	{
 		SceneBottom.x = 0;
 	}	
@@ -956,19 +961,19 @@ function levelMenu()
 		if(level == 1)
 		{
 			ctx.fillStyle = BLACK;
-			ctx.fillRect(0, 0, 640, 480);
+			ctx.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 			ctx.drawImage(level1Image, 0, 0);
 		}	
 		if(level == 2)
 		{
 			ctx.fillStyle = BLACK;
-			ctx.fillRect(0, 0, 640, 480);
+			ctx.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 			ctx.drawImage(level2Image, 0, 0);
 		}
 		if(level == 3)
 		{
 			ctx.fillStyle = BLACK;
-			ctx.fillRect(0, 0, 640, 480);
+			ctx.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 			ctx.drawImage(level3Image, 0, 0);
 		}
 		setTimeout(waitMenu, 3000);
@@ -1032,7 +1037,7 @@ function pauseMenu()
 	}
 	//musicGameplay.pause();
 	ctx.fillStyle = BLACK;
-	ctx.fillRect(0, 0, 640, 480);
+	ctx.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 	ctx.drawImage(pauseImage,0,0);
 	if (pauseSelection == 0)
 	{
@@ -1113,7 +1118,7 @@ function levelCheck()
 		levelMenu();
 		scrollSpeed = 0.50;
 		objectArray[0][0].x = 20;
-		objectArray[0][0].y = 410;
+		objectArray[0][0].y = START_Y_POSITION;
 		SceneTop.x = 0;
 		SceneMedian.x = 0;
 		SceneBottom.x = 0;
@@ -1125,7 +1130,7 @@ function levelCheck()
 		//frogCountDifficulty = 200;
 		for(i = 0; i < objectArray[1].length; i++)
 		{
-			objectArray[1][i].x = (Math.random()*640 + 700);
+			objectArray[1][i].x = (Math.random()*SCREEN_WIDTH + 700);
 		}
 	}
 	else if((objectArray[0][0].score >= 30) && (level == 2))
@@ -1134,7 +1139,7 @@ function levelCheck()
 		levelMenu();
 		scrollSpeed = 0.7;
 		objectArray[0][0].x = 20;
-		objectArray[0][0].y = 410;
+		objectArray[0][0].y = START_Y_POSITION;
 		SceneTop.x = 0;
 		SceneMedian.x = 0;
 		SceneBottom.x = 0;
@@ -1147,7 +1152,7 @@ function levelCheck()
 
 		for(i = 0; i < objectArray[1].length; i++)
 		{
-			objectArray[1][i].x = (Math.random() * 640 + 700);
+			objectArray[1][i].x = (Math.random() * SCREEN_WIDTH + 700);
 		}
 	}
 	else if((objectArray[0][0].score >= 100) && (level == 3))
@@ -1157,7 +1162,7 @@ function levelCheck()
 			musicWin.play();
 		}	
 		ctx.fillStyle = BLACK;
-		ctx.fillRect(0, 0, 640, 480);
+		ctx.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 		ctx.drawImage(winImage, 0, 0);
 		gameOn = false;
 	}
@@ -1202,7 +1207,7 @@ function collision(R2, R1)
 //which allows update to be interrupted.
 function gameStatusInterval()	
 { 
-  	setInterval(gameStatus, 1000/30.0); 
+  	setInterval(gameStatus, 100.0/3); 
 	
 }
 
@@ -1222,7 +1227,7 @@ function gameEnd()
 		musicLose.play();
 	}
 	ctx.fillStyle = BLACK;
-	ctx.fillRect(0, 0, 640, 480);
+	ctx.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 	ctx.drawImage(loseImage, 0, 0);
 	gameOn = false;
 }
@@ -1237,7 +1242,7 @@ function update()
 	{
 		
 		ctx.fillStyle = BLACK;
-		ctx.fillRect(0, 0, 640, 480);
+		ctx.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 	   
 		ctx.drawImage(objectArray[0][0].playerImage, objectArray[0][0].x, objectArray[0][0].y);
 		controls();
