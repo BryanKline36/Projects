@@ -1,6 +1,5 @@
 
 // Asset path constants
-
 var SQUASH_SOUND_PATH = "audio/squash.wav";
 var CRASH_SOUND_PATH = "audio/crash.wav";
 var POLICE_SOUND_PATH = "audio/police.wav";
@@ -44,15 +43,7 @@ var SOUND_ON_UNSELECT_BUTTON = "images/buttons/SoundOnUn.png";
 var RESUME_SELECT_BUTTON = "images/buttons/ResumeSel.png";
 var RESUME_UNSELECT_BUTTON = "images/buttons/ResumeUn.png";
 
-
-var BLACK = "#000000";
-var HELVETICA = "40px Helvetica";
-var WHITE = "white";
-var SCORE_LABEL = "Score: ";
-var LIVES_LABEL = "Lives: ";
-
 // JQuery key code constants
-
 var LEFT = 37
 var RIGHT = 39;
 var UP = 38;
@@ -61,6 +52,14 @@ var SPACE = 32
 var ESCAPE = 27;
 var ENTER = 13;
 
+// Game value constants
+var BLACK = "#000000";
+var HELVETICA = "40px Helvetica";
+var WHITE = "white";
+var SCORE_LABEL = "Score: ";
+var LIVES_LABEL = "Lives: ";
+
+// Game value variables
 var pauseSelection = 0;
 var soundOn = true;
 var pause = false;
@@ -81,8 +80,16 @@ var keyPressed = false;
 var soundKey = false;
 var resumeKey = false;
 var quitKey = false;
+var frogProbability = 0.75;
+var carProbability = 0.5;
+var copProbability = 0;
+var carSpeed = 7.5;
+var SCREEN_WIDTH = SCREEN_WIDTH;
+var SCREEN_HEIGHT = SCREEN_HEIGHT;
+var START_X_POSITION = START_X_POSITION;
+var START_Y_POSITION = START_Y_POSITION;
 
-//Menus
+//Menus images
 var pauseImage = new Image();
 pauseImage.src = PAUSE_IMAGE;
 var winImage = new Image();
@@ -96,7 +103,7 @@ level2Image.src = LEVEL_IMAGE_TWO;
 var level3Image = new Image();
 level3Image.src = LEVEL_IMAGE_THREE;
 
-//buttons
+//Button images
 var quitSel = new Image();
 quitSel.src = QUIT_SELECT_BUTTON;
 var quitUn = new Image();
@@ -114,7 +121,7 @@ resumeSel.src = RESUME_SELECT_BUTTON;
 var resumeUn = new Image();
 resumeUn.src = RESUME_UNSELECT_BUTTON;
 
-//Sound initialization
+//Game sounds
 var soundSquash = new Audio(SQUASH_SOUND_PATH);
 var soundCrash = new Audio(CRASH_SOUND_PATH);
 var soundCop = new Audio(POLICE_SOUND_PATH);
@@ -124,168 +131,35 @@ var musicMenu = new Audio(MENU_MUSIC_PATH);
 var musicWin = new Audio(WIN_MUSIC_PATH);
 var musicLose = new Audio(LOSE_MUSIC_PATH);
 
-
-//Objects of the above object types are created here.
-var SceneTop = new TopScene();
-var SceneMedian = new MedianScene();
-var SceneBottom = new BottomScene();
-
-var frogProbability = 0.75;
-var carProbability = 0.5;
-var copProbability = 0;
-var carSpeed = 7.5;
-
-//Image initialization
+//Car images
 semiLeft = new Image();  
 semiLeft.src = LEFT_SEMI_IMAGE_ONE; 
-//semiLeft.addEventListener("load", drawImage);
 carLeft = new Image();  
 carLeft.src = LEFT_CAR_IMAGE_ONE; 
-//carLeft.addEventListener("load", drawImage);
 carRight1 = new Image();  
 carRight1.src = RIGHT_CAR_IMAGE_TWO; 
-//carRight1.addEventListener("load", drawImage);
 carRight0 = new Image();  
 carRight0.src = RIGHT_CAR_IMAGE_FIVE; 
-//carRight0.addEventListener("load", drawImage);
 copRight = new Image();
 copRight.src = COP_CAR_IMAGE;
-//copRight.addEventListener("load", drawImage);
 copRightRed = new Image();
 copRightRed.src = COP_CAR_RED;
-//copRightRed.addEventListener("load", drawImage);
 copRightBlue = new Image();
 copRightBlue.src = COP_CAR_BLUE;
-//copRightBlue.addEventListener("load", drawImage);
 
-var SCREEN_WIDTH = SCREEN_WIDTH;
-var SCREEN_HEIGHT = SCREEN_HEIGHT;
-var START_X_POSITION = START_X_POSITION;
-var START_Y_POSITION = START_Y_POSITION;
-
+//Canvas creation
 var map = document.getElementById("map"); 
 var ctx = map.getContext("2d");
 
 
+//Game objects
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// var jsonObject = {};
-
-// $.getJSON("constants.JSON", {}, function(json) {
-	// 	console.log(json); // this will show the info it in firebug console
-	// 	alert("!!");
-	// });
-	
-	// function getJSON()
-	// {
-		// 	var xmlhttp = new XMLHttpRequest();
-		
-		// 	alert("!s");
-		// 	xmlhttp.onreadystatechange = function() 
-		// 	{
-			// 		if(this.readyState == 4 && this.status == 200) 
-			// 		{
-				// 			settings = JSON.parse(this.responseText);
-				// 			jsonObject = settings;
-				// 			console.log(jsonObject)
-// 		}
-// 	};
-
-// 	var file = "constants.JSON";
-
-// 	xmlhttp.open("GET", file, true);
-// 	xmlhttp.responseType = 'json';
-// 	xmlhttp.send();
-// }
-
-//console.log(jsonObject)
-
-// getJSON();
-
-// function loadJSON(callback) 
-// {   
-	//     var xobj = new XMLHttpRequest();
-	// 	xobj.overrideMimeType("application/json");
-	// 	xobj.open('GET', 'constants.JSON', true);
-	
-	// 	xobj.onreadystatechange = function () 
-	// 	{
-		// 		if (xobj.readyState == 4 && xobj.status == "200") 
-		// 		{
-			// 			callback(xobj.responseText);
-			// 		}
-			// 	};
-			
-			//     xobj.send(null);  
-			// }
-			
-			// function loadConstants() 
-// {
-	// 	loadJSON(function(response) 
-	// 	{
-		// 		var actual_JSON = JSON.parse(response);
-		
-		
-		// 		//    e = actual_JSON;
-		
-		// 		alert("!");
-		// 		return actual_JSON;
-		// 	});
-		// }
-		
-		// jsonObject = loadConstants();
-		// console.log(jsonObject);
-		
-		// function loadJSON(callback) 
-		// {   
-			//     var xobj = new XMLHttpRequest();
-// 	xobj.overrideMimeType("application/json");
-// 	xobj.open('GET', 'constants.JSON', true);
-
-// 	xobj.onreadystatechange = function () 
-// 	{
-	// 		if (xobj.readyState == 4 && xobj.status == "200") 
-	// 		{
-		// 			callback(xobj.responseText);
-		// 		}
-		// 	};
-		
-		//     xobj.send(null);  
-		// }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//The player object.	
+//The player object	
 function Player()
 {
 	this.playerImage = new Image();  
 	this.playerImage.src = PLAYER_IMAGE; 
-	//this.playerImage.addEventListener("load", drawImage);
 	this.y = START_Y_POSITION;
 	this.x = START_X_POSITION - (this.playerImage.width/2);
 	this.left = this.x;
@@ -297,8 +171,7 @@ function Player()
 	this.isCop = false;
 }
 
-//The Frogs object has two images which are cycled through to simulate frog motion and one image
-//for a dead frog when it gets it.
+//The frog object
 function Frogs()
 {
 	this.frogImage1 = new Image();
@@ -317,8 +190,7 @@ function Frogs()
 	this.isCop = false;
 }
 
-//The Cars object has four images for different types cars, these could be put in a function inside the
-//object.
+//The car object
 function Cars()
 {
 	this.image = new Image();
@@ -333,34 +205,28 @@ function Cars()
 	this.isCop = false;
 }
 
-//This is a object that creates the top of the scene.
+//Top game scene object
 function TopScene()
 {
 	this.topImage = new Image();  
 	this.topImage.src = TOP_SCENE_IMAGE_ONE;
-	//this.topImage.addEventListener("load", drawImage); 
 	this.topImage2 = new Image();  
 	this.topImage2.src = TOP_SCENE_IMAGE_TWO; 
-	//this.topImage2.addEventListener("load", drawImage);
 	this.topImage3 = new Image();  
 	this.topImage3.src = TOP_SCENE_IMAGE_THREE;
-	//this.topImage3.addEventListener("load", drawImage);
 	this.x = 0;
 	this.y = 0;		
 }
 
-//This is a object that creates the median.	
+//Median game scene object
 function MedianScene()
 {
 	this.medianImage = new Image();  
 	this.medianImage.src = MEDIAN_SCENE_IMAGE_ONE;
-	//this.medianImage.addEventListener("load", drawImage); 
 	this.medianImage2 = new Image();  
 	this.medianImage2.src = MEDIAN_SCENE_IMAGE_TWO;
-	//this.medianImage2.addEventListener("load", drawImage); 
 	this.medianImage3 = new Image();  
 	this.medianImage3.src = MEDIAN_SCENE_IMAGE_THREE;
-	//this.medianImage3.addEventListener("load", drawImage); 
 	this.x = 0;
 	this.y = 275;
 	this.left = this.x;
@@ -370,48 +236,26 @@ function MedianScene()
 	this.isCop = false;
 }
 
-//This is a object that creates the bottom of the scene.
+//Bottom game scene object
 function BottomScene()
 {
 	this.bottomImage = new Image();  
 	this.bottomImage.src = BOTTOM_SCENE_IMAGE_ONE;
-	//this.bottomImage.addEventListener("load", drawImage); 
 	this.bottomImage2 = new Image(); 
 	this.bottomImage2.src = BOTTOM_SCENE_IMAGE_TWO;
-	//this.bottomImage2.addEventListener("load", drawImage);
 	this.bottomImage3 = new Image(); 
 	this.bottomImage3.src = BOTTOM_SCENE_IMAGE_THREE;
-	//this.bottomImage3.addEventListener("load", drawImage);
 	this.x = 0;
 	this.y = 450;		
 }
 
+//Game scene instance creation 
+var SceneTop = new TopScene();
+var SceneMedian = new MedianScene();
+var SceneBottom = new BottomScene();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//in objectArray, 0 = player, 1 = frog, 2 = cars
-//These lines initialize the array and its subarrays:
+//Initializationof the main object array and its subarrays where row 0 is the player, 
+//row 1 is an array of frogs, and row 2 is an array of cars cars
 var objectArray = [];
 for (var i = 0; i < 3; i++) 
 {
@@ -426,18 +270,16 @@ for (var i = 0; i < frogProbability; i++)
 
 
 
-gameStatusInterval();
 
-//Variables that are used globally, scrollSpeed changes the speed of the scenery scrolling.	
-
-//Variable initializations for initial game conditions.
+//Sets player values to initial values
 objectArray[0][0].score = 0;
 objectArray[0][0].lives = 3;
 
+//Initially positions frogs in game scene
 for(i = 0; i < frogProbability; i++)
 {
 	var yNum = Math.random() * 430;
-
+	
 	if(yNum < 150)
 	{
 		yNum += 160; 
@@ -446,12 +288,12 @@ for(i = 0; i < frogProbability; i++)
 	{
 		yNum += 80;
 	}
-
+	
 	objectArray[1][i].x = (Math.random()* SCREEN_WIDTH) + Math.random() * 100;
 	objectArray[1][i].y = yNum;
 }
 
-//this function moves cars to the top of their row in the array, and randomly creates a car
+//Function which moves cars to the top of their row in the array, and randomly creates a car
 function carManager() 
 {
 	var lengthDown = 0;
@@ -477,10 +319,10 @@ function carManager()
 			lengthDown++;
 		}
 	}
-
+	
 	objectArray[2].length = objectArray[2].length - lengthDown;
+	
 	//randomly creates cars using carCount variable to keep them regularly spaced
-
 	if(carCount > 0) 
 	{
 		carCount--;
@@ -488,7 +330,7 @@ function carManager()
 	else if(Math.random() * 100 <= carProbability && carCount == 0) 
 	{
 		var carType = Math.random() * 100;
-
+		
 		if(carType < 20) 
 		{
 			var currentCarIndex = objectArray[2].length;
@@ -497,7 +339,7 @@ function carManager()
 			objectArray[2][currentCarIndex].speed = carSpeed;
 			objectArray[2][currentCarIndex].x = SCREEN_WIDTH;
 			objectArray[2][currentCarIndex].y = 160;
-
+			
 			if(Math.random() * 100 < 50) 
 			{
 				objectArray[2][currentCarIndex].image = carLeft;
@@ -515,7 +357,7 @@ function carManager()
 			objectArray[2][currentCarIndex].speed = carSpeed;
 			objectArray[2][currentCarIndex].x = SCREEN_WIDTH;
 			objectArray[2][currentCarIndex].y = 220;
-
+			
 			if(Math.random() * 100 < 50) 
 			{
 				objectArray[2][currentCarIndex].image = carLeft;
@@ -571,11 +413,12 @@ function carManager()
 			objectArray[2][currentCarIndex].isCop = true;
 			objectArray[2][currentCarIndex].image = copRight;	
 		}
-
+		
 		carCount = carCountDifficulty;
 	}
 }
 
+//Functions to create the cop car animation
 function copAnimation()
 {
 	setTimeout(copRed, 300);
@@ -632,7 +475,7 @@ $(document).keydown(function(e)
 	}
 	else if(e.keyCode == UP)
 	{
-		 vertical = -1;
+		vertical = -1;
 	}
 	else if(e.keyCode == DOWN)
 	{		
@@ -648,7 +491,7 @@ $(document).keydown(function(e)
 			SceneTop.x = 0;
 			SceneMedian.x = 0;
 			SceneBottom.x = 0;
-
+			
 			for(i = 0; i < objectArray[1].length; i++)
 			{
 				objectArray[1][i].x = (Math.random() * SCREEN_WIDTH + 700);
@@ -753,21 +596,21 @@ function controls()
 function scroll()
 {
 	SceneTop.x -=  scrollSpeed * dt;
-
+	
 	if(SceneTop.x < -(SceneTop.topImage.width - SCREEN_WIDTH))
 	{
 		SceneTop.x = 0;
 	}
-
+	
 	SceneMedian.x -=  scrollSpeed * dt;
-
+	
 	if(SceneMedian.x < -(SceneMedian.medianImage.width + 300))
 	{
 		SceneMedian.x = SCREEN_WIDTH;
 	}
-
+	
 	SceneBottom.x -=  scrollSpeed * dt;
-
+	
 	if(SceneBottom.x < -(SceneBottom.bottomImage.width - SCREEN_WIDTH))
 	{
 		SceneBottom.x = 0;
@@ -790,7 +633,7 @@ function frogMaker()
 			objectArray[1][newFrog].x = 900;
 			objectArray[1][newFrog].y = 200 + (Math.random() * 240);
 		}
-
+		
 		frogCount = frogCountDifficulty;
 	}
 	else
@@ -809,7 +652,7 @@ function frogScroll(Frog)
 function drawFrog(Frog)
 {
 	var num = (Math.random() * 100);
-
+	
 	if((num >= 0) && (num < 50))
 	{	
 		ctx.drawImage(Frog.frogImage1, Frog.x, Frog.y);
@@ -827,7 +670,7 @@ function frogHop(Frog)
 	var num = (Math.random() * 100);
 	
 	frogPosition(Frog);
-
+	
 	if(((num > 10) && (num < 20)) && Frog.alive)
 	{	
 		Frog.y -= 4;
@@ -849,10 +692,10 @@ function isFrogAlive(Frog)
 function frogPosition(Frog)
 {
 	var yNum;
-
+	
 	positionUpdate(Frog, Frog.frogImage1.width, Frog.frogImage1.height);
 	yNum = Math.random() * 430;
-
+	
 	if(yNum < 150)
 	{
 		yNum += 160; 
@@ -873,7 +716,7 @@ function frogPosition(Frog)
 		{
 			objectArray[0][0].score -= 10;
 		}	
-
+		
 		Frog.y = yNum;
 		Frog.x = Math.random()*100 + 700;
 		Frog.alive = true;
@@ -966,34 +809,34 @@ function driveCar(Car)
 
 function levelMenu()
 {
-		gameOn = false;
-
-		if(level == 1)
-		{
-			ctx.fillStyle = BLACK;
-			ctx.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-			ctx.drawImage(level1Image, 0, 0);
-		}	
-		if(level == 2)
-		{
-			ctx.fillStyle = BLACK;
-			ctx.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-			ctx.drawImage(level2Image, 0, 0);
-		}
-		if(level == 3)
-		{
-			ctx.fillStyle = BLACK;
-			ctx.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-			ctx.drawImage(level3Image, 0, 0);
-		}
-
-		setTimeout(waitMenu, 3000);
+	gameOn = false;
+	
+	if(level == 1)
+	{
+		ctx.fillStyle = BLACK;
+		ctx.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+		ctx.drawImage(level1Image, 0, 0);
+	}	
+	if(level == 2)
+	{
+		ctx.fillStyle = BLACK;
+		ctx.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+		ctx.drawImage(level2Image, 0, 0);
+	}
+	if(level == 3)
+	{
+		ctx.fillStyle = BLACK;
+		ctx.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+		ctx.drawImage(level3Image, 0, 0);
+	}
+	
+	setTimeout(waitMenu, 3000);
 }
 
 function pauseMenu()
 {
 	console.log(pauseSelection);
-
+	
 	$(document).keydown(function(e) 
 	{
 		if((e.keyCode == UP) && !keyPressed)
@@ -1011,7 +854,7 @@ function pauseMenu()
 			resumeKey = true;
 			quitKey = true;
 			keyPressed = true;
-
+			
 			if(soundOn)
 			{
 				soundKey = true;
@@ -1022,7 +865,7 @@ function pauseMenu()
 			}
 		}
 	});
-
+	
 	$(document).keyup(function(e) 
 	{
 		if(e.keyCode == UP)
@@ -1040,7 +883,7 @@ function pauseMenu()
 			keyPressed = false;
 		}
 	});
-
+	
 	if (pauseSelection >= 3)
 	{
 		pauseSelection = 0;
@@ -1049,11 +892,11 @@ function pauseMenu()
 	{
 		pauseSelection = 2;
 	}
-
+	
 	ctx.fillStyle = BLACK;
 	ctx.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 	ctx.drawImage(pauseImage,0,0);
-
+	
 	if (pauseSelection == 0)
 	{
 		ctx.drawImage(resumeSel, 40, 100);
@@ -1164,7 +1007,7 @@ function levelCheck()
 		//carProbability = 1;
 		//carCountDifficulty = 300;
 		//frogCountDifficulty = 300;
-
+		
 		for(i = 0; i < objectArray[1].length; i++)
 		{
 			objectArray[1][i].x = (Math.random() * SCREEN_WIDTH + 700);
@@ -1222,8 +1065,9 @@ function collision(R2, R1)
 //which allows update to be interrupted.
 function gameStatusInterval()	
 { 
-  	setInterval(gameStatus, 100.0/3); 
+	setInterval(gameStatus, 100.0/3); 
 }
+
 
 //Updates game unless the global bool gameOn is false in which case the game ends. 
 function gameStatus()
@@ -1247,6 +1091,9 @@ function gameEnd()
 }
 
 
+//Sets the interval for the gameStatus function which is the main loop of the game
+gameStatusInterval();
+
 levelMenu();
 
 //Update function.
@@ -1256,10 +1103,10 @@ function update()
 	{
 		ctx.fillStyle = BLACK;
 		ctx.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-	   
+		
 		ctx.drawImage(objectArray[0][0].playerImage, objectArray[0][0].x, objectArray[0][0].y);
 		controls();
-
+		
 		frogMaker();
 		frogAndCar();
 
@@ -1311,7 +1158,6 @@ function update()
 				objectArray[0][0].lives--;
 				objectArray[0][0].score = 0;
 				objectArray[2] = [];
-				//objectArray[1] = [];
 			}
 		}
 		
@@ -1330,7 +1176,6 @@ function update()
 			{
 				soundCrash.play();
 			}
-			//objectArray[1] = [];
 		}
 
 		for (var i = 0; i < objectArray[2].length; i++) 
@@ -1349,7 +1194,6 @@ function update()
 				objectArray[0][0].lives--;
 				objectArray[0][0].score = 0;
 				objectArray[2] = [];
-				//objectArray[1] = [];
 			}
 		}
 
