@@ -125,7 +125,7 @@ var musicWin = new Audio(WIN_MUSIC_PATH);
 var musicLose = new Audio(LOSE_MUSIC_PATH);
 
 
-//Objects of the above struct types are created here.
+//Objects of the above object types are created here.
 var SceneTop = new TopScene();
 var SceneMedian = new MedianScene();
 var SceneBottom = new BottomScene();
@@ -280,7 +280,7 @@ var ctx = map.getContext("2d");
 
 
 
-//The player struct.	
+//The player object.	
 function Player()
 {
 	this.playerImage = new Image();  
@@ -297,7 +297,7 @@ function Player()
 	this.isCop = false;
 }
 
-//The Frogs struct has two images which are cycled through to simulate frog motion and one image
+//The Frogs object has two images which are cycled through to simulate frog motion and one image
 //for a dead frog when it gets it.
 function Frogs()
 {
@@ -317,8 +317,8 @@ function Frogs()
 	this.isCop = false;
 }
 
-//The Cars struct has four images for different types cars, these could be put in a function inside the
-//struct.
+//The Cars object has four images for different types cars, these could be put in a function inside the
+//object.
 function Cars()
 {
 	this.image = new Image();
@@ -333,7 +333,7 @@ function Cars()
 	this.isCop = false;
 }
 
-//This is a struct that creates the top of the scene.
+//This is a object that creates the top of the scene.
 function TopScene()
 {
 	this.topImage = new Image();  
@@ -349,7 +349,7 @@ function TopScene()
 	this.y = 0;		
 }
 
-//This is a struct that creates the median.	
+//This is a object that creates the median.	
 function MedianScene()
 {
 	this.medianImage = new Image();  
@@ -370,7 +370,7 @@ function MedianScene()
 	this.isCop = false;
 }
 
-//This is a struct that creates the bottom of the scene.
+//This is a object that creates the bottom of the scene.
 function BottomScene()
 {
 	this.bottomImage = new Image();  
@@ -437,6 +437,7 @@ objectArray[0][0].lives = 3;
 for(i = 0; i < frogProbability; i++)
 {
 	var yNum = Math.random() * 430;
+
 	if(yNum < 150)
 	{
 		yNum += 160; 
@@ -445,6 +446,7 @@ for(i = 0; i < frogProbability; i++)
 	{
 		yNum += 80;
 	}
+
 	objectArray[1][i].x = (Math.random()* SCREEN_WIDTH) + Math.random() * 100;
 	objectArray[1][i].y = yNum;
 }
@@ -475,8 +477,10 @@ function carManager()
 			lengthDown++;
 		}
 	}
+
 	objectArray[2].length = objectArray[2].length - lengthDown;
 	//randomly creates cars using carCount variable to keep them regularly spaced
+
 	if(carCount > 0) 
 	{
 		carCount--;
@@ -484,6 +488,7 @@ function carManager()
 	else if(Math.random() * 100 <= carProbability && carCount == 0) 
 	{
 		var carType = Math.random() * 100;
+
 		if(carType < 20) 
 		{
 			var currentCarIndex = objectArray[2].length;
@@ -566,6 +571,7 @@ function carManager()
 			objectArray[2][currentCarIndex].isCop = true;
 			objectArray[2][currentCarIndex].image = copRight;	
 		}
+
 		carCount = carCountDifficulty;
 	}
 }
@@ -575,13 +581,6 @@ function copAnimation()
 	setTimeout(copRed, 300);
 	setTimeout(wait, 100);
 	setTimeout(copBlue, 400);
-}
-
-//setTimeout(wait, 0);
-
-function wait()
-{
-	console.log("Waiting");
 }
 
 function copRed()
@@ -644,7 +643,7 @@ $(document).keydown(function(e)
 		if(!gameOn)
 		{				
 			gameOn = true;
-			objectArray[0][0].x = START_X_POSITION - (objectArray[0][0].playerImage.width/1);
+			objectArray[0][0].x = START_X_POSITION - (objectArray[0][0].playerImage.width);
 			objectArray[0][0].y = START_Y_POSITION;
 			SceneTop.x = 0;
 			SceneMedian.x = 0;
@@ -750,22 +749,25 @@ function controls()
 }
 
 
-//Function that scrolls the top, median and bottom structs that make up the scene.
+//Function that scrolls the top, median and bottom objects that make up the scene.
 function scroll()
 {
 	SceneTop.x -=  scrollSpeed * dt;
+
 	if(SceneTop.x < -(SceneTop.topImage.width - SCREEN_WIDTH))
 	{
 		SceneTop.x = 0;
 	}
 
 	SceneMedian.x -=  scrollSpeed * dt;
+
 	if(SceneMedian.x < -(SceneMedian.medianImage.width + 300))
 	{
 		SceneMedian.x = SCREEN_WIDTH;
 	}
 
 	SceneBottom.x -=  scrollSpeed * dt;
+
 	if(SceneBottom.x < -(SceneBottom.bottomImage.width - SCREEN_WIDTH))
 	{
 		SceneBottom.x = 0;
@@ -775,7 +777,7 @@ function scroll()
 
 //Frog functions:
 
-//Makes frogs
+//Function that makes frogs
 function frogMaker()
 {
 	if (frogCount == 0)
@@ -788,6 +790,7 @@ function frogMaker()
 			objectArray[1][newFrog].x = 900;
 			objectArray[1][newFrog].y = 200 + (Math.random() * 240);
 		}
+
 		frogCount = frogCountDifficulty;
 	}
 	else
@@ -806,6 +809,7 @@ function frogScroll(Frog)
 function drawFrog(Frog)
 {
 	var num = (Math.random() * 100);
+
 	if((num >= 0) && (num < 50))
 	{	
 		ctx.drawImage(Frog.frogImage1, Frog.x, Frog.y);
@@ -820,15 +824,17 @@ function drawFrog(Frog)
 //page, but randomly kind of wait for a second or so before moving up again.
 function frogHop(Frog)
 {
-	frogPosition(Frog);
 	var num = (Math.random() * 100);
+	
+	frogPosition(Frog);
+
 	if(((num > 10) && (num < 20)) && Frog.alive)
 	{	
 		Frog.y -= 4;
 	}
 }
 
-//Checks to see if the Frog struct bool is alive is true, if so the above function drawFrog
+//Checks to see if the Frog object bool is alive is true, if so the above function drawFrog
 //is called to make a hopping frog, if not it will remain dead.
 function isFrogAlive(Frog)
 {
@@ -843,8 +849,10 @@ function isFrogAlive(Frog)
 function frogPosition(Frog)
 {
 	var yNum;
+
 	positionUpdate(Frog, Frog.frogImage1.width, Frog.frogImage1.height);
 	yNum = Math.random() * 430;
+
 	if(yNum < 150)
 	{
 		yNum += 160; 
@@ -865,6 +873,7 @@ function frogPosition(Frog)
 		{
 			objectArray[0][0].score -= 10;
 		}	
+
 		Frog.y = yNum;
 		Frog.x = Math.random()*100 + 700;
 		Frog.alive = true;
@@ -901,7 +910,7 @@ function frogAndCar()
 				soundSquash.play();
 			}
 		}
-		if (/*objectArray[1][i].alive == false &&*/ objectArray[1][i].x < -100)
+		if (objectArray[1][i].x < -100)
 		{
 			for (var j = i; j < objectArray[1].length; j++) 
 			{
@@ -958,6 +967,7 @@ function driveCar(Car)
 function levelMenu()
 {
 		gameOn = false;
+
 		if(level == 1)
 		{
 			ctx.fillStyle = BLACK;
@@ -976,12 +986,14 @@ function levelMenu()
 			ctx.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 			ctx.drawImage(level3Image, 0, 0);
 		}
+
 		setTimeout(waitMenu, 3000);
 }
 
 function pauseMenu()
 {
 	console.log(pauseSelection);
+
 	$(document).keydown(function(e) 
 	{
 		if((e.keyCode == UP) && !keyPressed)
@@ -1010,6 +1022,7 @@ function pauseMenu()
 			}
 		}
 	});
+
 	$(document).keyup(function(e) 
 	{
 		if(e.keyCode == UP)
@@ -1027,6 +1040,7 @@ function pauseMenu()
 			keyPressed = false;
 		}
 	});
+
 	if (pauseSelection >= 3)
 	{
 		pauseSelection = 0;
@@ -1035,10 +1049,11 @@ function pauseMenu()
 	{
 		pauseSelection = 2;
 	}
-	//musicGameplay.pause();
+
 	ctx.fillStyle = BLACK;
 	ctx.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 	ctx.drawImage(pauseImage,0,0);
+
 	if (pauseSelection == 0)
 	{
 		ctx.drawImage(resumeSel, 40, 100);
@@ -1169,25 +1184,25 @@ function levelCheck()
 }
 
 
-//Function that takes in a struct and sets its top, bottom, left and right variables to their
+//Function that takes in a object and sets its top, bottom, left and right variables to their
 //x and y values to check for collisions.
-function positionUpdate(struct, width, height)
+function positionUpdate(object, width, height)
 {
-	struct.left = struct.x;
-	struct.right = (struct.x + width);
-	struct.top = struct.y;
-	struct.bottom = (struct.y + height);
+	object.left = object.x;
+	object.right = (object.x + width);
+	object.top = object.y;
+	object.bottom = (object.y + height);
 	
-	if(struct.isCop)
+	if(object.isCop)
 	{
-		struct.top += 30;
-		struct.bottom += 30;
-		struct.left += 30;
-		struct.right += 30;
+		object.top += 30;
+		object.bottom += 30;
+		object.left += 30;
+		object.right += 30;
 	}
 }
 
-//Function that takes in two structs and checks to see if there is overlap, this function as well as
+//Function that takes in two objects and checks to see if there is overlap, this function as well as
 //the above positionUpdate will probably not be necessary once a 2D array is implemented to 
 //keep track of collisions.
 function collision(R2, R1)
@@ -1208,7 +1223,6 @@ function collision(R2, R1)
 function gameStatusInterval()	
 { 
   	setInterval(gameStatus, 100.0/3); 
-	
 }
 
 //Updates game unless the global bool gameOn is false in which case the game ends. 
@@ -1240,7 +1254,6 @@ function update()
 { 
 	if(!pause) 
 	{
-		
 		ctx.fillStyle = BLACK;
 		ctx.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 	   
@@ -1337,7 +1350,6 @@ function update()
 				objectArray[0][0].score = 0;
 				objectArray[2] = [];
 				//objectArray[1] = [];
-				
 			}
 		}
 
