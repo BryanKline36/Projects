@@ -1,293 +1,61 @@
-
-// Asset path constants
-
-var SQUASH_SOUND_PATH = "audio/squash.wav";
-var CRASH_SOUND_PATH = "audio/crash.wav";
-var POLICE_SOUND_PATH = "audio/police.wav";
-var LEVEL_TRANSIT_SOUND_PATH = "audio/levelTransit.wav"; 
-var GAME_MUSIC_PATH = "audio/musicGame.wav";
-var MENU_MUSIC_PATH = "audio/start.wav";
-var WIN_MUSIC_PATH = "audio/musicWin.wav";
-var LOSE_MUSIC_PATH = "audio/lose.wav";
-var PLAYER_IMAGE = "images/player1.png";
-var FROG_IMAGE_ONE = "images/upfrog1.png";
-var FROG_IMAGE_TWO = "images/upfrog2.png";
-var DEAD_FROG_IMAGE = "images/blood.png";
-var TOP_SCENE_IMAGE_ONE = "images/TopScene.jpg";
-var MEDIAN_SCENE_IMAGE_ONE = "images/MedianScene.jpg"; 
-var BOTTOM_SCENE_IMAGE_ONE = "images/BottomScene.jpg";
-var TOP_SCENE_IMAGE_TWO = "images/TopScene2.jpg";
-var MEDIAN_SCENE_IMAGE_TWO = "images/MedianScene2.jpg"; 
-var BOTTOM_SCENE_IMAGE_TWO = "images/BottomScene2.jpg";
-var TOP_SCENE_IMAGE_THREE = "images/TopScene3.png";
-var MEDIAN_SCENE_IMAGE_THREE = "images/MedianScene3.png"; 
-var BOTTOM_SCENE_IMAGE_THREE = "images/BottomScene3.png";
-var LEFT_SEMI_IMAGE_ONE = "images/leftsemi1.jpg"; 
-var LEFT_CAR_IMAGE_ONE = "images/leftcar1.jpg"; 
-var RIGHT_CAR_IMAGE_TWO = "images/rightcar2.jpg"; 
-var RIGHT_CAR_IMAGE_FIVE = "images/rightcar5.jpg"; 
-var COP_CAR_IMAGE = "images/copRight.jpg";
-var COP_CAR_RED = "images/copRightRed.jpg";
-var COP_CAR_BLUE = "images/copRightBlue.jpg";
-var PAUSE_IMAGE = "images/pauseBack.png";
-var WIN_IMAGE = "images/winMenu.png";
-var LOSE_IMAGE = "images/loseMenu.png";
-var LEVEL_IMAGE_ONE = "images/level1Menu.png";
-var LEVEL_IMAGE_TWO = "images/level2Menu.png";
-var LEVEL_IMAGE_THREE = "images/level3Menu.png";
-var QUIT_SELECT_BUTTON = "images/buttons/QuitSel.png";
-var QUIT_UNSELECT_BUTTON = "images/buttons/QuitUn.png";
-var SOUND_OFF_SELECT_BUTTON = "images/buttons/SoundOffSel.png";
-var SOUND_OFF_UNSELECT_BUTTON = "images/buttons/SoundOffUn.png";
-var SOUND_ON_SELECT_BUTTON = "images/buttons/SoundOnSel.png";
-var SOUND_ON_UNSELECT_BUTTON = "images/buttons/SoundOnUn.png";
-var RESUME_SELECT_BUTTON = "images/buttons/ResumeSel.png";
-var RESUME_UNSELECT_BUTTON = "images/buttons/ResumeUn.png";
+//~sushil/bin/submitFP to submit
 
 
-var BLACK = "#000000";
-var HELVETICA = "40px Helvetica";
-var WHITE = "white";
-var SCORE_LABEL = "Score: ";
-var LIVES_LABEL = "Lives: ";
-
-// JQuery key code constants
-
-var LEFT = 37
-var RIGHT = 39;
-var UP = 38;
-var DOWN = 40;
-var SPACE = 32
-var ESCAPE = 27;
-var ENTER = 13;
-
-var pauseSelection = 0;
-var soundOn = true;
-var pause = false;
-var dt = 1000/30.0;
-var scrollSpeed = 0.4;
-var horizontal = 0;
-var vertical = 0;
-var level = 1;
-var e;
-var gameOn = true;
-var carCountDifficulty = 150;
-var carCount = 150;
-var frogCount = 150;
-var frogCountDifficulty = 150;
-var musicFlag = 0;
-var startFlag = false;
-var keyPressed = false;
-var soundKey = false;
-var resumeKey = false;
-var quitKey = false;
-
-//Menus
-var pauseImage = new Image();
-pauseImage.src = PAUSE_IMAGE;
-var winImage = new Image();
-winImage.src = WIN_IMAGE;
-var loseImage = new Image();
-loseImage.src = LOSE_IMAGE;
-var level1Image = new Image();
-level1Image.src = LEVEL_IMAGE_ONE;
-var level2Image = new Image();
-level2Image.src = LEVEL_IMAGE_TWO;
-var level3Image = new Image();
-level3Image.src = LEVEL_IMAGE_THREE;
-
-//buttons
-var quitSel = new Image();
-quitSel.src = QUIT_SELECT_BUTTON;
-var quitUn = new Image();
-quitUn.src = QUIT_UNSELECT_BUTTON;
-var soundOffSel = new Image();
-soundOffSel.src = SOUND_OFF_SELECT_BUTTON;
-var soundOffUn = new Image();
-soundOffUn.src = SOUND_OFF_UNSELECT_BUTTON;
-var soundOnSel = new Image();
-soundOnSel.src = SOUND_ON_SELECT_BUTTON;
-var soundOnUn = new Image();
-soundOnUn.src = SOUND_ON_UNSELECT_BUTTON;
-var resumeSel = new Image();
-resumeSel.src = RESUME_SELECT_BUTTON;
-var resumeUn = new Image();
-resumeUn.src = RESUME_UNSELECT_BUTTON;
-
-//Sound initialization
-var soundSquash = new Audio(SQUASH_SOUND_PATH);
-var soundCrash = new Audio(CRASH_SOUND_PATH);
-var soundCop = new Audio(POLICE_SOUND_PATH);
-var soundTransit = new Audio(LEVEL_TRANSIT_SOUND_PATH);
-var musicGameplay = new Audio(GAME_MUSIC_PATH);
-var musicMenu = new Audio(MENU_MUSIC_PATH);
-var musicWin = new Audio(WIN_MUSIC_PATH);
-var musicLose = new Audio(LOSE_MUSIC_PATH);
-
-
-//Objects of the above struct types are created here.
-var SceneTop = new TopScene();
-var SceneMedian = new MedianScene();
-var SceneBottom = new BottomScene();
-
-var frogProbability = 0.75;
-var carProbability = 0.5;
-var copProbability = 0;
-var carSpeed = 7.5;
-
-//Image initialization
-semiLeft = new Image();  
-semiLeft.src = LEFT_SEMI_IMAGE_ONE; 
-//semiLeft.addEventListener("load", drawImage);
-carLeft = new Image();  
-carLeft.src = LEFT_CAR_IMAGE_ONE; 
-//carLeft.addEventListener("load", drawImage);
-carRight1 = new Image();  
-carRight1.src = RIGHT_CAR_IMAGE_TWO; 
-//carRight1.addEventListener("load", drawImage);
-carRight0 = new Image();  
-carRight0.src = RIGHT_CAR_IMAGE_FIVE; 
-//carRight0.addEventListener("load", drawImage);
-copRight = new Image();
-copRight.src = COP_CAR_IMAGE;
-//copRight.addEventListener("load", drawImage);
-copRightRed = new Image();
-copRightRed.src = COP_CAR_RED;
-//copRightRed.addEventListener("load", drawImage);
-copRightBlue = new Image();
-copRightBlue.src = COP_CAR_BLUE;
-//copRightBlue.addEventListener("load", drawImage);
-
-var SCREEN_WIDTH = SCREEN_WIDTH;
-var SCREEN_HEIGHT = SCREEN_HEIGHT;
-var START_X_POSITION = START_X_POSITION;
-var START_Y_POSITION = START_Y_POSITION;
 
 var map = document.getElementById("map"); 
 var ctx = map.getContext("2d");
 
+//Menus
+var pauseImage = new Image();
+pauseImage.src = "images/pauseBack.png";
+var winImage = new Image();
+winImage.src = "images/winMenu.png";
+var loseImage = new Image();
+loseImage.src = "images/loseMenu.png";
+var level1Image = new Image();
+level1Image.src = "images/level1Menu.png";
+var level2Image = new Image();
+level2Image.src = "images/level2Menu.png";
+var level3Image = new Image();
+level3Image.src = "images/level3Menu.png";
 
+//buttons
+var quitSel = new Image();
+quitSel.src = "images/buttons/QuitSel.png";
+var quitUn = new Image();
+quitUn.src = "images/buttons/QuitUn.png";
+var soundOffSel = new Image();
+soundOffSel.src = "images/buttons/SoundOffSel.png";
+var soundOffUn = new Image();
+soundOffUn.src = "images/buttons/SoundOffUn.png";
+var soundOnSel = new Image();
+soundOnSel.src = "images/buttons/SoundOnSel.png";
+var soundOnUn = new Image();
+soundOnUn.src = "images/buttons/SoundOnUn.png";
+var resumeSel = new Image();
+resumeSel.src = "images/buttons/ResumeSel.png";
+var resumeUn = new Image();
+resumeUn.src = "images/buttons/ResumeUn.png";
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// var jsonObject = {};
-
-// $.getJSON("constants.JSON", {}, function(json) {
-	// 	console.log(json); // this will show the info it in firebug console
-	// 	alert("!!");
-	// });
-	
-	// function getJSON()
-	// {
-		// 	var xmlhttp = new XMLHttpRequest();
-		
-		// 	alert("!s");
-		// 	xmlhttp.onreadystatechange = function() 
-		// 	{
-			// 		if(this.readyState == 4 && this.status == 200) 
-			// 		{
-				// 			settings = JSON.parse(this.responseText);
-				// 			jsonObject = settings;
-				// 			console.log(jsonObject)
-// 		}
-// 	};
-
-// 	var file = "constants.JSON";
-
-// 	xmlhttp.open("GET", file, true);
-// 	xmlhttp.responseType = 'json';
-// 	xmlhttp.send();
-// }
-
-//console.log(jsonObject)
-
-// getJSON();
-
-// function loadJSON(callback) 
-// {   
-	//     var xobj = new XMLHttpRequest();
-	// 	xobj.overrideMimeType("application/json");
-	// 	xobj.open('GET', 'constants.JSON', true);
-	
-	// 	xobj.onreadystatechange = function () 
-	// 	{
-		// 		if (xobj.readyState == 4 && xobj.status == "200") 
-		// 		{
-			// 			callback(xobj.responseText);
-			// 		}
-			// 	};
-			
-			//     xobj.send(null);  
-			// }
-			
-			// function loadConstants() 
-// {
-	// 	loadJSON(function(response) 
-	// 	{
-		// 		var actual_JSON = JSON.parse(response);
-		
-		
-		// 		//    e = actual_JSON;
-		
-		// 		alert("!");
-		// 		return actual_JSON;
-		// 	});
-		// }
-		
-		// jsonObject = loadConstants();
-		// console.log(jsonObject);
-		
-		// function loadJSON(callback) 
-		// {   
-			//     var xobj = new XMLHttpRequest();
-// 	xobj.overrideMimeType("application/json");
-// 	xobj.open('GET', 'constants.JSON', true);
-
-// 	xobj.onreadystatechange = function () 
-// 	{
-	// 		if (xobj.readyState == 4 && xobj.status == "200") 
-	// 		{
-		// 			callback(xobj.responseText);
-		// 		}
-		// 	};
-		
-		//     xobj.send(null);  
-		// }
-
-
-
-
-
-
-
-
-
-
-
-
+//Sound initialization
+var soundSquash = new Audio("audio/squash.wav");
+var soundCrash = new Audio("audio/crash.wav");
+var soundCop = new Audio("audio/police.wav");
+var soundTransit = new Audio("audio/levelTransit.wav");
+var musicGameplay = new Audio("audio/musicGame.wav");
+var musicMenu = new Audio("audio/start.wav");
+var musicWin = new Audio("audio/musicWin.wav");
+var musicLose = new Audio("audio/lose.wav");
 
 
 //The player struct.	
 function Player()
 {
 	this.playerImage = new Image();  
-	this.playerImage.src = PLAYER_IMAGE; 
+	this.playerImage.src = "images/player1.jpg"; 
 	//this.playerImage.addEventListener("load", drawImage);
-	this.y = START_Y_POSITION;
-	this.x = START_X_POSITION - (this.playerImage.width/2);
+	this.y = 410;
+	this.x = 320 - (this.playerImage.width/2);
 	this.left = this.x;
 	this.right = (this.x + this.playerImage.width);
 	this.top = this.y;
@@ -304,9 +72,9 @@ function Frogs()
 	this.frogImage1 = new Image();
 	this.frogImage2 = new Image();
 	this.frogImageDead = new Image();  
-	this.frogImage1.src = FROG_IMAGE_ONE;
-	this.frogImage2.src = FROG_IMAGE_TWO; 
-	this.frogImageDead.src = DEAD_FROG_IMAGE; 
+	this.frogImage1.src = "images/upfrog1.jpg";
+	this.frogImage2.src = "images/upfrog2.jpg"; 
+	this.frogImageDead.src = "images/deadfrog.jpg"; 
 	this.y;
 	this.x;
 	this.left = (this.x) + 40;
@@ -337,13 +105,13 @@ function Cars()
 function TopScene()
 {
 	this.topImage = new Image();  
-	this.topImage.src = TOP_SCENE_IMAGE_ONE;
+	this.topImage.src = "images/TopScene.jpg"; 
 	//this.topImage.addEventListener("load", drawImage); 
 	this.topImage2 = new Image();  
-	this.topImage2.src = TOP_SCENE_IMAGE_TWO; 
+	this.topImage2.src = "images/TopScene2.jpg"; 
 	//this.topImage2.addEventListener("load", drawImage);
 	this.topImage3 = new Image();  
-	this.topImage3.src = TOP_SCENE_IMAGE_THREE;
+	this.topImage3.src = "images/TopScene3.jpg"; 
 	//this.topImage3.addEventListener("load", drawImage);
 	this.x = 0;
 	this.y = 0;		
@@ -353,13 +121,13 @@ function TopScene()
 function MedianScene()
 {
 	this.medianImage = new Image();  
-	this.medianImage.src = MEDIAN_SCENE_IMAGE_ONE;
+	this.medianImage.src = "images/MedianScene.jpg"; 
 	//this.medianImage.addEventListener("load", drawImage); 
 	this.medianImage2 = new Image();  
-	this.medianImage2.src = MEDIAN_SCENE_IMAGE_TWO;
+	this.medianImage2.src = "images/MedianScene2.jpg"; 
 	//this.medianImage2.addEventListener("load", drawImage); 
 	this.medianImage3 = new Image();  
-	this.medianImage3.src = MEDIAN_SCENE_IMAGE_THREE;
+	this.medianImage3.src = "images/MedianScene3.jpg"; 
 	//this.medianImage3.addEventListener("load", drawImage); 
 	this.x = 0;
 	this.y = 275;
@@ -374,41 +142,26 @@ function MedianScene()
 function BottomScene()
 {
 	this.bottomImage = new Image();  
-	this.bottomImage.src = BOTTOM_SCENE_IMAGE_ONE;
+	this.bottomImage.src = "images/BottomScene.jpg"; 
 	//this.bottomImage.addEventListener("load", drawImage); 
 	this.bottomImage2 = new Image(); 
-	this.bottomImage2.src = BOTTOM_SCENE_IMAGE_TWO;
+	this.bottomImage2.src = "images/BottomScene2.jpg"; 
 	//this.bottomImage2.addEventListener("load", drawImage);
 	this.bottomImage3 = new Image(); 
-	this.bottomImage3.src = BOTTOM_SCENE_IMAGE_THREE;
+	this.bottomImage3.src = "images/BottomScene3.jpg"; 
 	//this.bottomImage3.addEventListener("load", drawImage);
 	this.x = 0;
 	this.y = 450;		
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//Objects of the above struct types are created here.
+var SceneTop = new TopScene();
+var SceneMedian = new MedianScene();
+var SceneBottom = new BottomScene();
+var frogProbability = 0.75;
+var carProbability = 0.5;
+var copProbability = 0;
+var carSpeed = 7.5;
 
 //in objectArray, 0 = player, 1 = frog, 2 = cars
 //These lines initialize the array and its subarrays:
@@ -423,105 +176,129 @@ for (var i = 0; i < frogProbability; i++)
 	objectArray[1][i] = new Frogs();
 }
 
-
-
+//Image initialization
+semiLeft = new Image();  
+semiLeft.src = "images/leftsemi1.jpg"; 
+//semiLeft.addEventListener("load", drawImage);
+carLeft = new Image();  
+carLeft.src = "images/leftcar1.jpg"; 
+//carLeft.addEventListener("load", drawImage);
+carRight1 = new Image();  
+carRight1.src = "images/rightcar2.jpg"; 
+//carRight1.addEventListener("load", drawImage);
+carRight0 = new Image();  
+carRight0.src = "images/rightcar5.jpg"; 
+//carRight0.addEventListener("load", drawImage);
+copRight = new Image();
+copRight.src = "images/copRight.jpg" ;
+//copRight.addEventListener("load", drawImage);
+copRightRed = new Image();
+copRightRed.src = "images/copRightRed.jpg" ;
+//copRightRed.addEventListener("load", drawImage);
+copRightBlue = new Image();
+copRightBlue.src = "images/copRightBlue.jpg" ;
+//copRightBlue.addEventListener("load", drawImage);
 
 gameStatusInterval();
 
 //Variables that are used globally, scrollSpeed changes the speed of the scenery scrolling.	
+var pauseSelection = 0;
+var soundOn = true;
+var pause = false;
+var dt = 1000/30.0;
+var scrollSpeed = 0.4;
+var horizontal = 0;
+var vertical = 0;
+var level = 1;
+var e;
+var gameOn = true;
+var carCountDifficulty = 150;
+var carCount = 150;
+var frogCount = 150;
+var frogCountDifficulty = 150;
+var musicFlag = 0;
+var startFlag = false;
+var keyPressed = false;
+var soundKey = false;
+var resumeKey = false;
+var quitKey = false;
+
+
 
 //Variable initializations for initial game conditions.
 objectArray[0][0].score = 0;
 objectArray[0][0].lives = 3;
-
 for(i = 0; i < frogProbability; i++)
 {
-	var yNum = Math.random() * 430;
+	var yNum = Math.random()*430;
 	if(yNum < 150)
 	{
 		yNum += 160; 
 	}
-	if((yNum > 270) && (yNum < 350))
+	if((yNum > 270)&&(yNum < 350))
 	{
 		yNum += 80;
 	}
-	objectArray[1][i].x = (Math.random()* SCREEN_WIDTH) + Math.random() * 100;
+	objectArray[1][i].x = (Math.random()* 640) + Math.random()*100;
 	objectArray[1][i].y = yNum;
 }
 
 //this function moves cars to the top of their row in the array, and randomly creates a car
-function carManager() 
-{
+function carManager() {
 	var lengthDown = 0;
 	//removes cars outside the map from the array, and consolidates cars in their array
-	for(var i = 0; i < objectArray[2].length; i++) 
-	{
-		if(i != objectArray[2].length - 1) 
-		{
-			if(objectArray[2][i].x < -100 || objectArray[2][i].x > SCREEN_WIDTH) 
-			{
-				objectArray[2][i] = objectArray[2][i + 1];
-				objectArray[2][i + 1] = 0;
+	for (var i = 0; i < objectArray[2].length; i++) {
+		if (i != objectArray[2].length - 1) {
+			if (objectArray[2][i].x < -100 || objectArray[2][i].x > 640) {
+				objectArray[2][i] = objectArray[2][i+1];
+				objectArray[2][i+1] = 0;
 				lengthDown++;		
 			}
-			else if((objectArray[2][i] == 0) && i != objectArray[2].length - 1) 
-			{
-				objectArray[2][i] = objectArray[2][i + 1];
-				objectArray[2][i + 1] = 0;	
+			else if ((objectArray[2][i] == 0) && i != objectArray[2].length - 1) {
+				objectArray[2][i] = objectArray[2][i+1];
+				objectArray[2][i+1] = 0;	
 			}
 		}
-		else if(objectArray[2][i].x < -100 || objectArray[2][i].x > SCREEN_WIDTH) 
-		{
+		else if (objectArray[2][i].x < -100 || objectArray[2][i].x > 640) {
 			lengthDown++;
 		}
 	}
 	objectArray[2].length = objectArray[2].length - lengthDown;
 	//randomly creates cars using carCount variable to keep them regularly spaced
-	if(carCount > 0) 
-	{
+	if (carCount > 0) {
 		carCount--;
 	}
-	else if(Math.random() * 100 <= carProbability && carCount == 0) 
-	{
+	else if (Math.random() * 100 <= carProbability && carCount == 0) {
 		var carType = Math.random() * 100;
-		if(carType < 20) 
-		{
+		if (carType < 20) {
 			var currentCarIndex = objectArray[2].length;
 			objectArray[2][currentCarIndex] = new Cars();
 			objectArray[2][currentCarIndex].direction = -1;
 			objectArray[2][currentCarIndex].speed = carSpeed;
-			objectArray[2][currentCarIndex].x = SCREEN_WIDTH;
+			objectArray[2][currentCarIndex].x = 640;
 			objectArray[2][currentCarIndex].y = 160;
-
-			if(Math.random() * 100 < 50) 
-			{
+			if (Math.random() * 100 < 50) {
 				objectArray[2][currentCarIndex].image = carLeft;
 			}
-			else 
-			{
+			else {
 				objectArray[2][currentCarIndex].image = semiLeft;
 			}
 		}
-		else if(carType >= 20 && carType < 40) 
-		{
+		else if (carType >= 20 && carType < 40) {
 			var currentCarIndex = objectArray[2].length;
 			objectArray[2][currentCarIndex] = new Cars();
 			objectArray[2][currentCarIndex].direction = -1;
 			objectArray[2][currentCarIndex].speed = carSpeed;
-			objectArray[2][currentCarIndex].x = SCREEN_WIDTH;
+			objectArray[2][currentCarIndex].x = 640;
 			objectArray[2][currentCarIndex].y = 220;
-
-			if(Math.random() * 100 < 50) 
-			{
+			if (Math.random() * 100 < 50) {
 				objectArray[2][currentCarIndex].image = carLeft;
 			}
-			else 
-			{
+			else {
 				objectArray[2][currentCarIndex].image = semiLeft;
 			}
 		}
-		else if(carType >= 40 && carType < 60) 
-		{
+		else if (carType >= 40 && carType < 60) {
 			var currentCarIndex = objectArray[2].length;
 			objectArray[2][currentCarIndex] = new Cars();
 			objectArray[2][currentCarIndex].direction = 1;
@@ -529,16 +306,14 @@ function carManager()
 			objectArray[2][currentCarIndex].x = -100;
 			objectArray[2][currentCarIndex].y = 400;
 			
-			if(Math.random() * 100 < 50) 
-			{
+			if (Math.random() * 100 < 50) {
 				objectArray[2][currentCarIndex].image = carRight0;
 			}
-			else 
-			{
+			else {
 				objectArray[2][currentCarIndex].image = carRight1;
 			}
 		} 
-		else if(carType >= 60 && carType < 80) 
+		else if (carType >= 60 && carType < 80) 
 		{
 			var currentCarIndex = objectArray[2].length;
 			objectArray[2][currentCarIndex] = new Cars();
@@ -546,16 +321,14 @@ function carManager()
 			objectArray[2][currentCarIndex].speed = carSpeed;
 			objectArray[2][currentCarIndex].x = -100;
 			objectArray[2][currentCarIndex].y = 340;
-			if(Math.random() * 100 < 50) 
-			{
+			if (Math.random() * 100 < 50) {
 				objectArray[2][currentCarIndex].image = carRight0;
 			}
-			else 
-			{
+			else {
 				objectArray[2][currentCarIndex].image = carRight1;
 			}
 		}
-		else if(carType >= 80) 
+		else if (carType >= 80) 
 		{
 			var currentCarIndex = objectArray[2].length;
 			objectArray[2][currentCarIndex] = new Cars();
@@ -570,18 +343,16 @@ function carManager()
 	}
 }
 
-function copAnimation()
+function copImageChanger()
 {
 	setTimeout(copRed, 300);
 	setTimeout(wait, 100);
 	setTimeout(copBlue, 400);
 }
 
-//setTimeout(wait, 0);
-
 function wait()
 {
-	console.log("Waiting");
+	//console.log("Waiting");
 }
 
 function copRed()
@@ -594,73 +365,48 @@ function copBlue()
 	copImage = copRightBlue;
 }
 
-
 //Functions:
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 //JQuery function that senses keystrokes.  
 $(document).keydown(function(e) 
 {
-	if(e.keyCode == LEFT)
+	if(e.keyCode == 37)
 	{
 		horizontal = -1;
 	}
-	else if(e.keyCode == RIGHT)	
+	else if(e.keyCode == 39)	
 	{	
 		horizontal = 1;
 	}
-	else if(e.keyCode == UP)
+	else if(e.keyCode == 38)
 	{
 		 vertical = -1;
 	}
-	else if(e.keyCode == DOWN)
+	else if(e.keyCode == 40)
 	{		
 		vertical = 1;
 	}
-	else if(e.keyCode == SPACE)
+	else if(e.keyCode == 32)
 	{
-		if(!gameOn)
+		if(gameOn == false)
 		{				
 			gameOn = true;
-			objectArray[0][0].x = START_X_POSITION - (objectArray[0][0].playerImage.width/1);
-			objectArray[0][0].y = START_Y_POSITION;
+			objectArray[0][0].x = 320 - (objectArray[0][0].playerImage.width/1);
+			objectArray[0][0].y = 410;
 			SceneTop.x = 0;
 			SceneMedian.x = 0;
 			SceneBottom.x = 0;
-
 			for(i = 0; i < objectArray[1].length; i++)
 			{
-				objectArray[1][i].x = (Math.random() * SCREEN_WIDTH + 700);
+				objectArray[1][i].x = (Math.random()*640 + 700);
 			}
 		}
 	}
-	if (e.keyCode == SPACE && pause) 
+	if (e.keyCode == 27 && pause == true) 
 	{
 		pause = false;
 	}
-	else if (e.keyCode == SPACE && !pause && gameOn) 
+	else if (e.keyCode == 27 && pause == false && gameOn == true) 
 	{
 		pauseSelection = 0;
 		pause = true;
@@ -672,45 +418,23 @@ $(document).keydown(function(e)
 
 $(document).keyup(function(e) 
 {
-	if(e.keyCode == LEFT || e.keyCode == RIGHT)
+	if(e.keyCode == 37)
 	{
 		horizontal = 0;
 	}
-	if(e.keyCode == UP || e.keyCode == DOWN)
+	if(e.keyCode == 39)
+	{
+		horizontal = 0;
+	}
+	if(e.keyCode == 38)
+	{
+		vertical = 0;
+	}
+	if(e.keyCode == 40)
 	{
 		vertical = 0;
 	}
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 //Function that changes game state depending on keystrokes sensed.
 function controls()
@@ -739,9 +463,9 @@ function controls()
 	{
 		objectArray[0][0].x = 570;
 	}
-	if(objectArray[0][0].y >= START_Y_POSITION)
+	if(objectArray[0][0].y >= 410)
 	{
-		objectArray[0][0].y = START_Y_POSITION;
+		objectArray[0][0].y = 410;
 	}
 	if(objectArray[0][0].y <= 150)
 	{
@@ -754,7 +478,7 @@ function controls()
 function scroll()
 {
 	SceneTop.x -=  scrollSpeed * dt;
-	if(SceneTop.x < -(SceneTop.topImage.width - SCREEN_WIDTH))
+	if(SceneTop.x < -(SceneTop.topImage.width - 640))
 	{
 		SceneTop.x = 0;
 	}
@@ -762,11 +486,11 @@ function scroll()
 	SceneMedian.x -=  scrollSpeed * dt;
 	if(SceneMedian.x < -(SceneMedian.medianImage.width + 300))
 	{
-		SceneMedian.x = SCREEN_WIDTH;
+		SceneMedian.x = 640;
 	}
 
 	SceneBottom.x -=  scrollSpeed * dt;
-	if(SceneBottom.x < -(SceneBottom.bottomImage.width - SCREEN_WIDTH))
+	if(SceneBottom.x < -(SceneBottom.bottomImage.width - 640))
 	{
 		SceneBottom.x = 0;
 	}	
@@ -806,7 +530,7 @@ function frogScroll(Frog)
 function drawFrog(Frog)
 {
 	var num = (Math.random() * 100);
-	if((num >= 0) && (num < 50))
+	if((num >= 0)&&(num < 50))
 	{	
 		ctx.drawImage(Frog.frogImage1, Frog.x, Frog.y);
 	}
@@ -822,7 +546,7 @@ function frogHop(Frog)
 {
 	frogPosition(Frog);
 	var num = (Math.random() * 100);
-	if(((num > 10) && (num < 20)) && Frog.alive)
+	if(((num > 10)&&(num < 20))&&(Frog.alive == true))
 	{	
 		Frog.y -= 4;
 	}
@@ -832,7 +556,7 @@ function frogHop(Frog)
 //is called to make a hopping frog, if not it will remain dead.
 function isFrogAlive(Frog)
 {
-	if(Frog.alive)
+	if(Frog.alive == true)
 	{
 		drawFrog(Frog);
 	}	
@@ -844,12 +568,12 @@ function frogPosition(Frog)
 {
 	var yNum;
 	positionUpdate(Frog, Frog.frogImage1.width, Frog.frogImage1.height);
-	yNum = Math.random() * 430;
+	yNum = Math.random()*430;
 	if(yNum < 150)
 	{
 		yNum += 160; 
 	}
-	if((yNum > 270) && (yNum < 340))
+	if((yNum > 270)&&(yNum < 340))
 	{
 		yNum += 80;
 	}		
@@ -857,7 +581,7 @@ function frogPosition(Frog)
 	{
 		Frog.alive = true;
 		Frog.y = yNum;
-		Frog.x = Math.random() * 100 + 900;
+		Frog.x = Math.random()*100 + 900;
 	}
 	if(Frog.y <= 140)
 	{
@@ -874,7 +598,7 @@ function frogPosition(Frog)
 //Checks to see if a frog is up against the median, if so the frog just stays put in the road.
 function medianAndFrog(Frog)
 {
-	if(!collision(Frog, SceneMedian))
+	if(collision(Frog, SceneMedian) == false)
 	{
 		frogHop(Frog);
 	}
@@ -887,7 +611,7 @@ function frogAndCar()
 {
 	for (var i = 0; i < objectArray[1].length; i++) 
 	{
-		if (collision(objectArray[0][0], objectArray[1][i]) && objectArray[1][i].alive)
+		if (collision(objectArray[0][0], objectArray[1][i]) && objectArray[1][i].alive == true)
 		{
 			objectArray[0][0].score += 10;
 			objectArray[1][i].alive = false;
@@ -895,7 +619,7 @@ function frogAndCar()
 		}
 		for (var j = 0; j < objectArray[2].length; j++) 
 		{
-			if(collision(objectArray[2][j], objectArray[1][i]))
+			if(collision(objectArray[2][j], objectArray[1][i]) == true)
 			{
 				objectArray[1][i].alive = false;
 				soundSquash.play();
@@ -960,20 +684,20 @@ function levelMenu()
 		gameOn = false;
 		if(level == 1)
 		{
-			ctx.fillStyle = BLACK;
-			ctx.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+			ctx.fillStyle = "#000000";
+			ctx.fillRect(0, 0, 640, 480);
 			ctx.drawImage(level1Image, 0, 0);
 		}	
 		if(level == 2)
 		{
-			ctx.fillStyle = BLACK;
-			ctx.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+			ctx.fillStyle = "#000000";
+			ctx.fillRect(0, 0, 640, 480);
 			ctx.drawImage(level2Image, 0, 0);
 		}
 		if(level == 3)
 		{
-			ctx.fillStyle = BLACK;
-			ctx.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+			ctx.fillStyle = "#000000";
+			ctx.fillRect(0, 0, 640, 480);
 			ctx.drawImage(level3Image, 0, 0);
 		}
 		setTimeout(waitMenu, 3000);
@@ -984,23 +708,22 @@ function pauseMenu()
 	console.log(pauseSelection);
 	$(document).keydown(function(e) 
 	{
-		if((e.keyCode == UP) && !keyPressed)
+		if((e.keyCode == 38)&&(keyPressed == false))
 		{
 			pauseSelection--;
 			keyPressed = true;
 		}
-		if((e.keyCode == DOWN) && !keyPressed)
+		if((e.keyCode == 40)&&(keyPressed == false))
 		{
 			pauseSelection++;
 			keyPressed = true;
 		}
-		if((e.keyCode == ENTER) && !keyPressed)
+		if((e.keyCode == 13)&&(keyPressed == false))
 		{
 			resumeKey = true;
 			quitKey = true;
 			keyPressed = true;
-
-			if(soundOn)
+			if(soundOn == true)
 			{
 				soundKey = true;
 			}
@@ -1012,15 +735,15 @@ function pauseMenu()
 	});
 	$(document).keyup(function(e) 
 	{
-		if(e.keyCode == UP)
+		if(e.keyCode == 38)
 		{
 			keyPressed = false;
 		}
-		if(e.keyCode == DOWN)
+		if(e.keyCode == 40)
 		{
 			keyPressed = false;
 		}
-		if(e.keyCode == ENTER)
+		if(e.keyCode == 13)
 		{
 			resumeKey = false;
 			quitKey = false;
@@ -1036,13 +759,13 @@ function pauseMenu()
 		pauseSelection = 2;
 	}
 	//musicGameplay.pause();
-	ctx.fillStyle = BLACK;
-	ctx.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+	ctx.fillStyle = "#000000";
+	ctx.fillRect(0, 0, 640, 480);
 	ctx.drawImage(pauseImage,0,0);
 	if (pauseSelection == 0)
 	{
 		ctx.drawImage(resumeSel, 40, 100);
-		if(resumeKey)
+		if(resumeKey == true)
 		{
 			pause = false;
 		}
@@ -1053,13 +776,13 @@ function pauseMenu()
 	}
 	if (pauseSelection == 1)
 	{
-		if (soundOn)
+		if (soundOn == true)
 		{
-			if(soundKey)
+			if(soundKey == false)
 			{	
 				ctx.drawImage(soundOffSel, 40, 200);
 			}
-			if(soundKey)
+			if(soundKey == true)
 			{
 				ctx.drawImage(soundOnSel, 40, 200);
 				soundOn = false;
@@ -1067,12 +790,12 @@ function pauseMenu()
 		}
 		else
 		{
-			if(soundKey)
+			if(soundKey == false)
 			{
 				ctx.drawImage(soundOnSel, 40, 200);
 				soundOn = true;
 			}
-			if(soundKey)
+			if(soundKey == true)
 			{
 				ctx.drawImage(soundOnSel, 40, 200);
 			}
@@ -1080,7 +803,7 @@ function pauseMenu()
 	}
 	else
 	{
-		if(soundOn)
+		if (soundOn == true)
 		{
 			ctx.drawImage(soundOffUn, 40, 200);
 		}
@@ -1092,7 +815,7 @@ function pauseMenu()
 	if (pauseSelection == 2)
 	{
 		ctx.drawImage(quitSel, 40, 300);
-		if(quitKey)
+		if(quitKey == true)
 		{
 			gameEnd();
 		}
@@ -1118,7 +841,7 @@ function levelCheck()
 		levelMenu();
 		scrollSpeed = 0.50;
 		objectArray[0][0].x = 20;
-		objectArray[0][0].y = START_Y_POSITION;
+		objectArray[0][0].y = 410;
 		SceneTop.x = 0;
 		SceneMedian.x = 0;
 		SceneBottom.x = 0;
@@ -1130,7 +853,7 @@ function levelCheck()
 		//frogCountDifficulty = 200;
 		for(i = 0; i < objectArray[1].length; i++)
 		{
-			objectArray[1][i].x = (Math.random()*SCREEN_WIDTH + 700);
+			objectArray[1][i].x = (Math.random()*640 + 700);
 		}
 	}
 	else if((objectArray[0][0].score >= 30) && (level == 2))
@@ -1139,7 +862,7 @@ function levelCheck()
 		levelMenu();
 		scrollSpeed = 0.7;
 		objectArray[0][0].x = 20;
-		objectArray[0][0].y = START_Y_POSITION;
+		objectArray[0][0].y = 410;
 		SceneTop.x = 0;
 		SceneMedian.x = 0;
 		SceneBottom.x = 0;
@@ -1149,10 +872,9 @@ function levelCheck()
 		//carProbability = 1;
 		//carCountDifficulty = 300;
 		//frogCountDifficulty = 300;
-
 		for(i = 0; i < objectArray[1].length; i++)
 		{
-			objectArray[1][i].x = (Math.random() * SCREEN_WIDTH + 700);
+			objectArray[1][i].x = (Math.random()*640 + 700);
 		}
 	}
 	else if((objectArray[0][0].score >= 100) && (level == 3))
@@ -1161,8 +883,8 @@ function levelCheck()
 		{
 			musicWin.play();
 		}	
-		ctx.fillStyle = BLACK;
-		ctx.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+		ctx.fillStyle = "#000000";
+		ctx.fillRect(0, 0, 640, 480);
 		ctx.drawImage(winImage, 0, 0);
 		gameOn = false;
 	}
@@ -1178,7 +900,7 @@ function positionUpdate(struct, width, height)
 	struct.top = struct.y;
 	struct.bottom = (struct.y + height);
 	
-	if(struct.isCop)
+	if(struct.isCop == true)
 	{
 		struct.top += 30;
 		struct.bottom += 30;
@@ -1197,8 +919,7 @@ function collision(R2, R1)
 	{	
 		return true;
 	}
-	else 
-	{
+	else {
 		return false;
 	}
 }
@@ -1207,14 +928,14 @@ function collision(R2, R1)
 //which allows update to be interrupted.
 function gameStatusInterval()	
 { 
-  	setInterval(gameStatus, 100.0/3); 
+  	setInterval(gameStatus, 1000/30.0); 
 	
 }
 
 //Updates game unless the global bool gameOn is false in which case the game ends. 
 function gameStatus()
 {
-	if(gameOn)
+	if(gameOn == true)
 	{
 		update();
 	}
@@ -1222,13 +943,13 @@ function gameStatus()
 
 function gameEnd()
 {
-	if(soundOn)
+	if(soundOn == true)
 	{
 		musicLose.play();
 	}
-	ctx.fillStyle = BLACK;
-	ctx.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-	ctx.drawImage(loseImage, 0, 0);
+	ctx.fillStyle = "#000000";
+	ctx.fillRect(0, 0, 640, 480);
+	ctx.drawImage(loseImage,0,0);
 	gameOn = false;
 }
 
@@ -1238,11 +959,10 @@ levelMenu();
 //Update function.
 function update()
 { 
-	if(!pause) 
-	{
+	if (pause == false) {
 		
-		ctx.fillStyle = BLACK;
-		ctx.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+		ctx.fillStyle = "#000000";
+		ctx.fillRect(0, 0, 640, 480);
 	   
 		ctx.drawImage(objectArray[0][0].playerImage, objectArray[0][0].x, objectArray[0][0].y);
 		controls();
@@ -1274,26 +994,23 @@ function update()
 
 		for (var i = 0; i < objectArray[2].length; i++) 
 		{
-			if(objectArray[2][i].isCop)
+			if(objectArray[2][i].isCop == true)
 			{
 				objectArray[2][i].image = copImage;
 			}
-
 			positionUpdate(objectArray[2][i], objectArray[2][i].image.width, objectArray[2][i].image.height);
 			ctx.drawImage(objectArray[2][i].image, objectArray[2][i].x, objectArray[2][i].y);
 			driveCar(objectArray[2][i]);
-
-			if(collision(objectArray[0][0], objectArray[2][i]))
+			if(collision(objectArray[0][0], objectArray[2][i]) == true)
 			{
-				if(!objectArray[2][i].isCop && soundOn)
+				if((objectArray[2][i].isCop == false)&&(soundOn == true))
 				{
 					soundCrash.play();
 				}
-				else if(objectArray[2][i].isCop && soundOn)
+				 else if((objectArray[2][i].isCop == true)&&(soundOn == true))
 				{
 					soundCop.play();
 				}
-
 				gameOn = false;
 				objectArray[0][0].lives--;
 				objectArray[0][0].score = 0;
@@ -1302,12 +1019,12 @@ function update()
 			}
 		}
 		
-		if(!collision(objectArray[0][0], SceneMedian))			
+		if(collision(objectArray[0][0], SceneMedian) == false)			
 		{	
 			scroll();
 		}	
 
-		if(collision(objectArray[0][0], SceneMedian))
+		if(collision(objectArray[0][0], SceneMedian) == true)
 		{
 			gameOn = false;
 			objectArray[0][0].lives--;
@@ -1320,15 +1037,14 @@ function update()
 			//objectArray[1] = [];
 		}
 
-		for (var i = 0; i < objectArray[2].length; i++) 
-		{
-			if(collision(objectArray[0][0], objectArray[2][i]))
+		for (var i = 0; i < objectArray[2].length; i++) {
+			if(collision(objectArray[0][0], objectArray[2][i]) == true)
 			{
-				if(!objectArray[2][i].isCop && soundOn)
+				if((objectArray[2][i].isCop == false)&&(soundOn == true))
 				{
 					soundCrash.play();
 				}
-				else(objectArray[2][i].isCop && soundOn)
+				else((objectArray[2][i].isCop == true)&&(soundOn == true))
 				{
 					soundCop.play();
 				}
@@ -1341,11 +1057,11 @@ function update()
 			}
 		}
 
-		ctx.font = HELVETICA;
-		ctx.fillStyle = WHITE;
-		ctx.fillText(SCORE_LABEL, 380, 50);
+		ctx.font = "40px Helvetica";
+		ctx.fillStyle = "white";
+		ctx.fillText("Score:", 380, 50);
 		ctx.fillText(objectArray[0][0].score, 500, 50);
-		ctx.fillText(LIVES_LABEL, 380, 100);	
+		ctx.fillText("Lives:", 380, 100);	
 		ctx.fillText(objectArray[0][0].lives, 500, 100);	
 		
 		for (var i = 0; i < objectArray[1].length; i++) 
@@ -1360,11 +1076,9 @@ function update()
 		
 		levelCheck();
 		carManager();
-		copAnimation();
+		copImageChanger();
 	}
-
-	if (pause) 
-	{
+	if (pause == true) {
 		pauseMenu();
 	}
 }
