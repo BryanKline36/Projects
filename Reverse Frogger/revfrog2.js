@@ -44,7 +44,6 @@ var SOUND_ON_UNSELECT_BUTTON = "images/buttons/SoundOnUn.png";
 var RESUME_SELECT_BUTTON = "images/buttons/ResumeSel.png";
 var RESUME_UNSELECT_BUTTON = "images/buttons/ResumeUn.png";
 
-
 var BLACK = "#000000";
 var HELVETICA = "40px Helvetica";
 var WHITE = "white";
@@ -60,6 +59,7 @@ var DOWN = 40;
 var SPACE = 32
 var ESCAPE = 27;
 var ENTER = 13;
+
 
 var map = document.getElementById("map"); 
 var ctx = map.getContext("2d");
@@ -1002,15 +1002,17 @@ function gameStatus()
 
 function gameEnd()
 {
-	if(soundOn == true)
+	if(soundOn)
 	{
 		musicLose.play();
 	}
-	ctx.fillStyle = "#000000";
+	
+	ctx.fillStyle = BLACK;
 	ctx.fillRect(0, 0, 640, 480);
 	ctx.drawImage(loseImage,0,0);
 	gameOn = false;
 }
+
 
 levelMenu();
 
@@ -1067,7 +1069,7 @@ function update()
 				{
 					soundCrash.play();
 				}
-				 else if(objectArray[2][i].isCop && soundOn)
+				else if(objectArray[2][i].isCop && soundOn)
 				{
 					soundCop.play();
 				}
@@ -1105,7 +1107,7 @@ function update()
 				{
 					soundCrash.play();
 				}
-				else((objectArray[2][i].isCop && soundOn)
+				else(objectArray[2][i].isCop && soundOn)
 				{
 					soundCop.play();
 				}
@@ -1117,7 +1119,7 @@ function update()
 			}
 		}
 
-		ctx.font = BLACK;
+		ctx.font = HELVETICA;
 		ctx.fillStyle = WHITE;
 		ctx.fillText(SCORE_LABEL, 380, 50);
 		ctx.fillText(objectArray[0][0].score, 500, 50);
@@ -1138,7 +1140,7 @@ function update()
 		carManager();
 		copImageChanger();
 	}
-	if (pause) 
+	if(pause) 
 	{
 		pauseMenu();
 	}
