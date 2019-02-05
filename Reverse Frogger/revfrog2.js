@@ -1,6 +1,65 @@
 //~sushil/bin/submitFP to submit
 
 
+var SQUASH_SOUND_PATH = "audio/squash.wav";
+var CRASH_SOUND_PATH = "audio/crash.wav";
+var POLICE_SOUND_PATH = "audio/police.wav";
+var LEVEL_TRANSIT_SOUND_PATH = "audio/levelTransit.wav"; 
+var GAME_MUSIC_PATH = "audio/musicGame.wav";
+var MENU_MUSIC_PATH = "audio/start.wav";
+var WIN_MUSIC_PATH = "audio/musicWin.wav";
+var LOSE_MUSIC_PATH = "audio/lose.wav";
+var PLAYER_IMAGE = "images/player1.png";
+var FROG_IMAGE_ONE = "images/upfrog1.png";
+var FROG_IMAGE_TWO = "images/upfrog2.png";
+var DEAD_FROG_IMAGE = "images/blood.png";
+var TOP_SCENE_IMAGE_ONE = "images/TopScene.jpg";
+var MEDIAN_SCENE_IMAGE_ONE = "images/MedianScene.jpg"; 
+var BOTTOM_SCENE_IMAGE_ONE = "images/BottomScene.jpg";
+var TOP_SCENE_IMAGE_TWO = "images/TopScene2.jpg";
+var MEDIAN_SCENE_IMAGE_TWO = "images/MedianScene2.jpg"; 
+var BOTTOM_SCENE_IMAGE_TWO = "images/BottomScene2.jpg";
+var TOP_SCENE_IMAGE_THREE = "images/TopScene3.png";
+var MEDIAN_SCENE_IMAGE_THREE = "images/MedianScene3.png"; 
+var BOTTOM_SCENE_IMAGE_THREE = "images/BottomScene3.png";
+var LEFT_SEMI_IMAGE_ONE = "images/leftsemi1.jpg"; 
+var LEFT_CAR_IMAGE_ONE = "images/leftcar1.jpg"; 
+var RIGHT_CAR_IMAGE_TWO = "images/rightcar2.jpg"; 
+var RIGHT_CAR_IMAGE_FIVE = "images/rightcar5.jpg"; 
+var COP_CAR_IMAGE = "images/copRight.jpg";
+var COP_CAR_RED = "images/copRightRed.jpg";
+var COP_CAR_BLUE = "images/copRightBlue.jpg";
+var PAUSE_IMAGE = "images/pauseBack.png";
+var WIN_IMAGE = "images/winMenu.png";
+var LOSE_IMAGE = "images/loseMenu.png";
+var LEVEL_IMAGE_ONE = "images/level1Menu.png";
+var LEVEL_IMAGE_TWO = "images/level2Menu.png";
+var LEVEL_IMAGE_THREE = "images/level3Menu.png";
+var QUIT_SELECT_BUTTON = "images/buttons/QuitSel.png";
+var QUIT_UNSELECT_BUTTON = "images/buttons/QuitUn.png";
+var SOUND_OFF_SELECT_BUTTON = "images/buttons/SoundOffSel.png";
+var SOUND_OFF_UNSELECT_BUTTON = "images/buttons/SoundOffUn.png";
+var SOUND_ON_SELECT_BUTTON = "images/buttons/SoundOnSel.png";
+var SOUND_ON_UNSELECT_BUTTON = "images/buttons/SoundOnUn.png";
+var RESUME_SELECT_BUTTON = "images/buttons/ResumeSel.png";
+var RESUME_UNSELECT_BUTTON = "images/buttons/ResumeUn.png";
+
+
+var BLACK = "#000000";
+var HELVETICA = "40px Helvetica";
+var WHITE = "white";
+var SCORE_LABEL = "Score: ";
+var LIVES_LABEL = "Lives: ";
+
+// JQuery key code constants
+
+var LEFT = 37
+var RIGHT = 39;
+var UP = 38;
+var DOWN = 40;
+var SPACE = 32
+var ESCAPE = 27;
+var ENTER = 13;
 
 var map = document.getElementById("map"); 
 var ctx = map.getContext("2d");
@@ -953,15 +1012,14 @@ function gameEnd()
 	gameOn = false;
 }
 
-
 levelMenu();
 
 //Update function.
 function update()
 { 
-	if (pause == false) {
-		
-		ctx.fillStyle = "#000000";
+	if(!pause) 
+	{
+		ctx.fillStyle = BLACK;
 		ctx.fillRect(0, 0, 640, 480);
 	   
 		ctx.drawImage(objectArray[0][0].playerImage, objectArray[0][0].x, objectArray[0][0].y);
@@ -994,74 +1052,76 @@ function update()
 
 		for (var i = 0; i < objectArray[2].length; i++) 
 		{
-			if(objectArray[2][i].isCop == true)
+			if(objectArray[2][i].isCop)
 			{
 				objectArray[2][i].image = copImage;
 			}
+
 			positionUpdate(objectArray[2][i], objectArray[2][i].image.width, objectArray[2][i].image.height);
 			ctx.drawImage(objectArray[2][i].image, objectArray[2][i].x, objectArray[2][i].y);
 			driveCar(objectArray[2][i]);
-			if(collision(objectArray[0][0], objectArray[2][i]) == true)
+
+			if(collision(objectArray[0][0], objectArray[2][i]))
 			{
-				if((objectArray[2][i].isCop == false)&&(soundOn == true))
+				if(!objectArray[2][i].isCop && soundOn)
 				{
 					soundCrash.play();
 				}
-				 else if((objectArray[2][i].isCop == true)&&(soundOn == true))
+				 else if(objectArray[2][i].isCop && soundOn)
 				{
 					soundCop.play();
 				}
+
 				gameOn = false;
 				objectArray[0][0].lives--;
 				objectArray[0][0].score = 0;
 				objectArray[2] = [];
-				//objectArray[1] = [];
 			}
 		}
 		
-		if(collision(objectArray[0][0], SceneMedian) == false)			
+		if(!collision(objectArray[0][0], SceneMedian))			
 		{	
 			scroll();
 		}	
 
-		if(collision(objectArray[0][0], SceneMedian) == true)
+		if(collision(objectArray[0][0], SceneMedian))
 		{
 			gameOn = false;
 			objectArray[0][0].lives--;
 			objectArray[0][0].score = 0;
 			objectArray[2] = [];
-			if(soundOn == true)
+
+			if(soundOn)
 			{
 				soundCrash.play();
 			}
-			//objectArray[1] = [];
 		}
 
-		for (var i = 0; i < objectArray[2].length; i++) {
-			if(collision(objectArray[0][0], objectArray[2][i]) == true)
+		for (var i = 0; i < objectArray[2].length; i++) 
+		{
+			if(collision(objectArray[0][0], objectArray[2][i]))
 			{
-				if((objectArray[2][i].isCop == false)&&(soundOn == true))
+				if(!objectArray[2][i].isCop && soundOn)
 				{
 					soundCrash.play();
 				}
-				else((objectArray[2][i].isCop == true)&&(soundOn == true))
+				else((objectArray[2][i].isCop && soundOn)
 				{
 					soundCop.play();
 				}
+
 				gameOn = false;
 				objectArray[0][0].lives--;
 				objectArray[0][0].score = 0;
 				objectArray[2] = [];
-				//objectArray[1] = [];
-				
 			}
 		}
 
-		ctx.font = "40px Helvetica";
-		ctx.fillStyle = "white";
-		ctx.fillText("Score:", 380, 50);
+		ctx.font = BLACK;
+		ctx.fillStyle = WHITE;
+		ctx.fillText(SCORE_LABEL, 380, 50);
 		ctx.fillText(objectArray[0][0].score, 500, 50);
-		ctx.fillText("Lives:", 380, 100);	
+		ctx.fillText(LIVES_LABEL, 380, 100);	
 		ctx.fillText(objectArray[0][0].lives, 500, 100);	
 		
 		for (var i = 0; i < objectArray[1].length; i++) 
@@ -1078,7 +1138,8 @@ function update()
 		carManager();
 		copImageChanger();
 	}
-	if (pause == true) {
+	if (pause) 
+	{
 		pauseMenu();
 	}
 }
