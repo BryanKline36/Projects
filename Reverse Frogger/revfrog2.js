@@ -764,25 +764,25 @@ function levelMenu()
 
 function pauseMenu()
 {
-	console.log(pauseSelection);
 	$(document).keydown(function(e) 
 	{
-		if((e.keyCode == 38)&&(keyPressed == false))
+		if(e.keyCode == UP && !keyPressed)
 		{
 			pauseSelection--;
 			keyPressed = true;
 		}
-		if((e.keyCode == 40)&&(keyPressed == false))
+		if(e.keyCode == DOWN && !keyPressed)
 		{
 			pauseSelection++;
 			keyPressed = true;
 		}
-		if((e.keyCode == 13)&&(keyPressed == false))
+		if(e.keyCode == ENTER && !keyPressed)
 		{
 			resumeKey = true;
 			quitKey = true;
 			keyPressed = true;
-			if(soundOn == true)
+
+			if(soundOn)
 			{
 				soundKey = true;
 			}
@@ -792,23 +792,25 @@ function pauseMenu()
 			}
 		}
 	});
+
 	$(document).keyup(function(e) 
 	{
-		if(e.keyCode == 38)
+		if(e.keyCode == UP)
 		{
 			keyPressed = false;
 		}
-		if(e.keyCode == 40)
+		if(e.keyCode == DOWN)
 		{
 			keyPressed = false;
 		}
-		if(e.keyCode == 13)
+		if(e.keyCode == addEventListener)
 		{
 			resumeKey = false;
 			quitKey = false;
 			keyPressed = false;
 		}
 	});
+
 	if (pauseSelection >= 3)
 	{
 		pauseSelection = 0;
@@ -817,14 +819,16 @@ function pauseMenu()
 	{
 		pauseSelection = 2;
 	}
-	//musicGameplay.pause();
-	ctx.fillStyle = "#000000";
+
+	ctx.fillStyle = BLACK;
 	ctx.fillRect(0, 0, 640, 480);
 	ctx.drawImage(pauseImage,0,0);
+
 	if (pauseSelection == 0)
 	{
 		ctx.drawImage(resumeSel, 40, 100);
-		if(resumeKey == true)
+
+		if(resumeKey)
 		{
 			pause = false;
 		}
@@ -833,15 +837,15 @@ function pauseMenu()
 	{
 		ctx.drawImage(resumeUn, 40, 100);
 	}
-	if (pauseSelection == 1)
+	if(pauseSelection == 1)
 	{
-		if (soundOn == true)
+		if(soundOn)
 		{
-			if(soundKey == false)
+			if(!soundKey)
 			{	
 				ctx.drawImage(soundOffSel, 40, 200);
 			}
-			if(soundKey == true)
+			if(soundKey)
 			{
 				ctx.drawImage(soundOnSel, 40, 200);
 				soundOn = false;
@@ -849,12 +853,12 @@ function pauseMenu()
 		}
 		else
 		{
-			if(soundKey == false)
+			if(!soundKey)
 			{
 				ctx.drawImage(soundOnSel, 40, 200);
 				soundOn = true;
 			}
-			if(soundKey == true)
+			if(soundKey)
 			{
 				ctx.drawImage(soundOnSel, 40, 200);
 			}
@@ -862,7 +866,7 @@ function pauseMenu()
 	}
 	else
 	{
-		if (soundOn == true)
+		if(soundOn)
 		{
 			ctx.drawImage(soundOffUn, 40, 200);
 		}
@@ -871,10 +875,11 @@ function pauseMenu()
 			ctx.drawImage(soundOnUn, 40, 200);
 		}
 	}
-	if (pauseSelection == 2)
+	if(pauseSelection == 2)
 	{
 		ctx.drawImage(quitSel, 40, 300);
-		if(quitKey == true)
+
+		if(quitKey)
 		{
 			gameEnd();
 		}
@@ -906,10 +911,7 @@ function levelCheck()
 		SceneBottom.x = 0;
 		objectArray[2] = [];
 		objectArray[1] = [];
-		//frogProbability = 1;
-		//carProbability = 1;
-		//carCountDifficulty = 200;
-		//frogCountDifficulty = 200;
+		
 		for(i = 0; i < objectArray[1].length; i++)
 		{
 			objectArray[1][i].x = (Math.random()*640 + 700);
@@ -927,10 +929,7 @@ function levelCheck()
 		SceneBottom.x = 0;
 		objectArray[2] = [];
 		objectArray[1] = [];
-		//frogProbability = 1;
-		//carProbability = 1;
-		//carCountDifficulty = 300;
-		//frogCountDifficulty = 300;
+		
 		for(i = 0; i < objectArray[1].length; i++)
 		{
 			objectArray[1][i].x = (Math.random()*640 + 700);
@@ -938,11 +937,12 @@ function levelCheck()
 	}
 	else if((objectArray[0][0].score >= 100) && (level == 3))
 	{
-		if(soundOn == true)
+		if(soundOn)
 		{
 			musicWin.play();
-		}	
-		ctx.fillStyle = "#000000";
+		}
+
+		ctx.fillStyle = BLACK;
 		ctx.fillRect(0, 0, 640, 480);
 		ctx.drawImage(winImage, 0, 0);
 		gameOn = false;
@@ -959,7 +959,7 @@ function positionUpdate(struct, width, height)
 	struct.top = struct.y;
 	struct.bottom = (struct.y + height);
 	
-	if(struct.isCop == true)
+	if(struct.isCop)
 	{
 		struct.top += 30;
 		struct.bottom += 30;
@@ -978,7 +978,8 @@ function collision(R2, R1)
 	{	
 		return true;
 	}
-	else {
+	else 
+	{
 		return false;
 	}
 }
@@ -987,14 +988,14 @@ function collision(R2, R1)
 //which allows update to be interrupted.
 function gameStatusInterval()	
 { 
-  	setInterval(gameStatus, 1000/30.0); 
+  	setInterval(gameStatus, 100/3.0); 
 	
 }
 
 //Updates game unless the global bool gameOn is false in which case the game ends. 
 function gameStatus()
 {
-	if(gameOn == true)
+	if(gameOn)
 	{
 		update();
 	}
