@@ -99,21 +99,21 @@ var resumeUn = new Image();
 resumeUn.src = RESUME_UNSELECT_BUTTON;
 
 //Sound initialization
-var soundSquash = new Audio("audio/squash.wav");
-var soundCrash = new Audio("audio/crash.wav");
-var soundCop = new Audio("audio/police.wav");
-var soundTransit = new Audio("audio/levelTransit.wav");
-var musicGameplay = new Audio("audio/musicGame.wav");
-var musicMenu = new Audio("audio/start.wav");
-var musicWin = new Audio("audio/musicWin.wav");
-var musicLose = new Audio("audio/lose.wav");
+var soundSquash = new Audio(SQUASH_SOUND_PATH);
+var soundCrash = new Audio(CRASH_SOUND_PATH);
+var soundCop = new Audio(POLICE_SOUND_PATH);
+var soundTransit = new Audio(LEVEL_TRANSIT_SOUND_PATH);
+var musicGameplay = new Audio(GAME_MUSIC_PATH);
+var musicMenu = new Audio(MENU_MUSIC_PATH);
+var musicWin = new Audio(WIN_MUSIC_PATH);
+var musicLose = new Audio(LOSE_MUSIC_PATH);
 
 
 //The player struct.	
 function Player()
 {
 	this.playerImage = new Image();  
-	this.playerImage.src = "images/player1.jpg"; 
+	this.playerImage.src = PLAYER_IMAGE; 
 	//this.playerImage.addEventListener("load", drawImage);
 	this.y = 410;
 	this.x = 320 - (this.playerImage.width/2);
@@ -133,9 +133,9 @@ function Frogs()
 	this.frogImage1 = new Image();
 	this.frogImage2 = new Image();
 	this.frogImageDead = new Image();  
-	this.frogImage1.src = "images/upfrog1.jpg";
-	this.frogImage2.src = "images/upfrog2.jpg"; 
-	this.frogImageDead.src = "images/deadfrog.jpg"; 
+	this.frogImage1.src = FROG_IMAGE_ONE;
+	this.frogImage2.src = FROG_IMAGE_TWO; 
+	this.frogImageDead.src = DEAD_FROG_IMAGE; 
 	this.y;
 	this.x;
 	this.left = (this.x) + 40;
@@ -166,13 +166,13 @@ function Cars()
 function TopScene()
 {
 	this.topImage = new Image();  
-	this.topImage.src = "images/TopScene.jpg"; 
+	this.topImage.src = TOP_SCENE_IMAGE_ONE; 
 	//this.topImage.addEventListener("load", drawImage); 
 	this.topImage2 = new Image();  
-	this.topImage2.src = "images/TopScene2.jpg"; 
+	this.topImage2.src = TOP_SCENE_IMAGE_TWO; 
 	//this.topImage2.addEventListener("load", drawImage);
 	this.topImage3 = new Image();  
-	this.topImage3.src = "images/TopScene3.jpg"; 
+	this.topImage3.src = TOP_SCENE_IMAGE_THREE; 
 	//this.topImage3.addEventListener("load", drawImage);
 	this.x = 0;
 	this.y = 0;		
@@ -182,13 +182,13 @@ function TopScene()
 function MedianScene()
 {
 	this.medianImage = new Image();  
-	this.medianImage.src = "images/MedianScene.jpg"; 
+	this.medianImage.src = MEDIAN_SCENE_IMAGE_ONE; 
 	//this.medianImage.addEventListener("load", drawImage); 
 	this.medianImage2 = new Image();  
-	this.medianImage2.src = "images/MedianScene2.jpg"; 
+	this.medianImage2.src = MEDIAN_SCENE_IMAGE_TWO; 
 	//this.medianImage2.addEventListener("load", drawImage); 
 	this.medianImage3 = new Image();  
-	this.medianImage3.src = "images/MedianScene3.jpg"; 
+	this.medianImage3.src = MEDIAN_SCENE_IMAGE_THREE; 
 	//this.medianImage3.addEventListener("load", drawImage); 
 	this.x = 0;
 	this.y = 275;
@@ -203,13 +203,13 @@ function MedianScene()
 function BottomScene()
 {
 	this.bottomImage = new Image();  
-	this.bottomImage.src = "images/BottomScene.jpg"; 
+	this.bottomImage.src = BOTTOM_SCENE_IMAGE_ONE; 
 	//this.bottomImage.addEventListener("load", drawImage); 
 	this.bottomImage2 = new Image(); 
-	this.bottomImage2.src = "images/BottomScene2.jpg"; 
+	this.bottomImage2.src = BOTTOM_SCENE_IMAGE_TWO; 
 	//this.bottomImage2.addEventListener("load", drawImage);
 	this.bottomImage3 = new Image(); 
-	this.bottomImage3.src = "images/BottomScene3.jpg"; 
+	this.bottomImage3.src = BOTTOM_SCENE_IMAGE_THREE; 
 	//this.bottomImage3.addEventListener("load", drawImage);
 	this.x = 0;
 	this.y = 450;		
