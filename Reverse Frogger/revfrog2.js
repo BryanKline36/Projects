@@ -324,40 +324,51 @@ function carManager() {
 	}
 	objectArray[2].length = objectArray[2].length - lengthDown;
 	//randomly creates cars using carCount variable to keep them regularly spaced
-	if (carCount > 0) {
+	if (carCount > 0) 
+	{
 		carCount--;
 	}
-	else if (Math.random() * 100 <= carProbability && carCount == 0) {
+	else if (Math.random() * 100 <= carProbability && carCount == 0) 
+	{
 		var carType = Math.random() * 100;
-		if (carType < 20) {
+
+		if (carType < 20) 
+		{
 			var currentCarIndex = objectArray[2].length;
 			objectArray[2][currentCarIndex] = new Cars();
 			objectArray[2][currentCarIndex].direction = -1;
 			objectArray[2][currentCarIndex].speed = carSpeed;
 			objectArray[2][currentCarIndex].x = 640;
 			objectArray[2][currentCarIndex].y = 160;
-			if (Math.random() * 100 < 50) {
+
+			if (Math.random() * 100 < 50) 
+			{
 				objectArray[2][currentCarIndex].image = carLeft;
 			}
-			else {
+			else 
+			{
 				objectArray[2][currentCarIndex].image = semiLeft;
 			}
 		}
-		else if (carType >= 20 && carType < 40) {
+		else if (carType >= 20 && carType < 40) 
+		{
 			var currentCarIndex = objectArray[2].length;
 			objectArray[2][currentCarIndex] = new Cars();
 			objectArray[2][currentCarIndex].direction = -1;
 			objectArray[2][currentCarIndex].speed = carSpeed;
 			objectArray[2][currentCarIndex].x = 640;
 			objectArray[2][currentCarIndex].y = 220;
-			if (Math.random() * 100 < 50) {
+			if (Math.random() * 100 < 50) 
+			{
 				objectArray[2][currentCarIndex].image = carLeft;
 			}
-			else {
+			else 
+			{
 				objectArray[2][currentCarIndex].image = semiLeft;
 			}
 		}
-		else if (carType >= 40 && carType < 60) {
+		else if (carType >= 40 && carType < 60) 
+		{
 			var currentCarIndex = objectArray[2].length;
 			objectArray[2][currentCarIndex] = new Cars();
 			objectArray[2][currentCarIndex].direction = 1;
@@ -365,10 +376,12 @@ function carManager() {
 			objectArray[2][currentCarIndex].x = -100;
 			objectArray[2][currentCarIndex].y = 400;
 			
-			if (Math.random() * 100 < 50) {
+			if (Math.random() * 100 < 50) 
+			{
 				objectArray[2][currentCarIndex].image = carRight0;
 			}
-			else {
+			else 
+			{
 				objectArray[2][currentCarIndex].image = carRight1;
 			}
 		} 
@@ -380,7 +393,9 @@ function carManager() {
 			objectArray[2][currentCarIndex].speed = carSpeed;
 			objectArray[2][currentCarIndex].x = -100;
 			objectArray[2][currentCarIndex].y = 340;
-			if (Math.random() * 100 < 50) {
+
+			if (Math.random() * 100 < 50) 
+			{
 				objectArray[2][currentCarIndex].image = carRight0;
 			}
 			else {
@@ -398,6 +413,7 @@ function carManager() {
 			objectArray[2][currentCarIndex].isCop = true;
 			objectArray[2][currentCarIndex].image = copRight;	
 		}
+
 		carCount = carCountDifficulty;
 	}
 }
@@ -429,25 +445,25 @@ function copBlue()
 //JQuery function that senses keystrokes.  
 $(document).keydown(function(e) 
 {
-	if(e.keyCode == 37)
+	if(e.keyCode == LEFT)
 	{
 		horizontal = -1;
 	}
-	else if(e.keyCode == 39)	
+	else if(e.keyCode == RIGHT)	
 	{	
 		horizontal = 1;
 	}
-	else if(e.keyCode == 38)
+	else if(e.keyCode == UP)
 	{
 		 vertical = -1;
 	}
-	else if(e.keyCode == 40)
+	else if(e.keyCode == DOWN)
 	{		
 		vertical = 1;
 	}
-	else if(e.keyCode == 32)
+	else if(e.keyCode == SPACE)
 	{
-		if(gameOn == false)
+		if(!gameOn)
 		{				
 			gameOn = true;
 			objectArray[0][0].x = 320 - (objectArray[0][0].playerImage.width/1);
@@ -455,17 +471,18 @@ $(document).keydown(function(e)
 			SceneTop.x = 0;
 			SceneMedian.x = 0;
 			SceneBottom.x = 0;
+
 			for(i = 0; i < objectArray[1].length; i++)
 			{
 				objectArray[1][i].x = (Math.random()*640 + 700);
 			}
 		}
 	}
-	if (e.keyCode == 27 && pause == true) 
+	if (e.keyCode == ESCAPE && pause) 
 	{
 		pause = false;
 	}
-	else if (e.keyCode == 27 && pause == false && gameOn == true) 
+	else if (e.keyCode == ESCAPE && !pause && gameOn) 
 	{
 		pauseSelection = 0;
 		pause = true;
@@ -477,19 +494,19 @@ $(document).keydown(function(e)
 
 $(document).keyup(function(e) 
 {
-	if(e.keyCode == 37)
+	if(e.keyCode == LEFT)
 	{
 		horizontal = 0;
 	}
-	if(e.keyCode == 39)
+	if(e.keyCode == RIGHT)
 	{
 		horizontal = 0;
 	}
-	if(e.keyCode == 38)
+	if(e.keyCode == UP)
 	{
 		vertical = 0;
 	}
-	if(e.keyCode == 40)
+	if(e.keyCode == DOWN)
 	{
 		vertical = 0;
 	}
@@ -571,6 +588,7 @@ function frogMaker()
 			objectArray[1][newFrog].x = 900;
 			objectArray[1][newFrog].y = 200 + (Math.random() * 240);
 		}
+
 		frogCount = frogCountDifficulty;
 	}
 	else
@@ -589,6 +607,7 @@ function frogScroll(Frog)
 function drawFrog(Frog)
 {
 	var num = (Math.random() * 100);
+
 	if((num >= 0)&&(num < 50))
 	{	
 		ctx.drawImage(Frog.frogImage1, Frog.x, Frog.y);
@@ -605,7 +624,8 @@ function frogHop(Frog)
 {
 	frogPosition(Frog);
 	var num = (Math.random() * 100);
-	if(((num > 10)&&(num < 20))&&(Frog.alive == true))
+
+	if(num > 10 && num < 20 && Frog.alive)
 	{	
 		Frog.y -= 4;
 	}
@@ -615,7 +635,7 @@ function frogHop(Frog)
 //is called to make a hopping frog, if not it will remain dead.
 function isFrogAlive(Frog)
 {
-	if(Frog.alive == true)
+	if(Frog.alive)
 	{
 		drawFrog(Frog);
 	}	
@@ -628,6 +648,7 @@ function frogPosition(Frog)
 	var yNum;
 	positionUpdate(Frog, Frog.frogImage1.width, Frog.frogImage1.height);
 	yNum = Math.random()*430;
+
 	if(yNum < 150)
 	{
 		yNum += 160; 
@@ -638,9 +659,9 @@ function frogPosition(Frog)
 	}		
 	if(Frog.x < -100)
 	{
-		Frog.alive = true;
 		Frog.y = yNum;
 		Frog.x = Math.random()*100 + 900;
+		Frog.alive = true;
 	}
 	if(Frog.y <= 140)
 	{
@@ -648,6 +669,7 @@ function frogPosition(Frog)
 		{
 			objectArray[0][0].score -= 10;
 		}	
+
 		Frog.y = yNum;
 		Frog.x = Math.random()*100 + 700;
 		Frog.alive = true;
@@ -657,7 +679,7 @@ function frogPosition(Frog)
 //Checks to see if a frog is up against the median, if so the frog just stays put in the road.
 function medianAndFrog(Frog)
 {
-	if(collision(Frog, SceneMedian) == false)
+	if(!collision(Frog, SceneMedian))
 	{
 		frogHop(Frog);
 	}
@@ -670,21 +692,23 @@ function frogAndCar()
 {
 	for (var i = 0; i < objectArray[1].length; i++) 
 	{
-		if (collision(objectArray[0][0], objectArray[1][i]) && objectArray[1][i].alive == true)
+		if (collision(objectArray[0][0], objectArray[1][i]) && objectArray[1][i].alive)
 		{
 			objectArray[0][0].score += 10;
 			objectArray[1][i].alive = false;
 			soundSquash.play();
 		}
+
 		for (var j = 0; j < objectArray[2].length; j++) 
 		{
-			if(collision(objectArray[2][j], objectArray[1][i]) == true)
+			if(collision(objectArray[2][j], objectArray[1][i]))
 			{
 				objectArray[1][i].alive = false;
 				soundSquash.play();
 			}
 		}
-		if (/*objectArray[1][i].alive == false &&*/ objectArray[1][i].x < -100)
+
+		if (objectArray[1][i].x < -100)
 		{
 			for (var j = i; j < objectArray[1].length; j++) 
 			{
@@ -701,7 +725,7 @@ function frogAndCar()
 //If the bool alive is false this draws the frog as a blood stain.
 function deadFrog(Frog)
 {
-	if(Frog.alive == false)
+	if(!Frog.alive)
 	{
 		ctx.drawImage(Frog.frogImageDead, Frog.x, Frog.y);
 		frogHop(Frog);
@@ -741,24 +765,29 @@ function driveCar(Car)
 function levelMenu()
 {
 		gameOn = false;
+
+		ctx.fillStyle = BLACK;
+		ctx.fillRect(0, 0, 640, 480);
+
 		if(level == 1)
 		{
-			ctx.fillStyle = "#000000";
-			ctx.fillRect(0, 0, 640, 480);
+			// ctx.fillStyle = BLACK;
+			// ctx.fillRect(0, 0, 640, 480);
 			ctx.drawImage(level1Image, 0, 0);
 		}	
 		if(level == 2)
 		{
-			ctx.fillStyle = "#000000";
-			ctx.fillRect(0, 0, 640, 480);
+			// ctx.fillStyle = BLACK;
+			// ctx.fillRect(0, 0, 640, 480);
 			ctx.drawImage(level2Image, 0, 0);
 		}
 		if(level == 3)
 		{
-			ctx.fillStyle = "#000000";
-			ctx.fillRect(0, 0, 640, 480);
+			// ctx.fillStyle = BLACK;
+			// ctx.fillRect(0, 0, 640, 480);
 			ctx.drawImage(level3Image, 0, 0);
 		}
+
 		setTimeout(waitMenu, 3000);
 }
 
