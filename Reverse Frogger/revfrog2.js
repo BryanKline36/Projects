@@ -49,6 +49,8 @@ var HELVETICA = "40px Helvetica";
 var WHITE = "white";
 var SCORE_LABEL = "Score: ";
 var LIVES_LABEL = "Lives: ";
+var MAP = "map";
+var TWO_DIMENSION = "2d";
 
 // JQuery key code constants
 
@@ -61,40 +63,40 @@ var ESCAPE = 27;
 var ENTER = 13;
 
 
-var map = document.getElementById("map"); 
-var ctx = map.getContext("2d");
+var map = document.getElementById(MAP); 
+var ctx = map.getContext(TWO_DIMENSION);
 
 //Menus
 var pauseImage = new Image();
-pauseImage.src = "images/pauseBack.png";
+pauseImage.src = PAUSE_IMAGE;
 var winImage = new Image();
-winImage.src = "images/winMenu.png";
+winImage.src = WIN_IMAGE;
 var loseImage = new Image();
-loseImage.src = "images/loseMenu.png";
+loseImage.src = LOSE_IMAGE;
 var level1Image = new Image();
-level1Image.src = "images/level1Menu.png";
+level1Image.src = LEVEL_IMAGE_ONE;
 var level2Image = new Image();
-level2Image.src = "images/level2Menu.png";
+level2Image.src = LEVEL_IMAGE_TWO;
 var level3Image = new Image();
-level3Image.src = "images/level3Menu.png";
+level3Image.src = LEVEL_IMAGE_THREE;
 
 //buttons
 var quitSel = new Image();
-quitSel.src = "images/buttons/QuitSel.png";
+quitSel.src = QUIT_SELECT_BUTTON;
 var quitUn = new Image();
-quitUn.src = "images/buttons/QuitUn.png";
+quitUn.src = QUIT_UNSELECT_BUTTON;
 var soundOffSel = new Image();
-soundOffSel.src = "images/buttons/SoundOffSel.png";
+soundOffSel.src = SOUND_OFF_SELECT_BUTTON;
 var soundOffUn = new Image();
-soundOffUn.src = "images/buttons/SoundOffUn.png";
+soundOffUn.src = SOUND_OFF_UNSELECT_BUTTON;
 var soundOnSel = new Image();
-soundOnSel.src = "images/buttons/SoundOnSel.png";
+soundOnSel.src = SOUND_ON_SELECT_BUTTON;
 var soundOnUn = new Image();
-soundOnUn.src = "images/buttons/SoundOnUn.png";
+soundOnUn.src = SOUND_ON_UNSELECT_BUTTON;
 var resumeSel = new Image();
-resumeSel.src = "images/buttons/ResumeSel.png";
+resumeSel.src = RESUME_SELECT_BUTTON;
 var resumeUn = new Image();
-resumeUn.src = "images/buttons/ResumeUn.png";
+resumeUn.src = RESUME_UNSELECT_BUTTON;
 
 //Sound initialization
 var soundSquash = new Audio("audio/squash.wav");
@@ -229,7 +231,9 @@ for (var i = 0; i < 3; i++)
 {
 	objectArray[i] = [];
 }
+
 objectArray[0][0] = new Player();
+
 for (var i = 0; i < frogProbability; i++) 
 {
 	objectArray[1][i] = new Frogs();
@@ -287,6 +291,7 @@ var quitKey = false;
 //Variable initializations for initial game conditions.
 objectArray[0][0].score = 0;
 objectArray[0][0].lives = 3;
+
 for(i = 0; i < frogProbability; i++)
 {
 	var yNum = Math.random()*430;
@@ -298,27 +303,34 @@ for(i = 0; i < frogProbability; i++)
 	{
 		yNum += 80;
 	}
+
 	objectArray[1][i].x = (Math.random()* 640) + Math.random()*100;
 	objectArray[1][i].y = yNum;
 }
 
 //this function moves cars to the top of their row in the array, and randomly creates a car
-function carManager() {
+function carManager() 
+{
 	var lengthDown = 0;
 	//removes cars outside the map from the array, and consolidates cars in their array
-	for (var i = 0; i < objectArray[2].length; i++) {
-		if (i != objectArray[2].length - 1) {
-			if (objectArray[2][i].x < -100 || objectArray[2][i].x > 640) {
+	for (var i = 0; i < objectArray[2].length; i++) 
+	{
+		if (i != objectArray[2].length - 1) 
+		{
+			if (objectArray[2][i].x < -100 || objectArray[2][i].x > 640) 
+			{
 				objectArray[2][i] = objectArray[2][i+1];
 				objectArray[2][i+1] = 0;
 				lengthDown++;		
 			}
-			else if ((objectArray[2][i] == 0) && i != objectArray[2].length - 1) {
+			else if ((objectArray[2][i] == 0) && i != objectArray[2].length - 1) 
+			{
 				objectArray[2][i] = objectArray[2][i+1];
 				objectArray[2][i+1] = 0;	
 			}
 		}
-		else if (objectArray[2][i].x < -100 || objectArray[2][i].x > 640) {
+		else if (objectArray[2][i].x < -100 || objectArray[2][i].x > 640) 
+		{
 			lengthDown++;
 		}
 	}
