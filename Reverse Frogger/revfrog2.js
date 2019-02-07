@@ -1,5 +1,3 @@
-//~sushil/bin/submitFP to submit
-
 
 var SQUASH_SOUND_PATH = "audio/squash.wav";
 var CRASH_SOUND_PATH = "audio/crash.wav";
@@ -27,8 +25,8 @@ var LEFT_CAR_IMAGE_ONE = "images/leftcar1.jpg";
 var RIGHT_CAR_IMAGE_TWO = "images/rightcar2.jpg"; 
 var RIGHT_CAR_IMAGE_FIVE = "images/rightcar5.jpg"; 
 var COP_CAR_IMAGE = "images/copRight.jpg";
-var COP_CAR_RED = "images/copRightRed.jpg";
-var COP_CAR_BLUE = "images/copRightBlue.jpg";
+var COP_CAR_RED_IMAGE = "images/copRightRed.jpg";
+var COP_CAR_BLUE_IMAGE = "images/copRightBlue.jpg";
 var PAUSE_IMAGE = "images/pauseBack.png";
 var WIN_IMAGE = "images/winMenu.png";
 var LOSE_IMAGE = "images/loseMenu.png";
@@ -47,8 +45,8 @@ var RESUME_UNSELECT_BUTTON = "images/buttons/ResumeUn.png";
 var BLACK = "#000000";
 var HELVETICA = "40px Helvetica";
 var WHITE = "white";
-var SCORE_LABEL = "Score: ";
-var LIVES_LABEL = "Lives: ";
+var SCORE_LABEL = "Score:  ";
+var LIVES_LABEL = "Lives:  ";
 var MAP = "map";
 var TWO_DIMENSION = "2d";
 
@@ -241,25 +239,25 @@ for (var i = 0; i < frogProbability; i++)
 
 //Image initialization
 semiLeft = new Image();  
-semiLeft.src = "images/leftsemi1.jpg"; 
+semiLeft.src = LEFT_SEMI_IMAGE_ONE; 
 //semiLeft.addEventListener("load", drawImage);
 carLeft = new Image();  
-carLeft.src = "images/leftcar1.jpg"; 
+carLeft.src = LEFT_CAR_IMAGE_ONE; 
 //carLeft.addEventListener("load", drawImage);
 carRight1 = new Image();  
-carRight1.src = "images/rightcar2.jpg"; 
+carRight1.src = RIGHT_CAR_IMAGE_TWO; 
 //carRight1.addEventListener("load", drawImage);
 carRight0 = new Image();  
-carRight0.src = "images/rightcar5.jpg"; 
+carRight0.src = RIGHT_CAR_IMAGE_FIVE; 
 //carRight0.addEventListener("load", drawImage);
 copRight = new Image();
-copRight.src = "images/copRight.jpg" ;
+copRight.src = COP_CAR_IMAGE;
 //copRight.addEventListener("load", drawImage);
 copRightRed = new Image();
-copRightRed.src = "images/copRightRed.jpg" ;
+copRightRed.src = COP_CAR_RED_IMAGE;
 //copRightRed.addEventListener("load", drawImage);
 copRightBlue = new Image();
-copRightBlue.src = "images/copRightBlue.jpg" ;
+copRightBlue.src = COP_CAR_BLUE_IMAGE;
 //copRightBlue.addEventListener("load", drawImage);
 
 gameStatusInterval();
@@ -268,7 +266,7 @@ gameStatusInterval();
 var pauseSelection = 0;
 var soundOn = true;
 var pause = false;
-var dt = 1000/30.0;
+var dt = 100/3.0;
 var scrollSpeed = 0.4;
 var horizontal = 0;
 var vertical = 0;
