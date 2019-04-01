@@ -17,8 +17,8 @@ class CellGrid:
         self.gridSize = int(size)
         self.offset = int(sqrt(size))
         self.current = False
-        self.dead = False
-        self.alive = True
+        self.dead = True
+        self.alive = False
 
         for index in range(0, self.gridSize):
             self.grid.append(self.dead)
@@ -81,7 +81,8 @@ class CellGrid:
 
     def setCellState(self, index, state):
 
-        self.grid[index] = state
+        if index >= 0 and index < self.gridSize:
+            self.grid[index] = state
 
     def printGrid(self):
 
@@ -91,6 +92,7 @@ class CellGrid:
             print(self.grid[index])
         
         print("Grid End")    
+
 
 # Automaton class definition
 
@@ -132,6 +134,7 @@ class Automaton:
             self.currentGridIndex = 1
 
     def setCurrentGrid(self, index):
+
         if index >= 0 and index < 2:
             self.currentGridIndex = index
             self.grids[index].setCurrent(True)    
