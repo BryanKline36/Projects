@@ -17,8 +17,8 @@ class CellGrid:
         self.gridSize = int(size)
         self.offset = int(sqrt(size))
         self.current = False
-        self.dead = True
-        self.alive = False
+        self.dead = False
+        self.alive = True
 
         for index in range(0, self.gridSize):
             self.grid.append(self.dead)
@@ -93,7 +93,6 @@ class CellGrid:
         
         print("Grid End")    
 
-
 # Automaton class definition
 
 class Automaton:
@@ -134,7 +133,6 @@ class Automaton:
             self.currentGridIndex = 1
 
     def setCurrentGrid(self, index):
-
         if index >= 0 and index < 2:
             self.currentGridIndex = index
             self.grids[index].setCurrent(True)    
@@ -169,7 +167,7 @@ class Automaton:
         xPosition = position[0] / self.cellSize
         yPosition = position[1] / self.cellSize
 
-        index = (xPosition + (yPosition * self.gridSide))
+        index = int((xPosition + (yPosition * self.gridSide)))
 
         self.grids[self.currentGridIndex].toggleCell(index)
 
