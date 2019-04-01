@@ -29,6 +29,7 @@ def increaseClockRate(delay, step):
     else:
         return delay
 
+#test
 def reset(automaton):
 
     if automaton != None:
