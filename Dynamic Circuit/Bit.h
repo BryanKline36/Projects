@@ -1,24 +1,29 @@
 
-// 0000 0000
-// 7654 3210
-//b0 is the value of the Bit,  
-
 class Bit
 {   
+    const char bitMask = 0x01;
+    const char neighborMask = 0x7E;
+
     public:
 
         Bit();
         ~Bit();
 
-    void setBitValue(char bitValue);
-    void setBitNeighborsConnections(char neighborConnections)
-    void setBitNeighbors();
+        void setBitValue(char bitValue);
+        void setBitNeighborConnections(char neighborConnections)
+        void setBitBorders(char bitBorders);
+        void setState(char state); 
 
-    bool getBitValue();
-    char getBitNeighbors();
+        char getBitValue();
+        bool getBit();
+        char getBitNeighborConnections();
+        char getBitBorders();
+        char getState();
 
     private:
 
-    char bit;
+        void DiagnosticPrint(bool verbose = false);
 
+        char state;
+        char borders;
 };
