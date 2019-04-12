@@ -17,7 +17,7 @@ Bifield::BitField()
 Bifield::BitField(FieldPosition fieldPosition, Components* circuitComponents)
 {
     int index, componentsSize = sizeof(circuitComponents) / sizeof(Components);
-    int xAxis, yAxis, zAxis;
+    int xAxis, yAxis;
 
     components = new Components[componentsSize];
 
@@ -37,21 +37,20 @@ Bifield::BitField(FieldPosition fieldPosition, Components* circuitComponents)
 
     for(xAxis = 0; xAxis < xDimension; ++xAxis)
     {
-        fields[FIELD_ZERO][xAxis] = new Bit*[yAxis];
-        fields[FIELD_ONE][xAxis] = new Bit*[yAxis];
+        fields[FIELD_ZERO][xAxis] = new Bit*[yDimension];
+        fields[FIELD_ONE][xAxis] = new Bit*[yDimension];
 
         for(yAxis = 0; yAxis < yDimension; ++yAxis)
         {
-            fields[FIELD_ZERO][xAxis][yAxis] = new Bit[zAxis];
-            fields[FIELD_ONE][xAxis][yAxis] = new Bit[zAxis];
+            fields[FIELD_ZERO][xAxis][yAxis] = new Bit[zDimension];
+            fields[FIELD_ONE][xAxis][yAxis] = new Bit[zDimension];
         }
     }
 }
 
-
 Bifield::~BitField()
 {
-    int xAxis, yAxis, zAxis;
+    int xAxis, yAxis;
 
     if(components != NULL)
     {
@@ -60,19 +59,10 @@ Bifield::~BitField()
 
     if(fields != NULL)
     {
-        for(xAxis = 0; xAxis < xDimension; ++xAxis)
-        {
-            fields[FIELD_ZERO][xAxis] = new Bit*[yAxis];
-            fields[FIELD_ONE][xAxis] = new Bit*[yAxis];
+        destructorHelper(FIELD_ZERO);
+        destructorHelper(FIELD_ONE);
 
-            for(yAxis = 0; yAxis < yDimension; ++yAxis)
-            {
-                fields[FIELD_ZERO][xAxis][yAxis] = new Bit[zAxis];
-                fields[FIELD_ONE][xAxis][yAxis] = new Bit[zAxis];
-            }
-        }
-
-
+        delete[] fields;
     }
 }
 
@@ -131,3 +121,28 @@ void Bifield::setNeighborBitValues(FieldPosition fieldPosition, char neighborBit
 
 }
 
+void BitField::destructorHelper(int index)
+{
+    int xAxis, yAxis;
+
+    if(fields[index] != NULL)
+    {
+        for(xAxis = 0; xAxis < xDimension; ++xAxis)
+        {
+            if(fields[index][xAxis] != NULL)
+            {
+                for(yAxis = 0; yAxis < yDimension; ++yAxis)
+                {
+                    if(fields[index][xAxis][yAxis] != NULL)
+                    {
+                        delete[] fields[index][xAxis][yAxis];
+                    }
+                }    
+
+                delete[] fields[index][xAxis];
+            }
+
+            delete[] fields[index];
+        }
+    }
+}

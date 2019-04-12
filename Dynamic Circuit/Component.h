@@ -20,7 +20,7 @@ class Component
         void activate(BitField::FieldPosition fieldPosition, const Bit &bit);
 
         void deactivate(BitField::FieldPosition fieldPosition);
-        void deactivate(BitField::FieldPosition fieldPosition, const Bit &bit);
+        void deactivate(FieldPosition fieldPosition, const Bit &bit);
 
 
     private:
