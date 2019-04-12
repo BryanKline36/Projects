@@ -121,6 +121,17 @@ void Bifield::setNeighborBitValues(FieldPosition fieldPosition, char neighborBit
 
 }
 
+bool BitField::positionValid(FieldPosition fieldPosition)
+{
+    if(fields[fieldPosition.x] != NULL && fields[fieldPosition.x][fieldPosition.y] != NULL 
+        && fields[fieldPosition.x][fieldPosition.y][fieldPosition.z] != NULL)
+    {
+        return true;
+    }
+
+    return false;
+}
+
 void BitField::destructorHelper(int index)
 {
     int xAxis, yAxis;

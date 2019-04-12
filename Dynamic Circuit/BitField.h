@@ -35,6 +35,7 @@ class BitField
         void setNeighborStates(FieldPosition fieldPosition, char* states);
         void setNeighborConnections(FieldPosition fieldPosition, char neighborConnections);
         void setNeighborBitValues(FieldPosition fieldPosition, char neighborBitValues);
+        bool positionValid(FieldPosition fieldPosition);
 
         void destructorHelper(int index);
 

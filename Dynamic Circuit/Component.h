@@ -8,7 +8,6 @@ class Component
         LED
     };
 
-
     public:
 
         Component();
