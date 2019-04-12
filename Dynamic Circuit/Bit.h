@@ -1,8 +1,23 @@
 
+//state:
+//_ _ _ _   _ _ _ _ 
+//7 6 5 4   3 2 1 0
+//b0 is the bit value
+//b1 - b6 are the neighbors
+//b7 unassigned
+
+//borders:
+//_ _ _ _   _ _ _ _ 
+//7 6 5 4   3 2 1 0
+//b0 unassigned
+//b1 - b6 are the neighbors
+//b7 unassigned
+
 class Bit
 {   
     const char bitMask = 0x01;
     const char neighborMask = 0x7E;
+    const char borderMask = 0x81;
 
     public:
 
@@ -10,19 +25,19 @@ class Bit
         ~Bit();
 
         void setBitValue(char bitValue);
-        void setBitNeighborConnections(char neighborConnections)
-        void setBitBorders(char bitBorders);
+        void setNeighborConnections(char neighborConnections);
+        void setBorders(char bitBorders);
         void setState(char state); 
 
         char getBitValue();
         bool getBit();
-        char getBitNeighborConnections();
-        char getBitBorders();
+        char getNeighborConnections();
+        char getBorders();
         char getState();
 
-    private:
+        void diagnosticPrint(bool verbose);
 
-        void DiagnosticPrint(bool verbose = false);
+    private:
 
         char state;
         char borders;

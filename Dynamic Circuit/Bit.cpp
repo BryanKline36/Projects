@@ -1,3 +1,4 @@
+#include <iostream>
 #include "Bit.h"
 
 Bit::Bit()
@@ -16,15 +17,14 @@ void Bit::setBitValue(char bitValue)
     state |= bitValue & bitMask;
 }
 
-void Bit::setBitNeighborConnections(char neighborConnections)
+void Bit::setNeighborConnections(char neighborConnections)
 {
-    state |= neighborConnections & neighborMask
+    state |= neighborConnections & neighborMask;
 }
 
-void Bit::setBitBorders(char bitBorders)
+void Bit::setBorders(char bitBorders)
 {
-
-    borders = borderValues;
+    borders = borderMask | bitBorders;
 }
 
 void Bit::setState(char state)
@@ -42,12 +42,12 @@ bool Bit::getBit()
     return state & bitMask;   
 }
 
-char Bit::getBitNeighborConnections()
+char Bit::getNeighborConnections()
 {
-    return state & neighborMask;
+    return (state & neighborMask) & borders;
 }
 
-char Bit::getBitBorders()
+char Bit::getBorders()
 {
     return borders;
 }
@@ -57,15 +57,15 @@ char Bit::getState()
     return state;
 }
 
-void Bit::DiagnosticPrint(bool verbose = false)
+void Bit::diagnosticPrint(bool verbose)
 {
     if(verbose)
     {
-        std::cout << std::hex << "bitMask: " << << std::endl;
-        std::cout << "neighborMask: " << neighborMask << std::endl;
+        std::cout << std::hex << "bitMask: " << (int)bitMask << std::endl;
+        std::cout << "neighborMask: " << (int)neighborMask << std::endl;
     }
 
-    std::cout << "state: " << state << std::endl;
-    std::cout << "borders " << borders << std::dec << std::endl;
+    std::cout << "state: " << (int)state << std::endl;
+    std::cout << "borders: " << (int)borders << std::dec << std::endl;
 }
 
