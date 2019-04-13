@@ -73,7 +73,40 @@ void Bifield::runCircuit()
 
 char Bifield::getBorderValue(FieldPosition fieldPosition)
 {
+    //origin is the corner of 3, 4, and 6
+    char borderValue = 0xFF;
 
+    //4 and 2
+    if(fieldPosition.x == 0)
+    {
+        borderValue &= 0xEF;
+    }
+    else if(fieldPosition.x == xDimension - 1)
+    {
+        borderValue &= 0xFB;
+    }
+
+    //6 and 5
+    if(fieldPosition.y == 0)
+    {
+        borderValue &= 0xBF;
+    }
+    else if(fieldPosition.y == yDimension - 1)
+    {
+        borderValue &= 0xDF;
+    }
+
+    //3 and 1
+    if(fieldPosition.z == 0)
+    {
+        borderValue &= 0xF7;
+    }
+    else if(fieldPosition.z == zDimension - 1)
+    {
+        borderValue &= 0xFD;
+    }
+
+    return borderValue;
 }
 
 char Bifield::getBorders(FieldPosition fieldPosition)
@@ -121,10 +154,11 @@ void Bifield::setNeighborBitValues(FieldPosition fieldPosition, char neighborBit
 
 }
 
-bool BitField::positionValid(FieldPosition fieldPosition)
+bool BitField::positionValid(FieldPosition fieldPosition, int index)
 {
-    if(fields[fieldPosition.x] != NULL && fields[fieldPosition.x][fieldPosition.y] != NULL 
-        && fields[fieldPosition.x][fieldPosition.y][fieldPosition.z] != NULL)
+    if(fields != NULL && fields[index] != NULL && fields[index][fieldPosition.x] != NULL 
+        && fields[index][fieldPosition.x][fieldPosition.y] != NULL 
+        && fields[index][fieldPosition.x][fieldPosition.y][fieldPosition.z] != NULL)
     {
         return true;
     }
