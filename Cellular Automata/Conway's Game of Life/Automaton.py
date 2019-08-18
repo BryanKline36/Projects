@@ -1,6 +1,7 @@
 # CellGrid class definition
 
 from math import sqrt
+from time import sell
 
 class CellGrid:
 
@@ -149,6 +150,8 @@ class Automaton:
         self.setCurrentGrid(self.currentGridIndex ^ 1)
 
     def drawGrid(self):
+
+        print("size: " + str(self.gridSize) + " side: " + str(self.gridSide) + " cell: " + str(self.cellSize))
 
         if self.window != None:
             for index in range(0, self.gridSize):
