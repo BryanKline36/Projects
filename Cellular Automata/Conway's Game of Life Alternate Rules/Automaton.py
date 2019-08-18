@@ -1,7 +1,6 @@
 # CellGrid class definition
 
 from math import sqrt
-from time import sell
 
 class CellGrid:
 
@@ -42,7 +41,7 @@ class CellGrid:
 
         neighborIndices = []
         neighbors = [(index - self.offset - 1), (index - self.offset), (index - self.offset + 1), 
-                    (index - 1), (index + 1), 
+                    (index - 1), index, (index + 1), 
                     (index + self.offset - 1), (index + self.offset), (index + self.offset + 1)]
 
         if index >= 0 and index < self.gridSize:
@@ -75,9 +74,7 @@ class CellGrid:
             if self.grid[index] and (neighborCount < 2 or neighborCount > 3):
                 state = self.dead
 
-            #if (not self.grid[index]) and (neighborCount > 1 and neighborCount < 4):
-            if ((not self.grid[index]) and neighborCount == 3) or \
-                (self.grid[index] and (neighborCount == 2 or neighborCount == 3)):
+            if (not self.grid[index]) and (neighborCount > 1 and neighborCount < 4):
                 state = self.alive
 
         return state
@@ -152,8 +149,6 @@ class Automaton:
         self.setCurrentGrid(self.currentGridIndex ^ 1)
 
     def drawGrid(self):
-
-        print("size: " + str(self.gridSize) + " side: " + str(self.gridSide) + " cell: " + str(self.cellSize))
 
         if self.window != None:
             for index in range(0, self.gridSize):
